@@ -7,8 +7,11 @@ public class Actor : MonoBehaviour {    public enum CharacterEmotion
      CharacterEmotion characterEmo;
     public Sprite[] sprites;
     SpriteRenderer spriteRender;
-    private int status;
+    private int status=0;
     private GameObject lieu;
+    public InkleManager inkleManager;//weird
+
+
     private int sens;//0gauche 1droite 2gauche coupé 3droitecoupé
     public int positionNum; // 0 tout à gauche 3 tout à droite
     public CharacterEmotion CharacterEmo
@@ -87,6 +90,14 @@ public class Actor : MonoBehaviour {    public enum CharacterEmotion
         spriteRender.sprite = sprites[0];
         yield return null;
 
+    }
+
+    void OnMouseOver()
+    {
+        if (Input.GetMouseButtonDown(0)){
+            inkleManager.Story.ChoosePathString(lieu.name+"."+status);
+            // Whatever you want it to do.
+        }
     }
     // Update is called once per frame
     void Update () {

@@ -61,7 +61,8 @@ public class InkleManager : MonoBehaviour {
          {
              gameManager.SetStatus(status, actorName);
          });
-    
+       
+
         RefreshView();
     }
 
