@@ -5,7 +5,8 @@ using Ink.Runtime;
 using UnityEngine.UI;
 using System;
 
-public class InkleManager : MonoBehaviour {
+public class InkleManager : MonoBehaviour
+{
     private GameManager gameManager;
     [SerializeField]
     private TextAsset inkJSONAsset;
@@ -31,16 +32,16 @@ public class InkleManager : MonoBehaviour {
         story = new Story(inkJSONAsset.text);
         // on bind les fonctions ink
         story.BindExternalFunction("PlaceActor", (string actorName, int position) =>
-         {
-             gameManager.PlaceActor(actorName, position);
-         });
+        {
+            gameManager.PlaceActor(actorName, position);
+        });
         story.BindExternalFunction("Flush", () => {
             gameManager.Flush();
-         });
+        });
         story.BindExternalFunction("RemoveActor", (string actorName) =>
-         {
-             gameManager.RemoveActor(actorName);
-         });
+        {
+            gameManager.RemoveActor(actorName);
+        });
         story.BindExternalFunction("SetDecor", (string decorName) =>
         {
             gameManager.SetDecor(decorName);
@@ -118,7 +119,9 @@ public class InkleManager : MonoBehaviour {
     {
         Text storyText = Instantiate(textPrefab) as Text;
         storyText.text = text;
+        RemoveChildren();
         storyText.transform.SetParent(canvas.transform, false);
+
     }
 
     Button CreateChoiceView(string text)
@@ -143,10 +146,11 @@ public class InkleManager : MonoBehaviour {
             GameObject.Destroy(canvas.transform.GetChild(i).gameObject);
         }
     }
-    
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }
