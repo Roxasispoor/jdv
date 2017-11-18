@@ -5,6 +5,7 @@ using Ink.Runtime;
 using UnityEngine.UI;
 
 public class InkleManager : MonoBehaviour {
+    private GameManager gameManager;
     [SerializeField]
     private TextAsset inkJSONAsset;
     private Story story;
@@ -18,14 +19,28 @@ public class InkleManager : MonoBehaviour {
     [SerializeField]
     private Button buttonPrefab;
 
-    void Awake()
+    void Start()
     {
+        gameManager = GetComponent<GameManager>();
         StartStory();
     }
 
     void StartStory()
     {
         story = new Story(inkJSONAsset.text);
+        // on bind les fonctions ink
+        story.BindExternalFunction("PlaceActor", (string actorName, int position) =>
+         {
+             gameManager.PlaceActor(actorName, position);
+         });
+        story.BindExternalFunction("Flush", () => {
+            gameManager.Flush();
+         });
+        story.BindExternalFunction("RemoveActor", (string actorName) =>
+         {
+             gameManager.RemoveActor(actorName);
+         });
+
         RefreshView();
     }
 
@@ -94,10 +109,7 @@ public class InkleManager : MonoBehaviour {
             GameObject.Destroy(canvas.transform.GetChild(i).gameObject);
         }
     }
-    // Use this for initialization
-    void Start () {
-		
-	}
+    
 	
 	// Update is called once per frame
 	void Update () {

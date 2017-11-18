@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Actor : MonoBehaviour {
-    public enum CharacterEmotion
+public class Actor : MonoBehaviour {    public enum CharacterEmotion
     { NORMAL, SPECIAL }
     CharacterEmotion characterEmo;
     public Sprite[] sprites;
@@ -23,10 +22,23 @@ public class Actor : MonoBehaviour {
         }
     }
 
+    public int PositionNum
+    {
+        get
+        {
+            return positionNum;
+        }
+
+        set
+        {
+            positionNum = value;
+        }
+    }
+
 
     // Use this for initialization
-    void Start() {
-        this.CharacterEmo = CharacterEmotion.NORMAL;
+    void Awake() {
+        this.characterEmo = CharacterEmotion.NORMAL;
         this.spriteRender = GetComponent<SpriteRenderer>();
     }
     public void ChangeState(string name)
@@ -34,12 +46,15 @@ public class Actor : MonoBehaviour {
         StartCoroutine(name + "State");
     }
     IEnumerator NORMALState()
-        { spriteRender.sprite = sprites[0];
+        {
+        this.characterEmo = CharacterEmotion.NORMAL;
+        spriteRender.sprite = sprites[0];
         yield return null;
 
         }
     IEnumerator SPECIALState()
     {
+        this.characterEmo=CharacterEmotion.SPECIAL;
         spriteRender.sprite = sprites[0];
         yield return null;
 

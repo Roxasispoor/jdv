@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public GameObject[] prefabsActors;
-    public List<GameObject> listeActors = new List<GameObject>(); 
+    public List<GameObject> listeActors = new List<GameObject>();
+
+    public Vector3[] positionPersoStandard = new Vector3[4];
+
 
     // Use this for initialization
     void Start () {
@@ -20,16 +23,52 @@ public class GameManager : MonoBehaviour {
         }
 		
 	}
-
-    public void instanciateActors()
+    public void PlaceActor(string actorName,int position)
     {
+        foreach (GameObject actor in listeActors)
+        {
+            if (actor.name==actorName)
+            {
+                actor.SetActive(true);
+                actor.transform.position.Set(positionPersoStandard[position].x, positionPersoStandard[position].y, positionPersoStandard[position].z);
+
+                actor.GetComponent<Actor>().PositionNum=position; // on le place au bon endroit dans le script
+               
+
+            }
+
+        }
+    }
+
+    public void Flush()
+    {
+        foreach (GameObject actor in listeActors)
+        {
+            actor.transform.gameObject.SetActive(false);
+        }
 
     }
-	
+    public void RemoveActor(string actorName)
+    {
+        foreach (GameObject actor in listeActors)
+        {
+            if (actor.name == actorName)
+            {
+               actor.SetActive(false);
+            }
+        }
+    }
 	// Update is called once per frame
 	void Update () {
 		
 	}
-    public void ChangeState()
-    { }
+    public void ChangeState(string actorName ,string mood)
+    { foreach(GameObject actor in listeActors )
+        {
+            if(actor.name==actorName)
+            {
+                actor.GetComponent<Actor>().ChangeState(mood);
+            }
+        }
+    }
 }
