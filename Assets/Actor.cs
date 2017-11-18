@@ -92,10 +92,12 @@ public class Actor : MonoBehaviour {    public enum CharacterEmotion
 
     }
 
-    void OnMouseOver()
+  public  void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(0)){
-            inkleManager.Story.ChoosePathString(lieu.name+"."+this.name+"_"+status);
+           
+            inkleManager.Story.ChoosePathString(lieu.name + "." + this.name + "_" + status);
+              //       inkleManager.Story.ChoosePathString(lieu.name + "." + this.name + "_" + status);
             // Whatever you want it to do.
         }
     }

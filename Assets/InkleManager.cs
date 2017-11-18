@@ -3,10 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.UI;
-using System;
 
-public class InkleManager : MonoBehaviour
-{
+public class InkleManager : MonoBehaviour {
     private GameManager gameManager;
     [SerializeField]
     private TextAsset inkJSONAsset;
@@ -21,6 +19,19 @@ public class InkleManager : MonoBehaviour
     [SerializeField]
     private Button buttonPrefab;
 
+    public Story Story
+    {
+        get
+        {
+            return story;
+        }
+
+        set
+        {
+            story = value;
+        }
+    }
+
     void Start()
     {
         gameManager = GetComponent<GameManager>();
@@ -29,20 +40,20 @@ public class InkleManager : MonoBehaviour
 
     void StartStory()
     {
-        story = new Story(inkJSONAsset.text);
+        Story = new Story(inkJSONAsset.text);
         // on bind les fonctions ink
-        story.BindExternalFunction("PlaceActor", (string actorName, int position) =>
-        {
-            gameManager.PlaceActor(actorName, position);
-        });
-        story.BindExternalFunction("Flush", () => {
+        Story.BindExternalFunction("PlaceActor", (string actorName, int position) =>
+         {
+             gameManager.PlaceActor(actorName, position);
+         });
+        Story.BindExternalFunction("Flush", () => {
             gameManager.Flush();
         });
-        story.BindExternalFunction("RemoveActor", (string actorName) =>
-        {
-            gameManager.RemoveActor(actorName);
-        });
-        story.BindExternalFunction("SetDecor", (string decorName) =>
+        Story.BindExternalFunction("RemoveActor", (string actorName) =>
+         {
+             gameManager.RemoveActor(actorName);
+         });
+        Story.BindExternalFunction("SetDecor", (string decorName) =>
         {
             gameManager.SetDecor(decorName);
         });
@@ -50,27 +61,13 @@ public class InkleManager : MonoBehaviour
          {
              gameManager.SetStatus(status, actorName);
          });
-
+    
         RefreshView();
     }
 
-    int count = 0;
-
-    IEnumerator Example()
-    {
-        while (count != 5)
-        {
-            count++;
-            print(Time.time);
-            Debug.Log("la");
-            yield return new WaitForSeconds(2);
-            print(Time.time);
-        }
-    }
 
     IEnumerator WaitForKeyDown(KeyCode keyCode)
     {
-        Debug.Log("la");
         while (!Input.GetKeyDown(keyCode))
             yield return null;
     }
@@ -88,8 +85,6 @@ public class InkleManager : MonoBehaviour
         {
             string text = story.Continue().Trim();
             yield return new WaitUntil(() => { return Input.GetKeyDown(KeyCode.Space); });
-            //  Debug.Log(text);
-            //StartCoroutine(WaitForKeyDown(KeyCode.Space));
             CreateContentView(text);
         }
 
