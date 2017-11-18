@@ -93,13 +93,7 @@ public class InkleManager : MonoBehaviour {
                 });
             }
         }
-        else
-        {
-            Button choice = CreateChoiceView("End of story.\nRestart?");
-            choice.onClick.AddListener(delegate {
-                StartStory();
-            });
-        }
+     
     }
 
     void OnClickChoiceButton(Choice choice)

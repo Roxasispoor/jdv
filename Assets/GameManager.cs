@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        Debug.Log(Physics.queriesHitTriggers);
         for (int i = 0; i < prefabsActors.Length; i++)
         {
             GameObject newActor = Instantiate(prefabsActors[i]);
