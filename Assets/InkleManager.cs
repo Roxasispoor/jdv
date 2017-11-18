@@ -65,13 +65,6 @@ public class InkleManager : MonoBehaviour {
         RefreshView();
     }
 
-
-    IEnumerator WaitForKeyDown(KeyCode keyCode)
-    {
-        while (!Input.GetKeyDown(keyCode))
-            yield return null;
-    }
-
     void RefreshView()
     {
         RemoveChildren();
@@ -85,6 +78,7 @@ public class InkleManager : MonoBehaviour {
         {
             string text = story.Continue().Trim();
             yield return new WaitUntil(() => { return Input.GetKeyDown(KeyCode.Space); });
+            yield return new WaitForSeconds(0.1f);
             CreateContentView(text);
         }
 
