@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     /// <param name="status"></param>
     /// <param name="actorName"></param>
-    public void SetStatus(int status, string actorName)
+    public void SetStatus( string actorName,int status)
     {
         foreach (GameObject actor in listeActors)
         {
