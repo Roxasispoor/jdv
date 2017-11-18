@@ -84,10 +84,12 @@ public class GameManager : MonoBehaviour {
             {
                
                 actor.SetActive(true);
-                actor.transform.position.Set(positionPersoStandard[position].x, positionPersoStandard[position].y, positionPersoStandard[position].z);
+                actor.GetComponent<Actor>().PositionNum = position; // on le place au bon endroit dans le script
 
-                actor.GetComponent<Actor>().PositionNum=position; // on le place au bon endroit dans le script
-                
+               
+                actor.transform.position = new Vector3(positionPersoStandard[position - 1].x, positionPersoStandard[position - 1].y, positionPersoStandard[position - 1].z);
+                //actor.transform.localScale=new Vector3(100, 100, 100);
+               
 
             }
 

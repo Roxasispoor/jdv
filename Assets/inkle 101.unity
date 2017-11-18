@@ -369,10 +369,10 @@ MonoBehaviour:
   listeActors: []
   listeDecor: []
   positionPersoStandard:
-  - {x: -500, y: 0, z: 0}
-  - {x: -250, y: 0, z: 0}
-  - {x: 250, y: 0, z: 0}
-  - {x: 500, y: 0, z: 0}
+  - {x: -6, y: 0, z: 0}
+  - {x: -2, y: 0, z: 0}
+  - {x: 2, y: 0, z: 0}
+  - {x: 6, y: 0, z: 0}
 --- !u!114 &1178280574
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,7 +464,7 @@ Canvas:
   m_GameObject: {fileID: 1718554079}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
