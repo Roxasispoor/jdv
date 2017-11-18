@@ -56,6 +56,7 @@ Alfred: “J’ai bien peur que Mademoiselle ait disparu Monsieur, je ne la trou
 A.Ferguson: ”Seigneur !”
 L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller dehors avec monsieur Alfred, je m’occupe de l’intérieur avec monsieur Ferguson.”
 (Au revoir mon argent et bonjour le sale boulot d’enquête. Sans attendre le majordome je sors par la première porte. Plus vite je retrouve la gosse, plus vite toute cette histoire se termine).
+{Flush()}
 ->manor_outside_1
 ->DONE
 
