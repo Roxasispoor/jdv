@@ -277,17 +277,54 @@ J.Davis: "Pas la tête du 'client' moyen ? Je suis pas assez beau c'est ça ?"
 Scarface: "Ah ah, très drôle." (De toute évidence ça ne l'est pas) "Maintenant vire de là crétin."
 (Je m'apprête à répliquer mais me ravise: il fait bien une tête de plus que moi et je ne suis pas vraiment du type bagarreur. Disons qu'il a eu de la chance pour cette fois.)
 ~ scarface_status = "ferme"
+{Flush()}
 
-*[Pourquoi, c'est interdit par la loi ?]
+*[Pourquoi, c'est interdit par la loi ?]//neutre
 (Scarface ici présent n'a pas l'air de m'apprécier)
 Scarface: "C'est interdit par moi. Tu veux que je demande à mon ami le mur de te l'expliquer en face à face ou ça ira ?"
 (Après une longue réflexion d'environ 1 seconde sur mon envie de rencontrer ledit mur, je lui répond :)
 J.Davis: "Ca ira. Je suis sûr qu'il a mieux à faire n'est-ce pas ?" 
 Scarface: "Maintenant dégage"
 ~ scarface_status = "ferme"
+{Flush()}
 
-*[Tu ferais mieux te bouger ta graisse face de trou]
-('Qui dit grand dit lent non.' Celui qui a dit ça n'avais jamais rencontré Scarface. Avant même de réagir, il écrase son poing sur mon visage et mon nez craque horriblement. Je lui 
+*[Tu ferais mieux te bouger ta graisse face de trou]//Victor
+('Qui dit grand dit lent non.' Celui qui a dit ça n'avais jamais rencontré Scarface. Avant même de réagir, il écrase son poing sur mon visage et mon nez craque horriblement. Je lui rend avec un uppercut dans la mâchoire mais il bronche à peine. S'en suit un combat qui malgré ma rage est à sens unique. Je finis rapidement par m'évanouir.)
+{Flush()}
+{SetDecor("black")}
+(Je me réveille après ce qui me paraît une éternité plus tard, menotté à un lit d'hôpital. La détective Lawson m'apprend que j'ai dormi 3 jours. Pendant ce temps la fille Ferguson est rentrée chez elle, et Scarface a été arrêté pour son enlèvement, ainsi qu'agression. Quant aux menottes: j'ai été inculpé également pour agression, ainsi que pour falsification de testament. Il semblerait que le vieux Victor n'était pas vraiment mort paisiblement, et que la question de l'héritage restait en suspens tant que le vrai testament n'aurait pas été retrouvé.)
+(Ma paye envolée, inculpé pour un crime que je ne savais même pas avoir commis, moi qui pensais que la vie de notaire était assez pourrie comme ça, j'avais tort. Si seulement j'avais pu changer les choses...)
+
+*[(Sort mon couteau) Ouais et tu vas faire sinon mon grand ?] //Nécessite couteau et Victorité
+(Scarface ici présent semble beaucoup moins serein d'un coup.)
+Scarface: "Ecoute mon gars, je sais pas ce que tu veux mais moi je suis juste les ordres hein !"
+J.Davos: "Quels ordres ? Enlever la fille du maire ?"
+Scarface: "Quoi ?! Non ! Pourquoi j'enlèverai la fille de mon employeur !? Il m'a demandé d'effrayer un peu l'autre irlandais pour qu'il accepte de fermer son pub, mais ce mec est une foutu armoire à glace !"
+J.Davis: "Attends, t'as rien à voir avec l'enlèvement !?"
+Scarface: "Je savais même pas qu'elle avait été enlevée ! Si quelqu'un a fait le coup c'est le barman !"
+J.Davis: "T'as intêret à m'avoir dit la vérité !"
+~ scarface_status = "ouvert"
+{Flush()}
+
+->DONE
+
+
+=ba_scarface_f //Fermé
+{SetDecor("backalley")}
+{PlaceActor("davis", 1)}
+{PlaceActor("scarface", 3)}
+Scarface: "Dé-gage".
+(O-K)
+{Flush()}
+
+->DONE
+
+=ba_scarface_o //Ouvert
+{SetDecor("backalley")}
+{PlaceActor("davis", 1)}
+{PlaceActor("scarface", 3)}
+Scarface: "Ecoute j'ai rien d'autre à te dire mec !"
+{Flush()}
 
 ->DONE
 
