@@ -2,7 +2,9 @@ EXTERNAL PlaceActor(ActorName, position)
 EXTERNAL RemoveActor(ActorName)
 EXTERNAL Flush()
 EXTERNAL SetDecor(DecorName)
-EXTERNAL SetStatus(Status, ActorName)
+VAR berta_status = "null"
+VAR scarface_status = "null"
+
 ->intro
 
 ==intro==
@@ -117,6 +119,9 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 
 
+
+
+
 ==town==
 
 =town_intro
@@ -130,13 +135,39 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 //BERTA 
 
 
+//{berta_status == "ouvert"}
+=town_berta_o //2e interaction avec Berta ouverte
+{PlaceActor("bigberta", 3)}
+{PlaceActor("davis", 2)}
+Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
+J.Davis: "Non merci"
+->DONE
+
+
+//{berta_status == "neutre"}
+=town_berta_n //2e interaction avec Berta neutre
+{PlaceActor("bigberta", 3)}
+{PlaceActor("davis", 2)}
+Berta: "Alors, on veut manger autre chose ?"
+J.Davis: "Non merci"
+{Flush()}
+->DONE
+
+
+//{berta_status == "ferme"}
+=town_berta_f //2e interaction avec Berta ouverte
+(Elle m'ignore d'un air dédaigneux)
+->DONE
+
+
+
 =town_berta_ini  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
 {SetDecor("town")}
 {PlaceActor("bigberta", 3)}
 "Bon pain tout chaud à peine sortie du four ! Il est bon il est chaud !
 Et toi là mon mignon, tu veux du pain ? C'est le meilleur pain de tout Topeka, foi de Berta !
 {PlaceActor("davis", 2)}
-(La bonne femme typique des patelins perdus: grosse, bruyante et peu raffinée. Sa voix nasillarde réveille déjà ma migraine.)
+(La bonne femme typique des patelins perdus: pas vraiment belle, bruyante et peu raffinée. Sa voix nasillarde réveille déjà ma migraine.)
 //Choice time !
 
 *[Volontier] //choix neutre, donne l'équipement pain
@@ -145,7 +176,7 @@ Berta: "T'es nouveau en ville mon chou nan ? C'est pas la joie en ce moment. Le 
 J.Davis: "Quel gâteau ?"
 Berta: "L'héritage pardi ! Le maire a hérité d'une belle petite somme, personne cracherais dessus moi jle dis. Ils lui tournent autour depuis, ct'assureur surtout."
 J.Davis: "Je vois."
-{SetStatus("neutre", "bigberta")}
+~ berta_status = "neutre"
 {Flush()}
 
 *[Non merci, il à l'air délicieux mais je préfèrerais plutôt quelques informations] //choix Jack Davis
@@ -155,41 +186,20 @@ J.Davis: "Shawn ?"
 Berta: "Le barman du pub 'L'étalon Pavoisé'. Le maire a voulu le faire fermer il y a quelques temps. Mais Shawn c'est un bon gar, foi de Berta, il a rien à voir."
 "J.Davis: "C'est ce qu'on verra"
 (Bon au moins ça fait une piste).
-{SetStatus("ouvert", "bigberta")}
+~ berta_status = "ouvert"
 {Flush()}
 
-*[Moins fort la grosse j'ai mal au crâne]
+*[Moins fort grognasse, j'ai mal au crâne]
 Berta: "Oula t'es pas commode toi ? T'es un copain dl'autre balafré ou quoi !? Si tu cherches ton pote il traîne dans la ruelle, je veux rien avoir à faire avec vos magouilles moi !"
 J.Davis: "C'est ça ouais."
-{SetStatus("fermé", "bigberta")}
+~ berta_status = "ferme"
 {Flush()}
 ->DONE
 
 
-=town_berta_o //2e interaction avec Berta ouverte
-{PlaceActor("bigberta", 3)}
-{PlaceActor("davis", 2)}
-Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
-J.Davis: "Non merci"
-->DONE
 
 
-=town_berta_n //2e interaction avec Berta neutre
-{PlaceActor("bigberta", 3)}
-{PlaceActor("davis", 2)}
-Berta: "Alors, on veut manger autre chose ?"
-J.Davis: "Non merci"
-{Flush()}
-->DONE
-
-=town_berta_f //2e interaction avec Berta ouverte
-(Elle m'ignore d'un air dédaigneux)
-->DONE
-
-
-
-
-//ABIGAEL
+//ABIGAIL
 
 =town_abi_ini
 {SetDecor("town")}
@@ -233,10 +243,55 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 ->DONE
 
 
+//{town_abi_ini}
 =town_abi_2
 (Elle lit un vieux bouquin et ne me prête aucune attention.)
+->DONE
 
 ->DONE
+
+
+
+
+
+
+
+==backalley==
+{SetDecor("backalley")}
+(Une ruelle sombre et puante entre les bâtiments. Il faut croire que même dans les villes paumées il existe ce genre d'endroits qui crient "coupe gorge". Tout y est: poubelles débordantes, rats, ordeur nauséabonde, même le type louche au fond de la ruelle qui surveille le coin.)
+
+-> DONE
+
+//Scarface
+
+=ba_scarface_ini
+{PlaceActor("davis", 1)}
+(Lorsque je m'approche le type esquisse un pas menaçant dans ma direction. Il n'est clairement pas là pour faire la causette.)
+{PlaceActor("scarface", 3)}
+"Dégage de là, on ne passe pas"
+
+*[Toutes mes excuses, je ne suis pas d'ici et je suis perdu] //Jack Davis
+(Scarface ici présent n'a pas l'air convaincu. Il reste tendu mais n'esquisse pas de nouveau geste.)
+Scarface: "T'as rien à faire là et t'as pas le profil du 'client' moyen. Dégage."
+J.Davis: "Pas la tête du 'client' moyen ? Je suis pas assez beau c'est ça ?"
+Scarface: "Ah ah, très drôle." (De toute évidence ça ne l'est pas) "Maintenant vire de là crétin."
+(Je m'apprête à répliquer mais me ravise: il fait bien une tête de plus que moi et je ne suis pas vraiment du type bagarreur. Disons qu'il a eu de la chance pour cette fois.)
+~ scarface_status = "ferme"
+
+*[Pourquoi, c'est interdit par la loi ?]
+(Scarface ici présent n'a pas l'air de m'apprécier)
+Scarface: "C'est interdit par moi. Tu veux que je demande à mon ami le mur de te l'expliquer en face à face ou ça ira ?"
+(Après une longue réflexion d'environ 1 seconde sur mon envie de rencontrer ledit mur, je lui répond :)
+J.Davis: "Ca ira. Je suis sûr qu'il a mieux à faire n'est-ce pas ?" 
+Scarface: "Maintenant dégage"
+~ scarface_status = "ferme"
+
+*[Tu ferais mieux te bouger ta graisse face de trou]
+('Qui dit grand dit lent non.' Celui qui a dit ça n'avais jamais rencontré Scarface. Avant même de réagir, il écrase son poing sur mon visage et mon nez craque horriblement. Je lui 
+
+->DONE
+
+
 
 
 
