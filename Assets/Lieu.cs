@@ -14,7 +14,7 @@ public class Lieu : MonoBehaviour {
 
     [SerializeField]
     private Canvas canvas;
-   public GameManager gameManager;
+   private GameManager gameManager;
 
     public string Nom
     {
@@ -29,6 +29,19 @@ public class Lieu : MonoBehaviour {
         }
     }
 
+    public GameManager GameManager
+    {
+        get
+        {
+            return gameManager;
+        }
+
+        set
+        {
+            gameManager = value;
+        }
+    }
+
     // Use this for initialization
     void Start () { //dès qu'on est enable on instancie les boutons
        for (int i=0;i< lieuxAccessibles.Length;i++)
@@ -38,7 +51,7 @@ public class Lieu : MonoBehaviour {
             Text choiceText = bouger.GetComponentInChildren<Text>();
             choiceText.text = lieuxAccessibles[i].GetComponent<Lieu>().Nom;
             bouger.onClick.AddListener(delegate {
-                gameManager.SetDecor(lieuxAccessibles[i].name); 
+                GameManager.SetDecor(lieuxAccessibles[i].name); 
                 
             });
             

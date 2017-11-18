@@ -7,19 +7,31 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> listeActors = new List<GameObject>();
     public List<GameObject> listeDecor;
     public Vector3[] positionPersoStandard = new Vector3[4];
-
+    public GameObject[] prefabsDecor;
 
     // Use this for initialization
     void Start()
     {
-        Debug.Log(Physics.queriesHitTriggers);
+       //On initialise les lieux, puis les acteurs
+       for (int i=0;i<prefabsDecor.Length;i++)
+        {
+            GameObject newDecor = Instantiate(prefabsDecor[i]);
+            newDecor.SetActive(false);
+            newDecor.name = prefabsDecor[i].name;
+            newDecor.GetComponent<Lieu>().GameManager = this;
+            listeDecor.Add(newDecor);
+
+        }
         for (int i = 0; i < prefabsActors.Length; i++)
         {
             GameObject newActor = Instantiate(prefabsActors[i]);
 
+            
             newActor.SetActive(false);
             newActor.name = prefabsActors[i].name;
             listeActors.Add(newActor);
+
+            newActor.GetComponent<Actor>().InkleManager = gameObject.GetComponent<InkleManager>();
 
             //bool activeSelf
         }
