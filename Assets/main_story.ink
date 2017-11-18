@@ -133,31 +133,6 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 //BERTA 
 
-
-//{berta_status == "neutre"}
-=berta_1 //2e interaction avec Berta neutre
-{PlaceActor("bigberta", 3)}
-{PlaceActor("davis", 2)}
-Berta: "Alors, on veut manger autre chose ?"
-J.Davis: "Non merci"
-{Flush()}
-->DONE
-
-//{berta_status == "ouvert"}
-=berta_2 //2e interaction avec Berta ouverte
-{PlaceActor("bigberta", 3)}
-{PlaceActor("davis", 2)}
-Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
-J.Davis: "Non merci"
-->DONE
-
-//{berta_status == "ferme"}
-=berta_3 //2e interaction avec Berta ouverte
-(Elle m'ignore d'un air dédaigneux)
-->DONE
-
-
-
 =berta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
 {SetDecor("town")}
 {PlaceActor("bigberta", 3)}
@@ -192,6 +167,30 @@ J.Davis: "C'est ça ouais."
 {SetStatus(3, "bigberta")}
 {Flush()}
 ->DONE
+
+
+
+=berta_1 //2e interaction avec Berta neutre
+{PlaceActor("bigberta", 3)}
+{PlaceActor("davis", 2)}
+Berta: "Alors, on veut manger autre chose ?"
+J.Davis: "Non merci"
+{Flush()}
+->DONE
+
+
+=berta_2 //2e interaction avec Berta ouverte
+{PlaceActor("bigberta", 3)}
+{PlaceActor("davis", 2)}
+Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
+J.Davis: "Non merci"
+->DONE
+
+
+=berta_3 //2e interaction avec Berta ouverte
+(Elle m'ignore d'un air dédaigneux)
+->DONE
+
 
 
 
@@ -325,6 +324,24 @@ Scarface: "Dé-gage".
 ->DONE
 
 
+=scarface_4 //Couteau mais à la 2e interaction
+{PlaceActor("davis", 2)}
+{PlaceActor("scarface", 3)}
+Scarface: "Dé-gage".
+J.Davis: "Pas cette fois mon gars !"
+(Je sors mon couteau d'un air menaçant. Certes il était censé me servir pour me défendre en cas de besoin, mais rien n'empêche de l'utiliser pour "enquêter").
+(Scarface semble beaucoup moins serein d'un coup.)
+Scarface: "Ecoute mon gars, je sais pas ce que tu veux mais moi je suis juste les ordres hein !"
+J.Davos: "Quels ordres ? Enlever la fille du maire ?"
+Scarface: "Quoi ?! Non ! Pourquoi j'enlèverai la fille de mon employeur !? Il m'a demandé d'effrayer un peu l'autre irlandais pour qu'il accepte de fermer son pub, mais ce mec est une foutu armoire à glace !"
+J.Davis: "Attends, t'as rien à voir avec l'enlèvement !?"
+Scarface: "Je savais même pas qu'elle avait été enlevée ! Si quelqu'un a fait le coup c'est le barman !"
+J.Davis: "T'as intérêt à m'avoir dit la vérité !"
+{SetStatus(2, "scarface")}
+{SetStatus(5, "barman")}
+{Flush()}
+
+
 
 
 
@@ -352,6 +369,8 @@ A.Ferguson: "Merci pour votre aide monsieur Davis."
 {Flush()}
 
 *[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Qui plus est, l'enlèvement de votre fille peut y être lié."] //Jack Davis
+{PlaceActor("davis", 1)}
+(J'en reviens pas d'être d'accord avec cette fouine)
 A.Ferguson: "Hmph."
 {RemoveActor("mayor")}
 (Il s'éloigne sans un regard)
@@ -361,6 +380,54 @@ L.Lawson: "Je suis persuadée qu'il y a un lien entre les deux. Occupez-vous de 
 {Flush()}
 
 -> DONE
+
+
+=mayor_2
+{PlaceActor("davis", 2)}
+{PlaceActor("mayor", 3)}
+A.Ferguson: "Vous avancez sur votre enquête ?"
+J.Davis: "J'ai quelques pistes."
+{Flush()}
+->DONE
+
+=mayor_3
+{PlaceActor("davis", 2)}
+{PlaceActor("mayor", 3)}
+A.Ferguson: "Hmph. Continuez donc votre enquête."
+{Flush()}
+->DONE
+
+=detective_2
+{PlaceActor("davis", 2)}
+{PlaceActor("detective", 3)}
+(Comment j'ai pu prendre le parti de cette fouine !?)
+L.Lawson: "Comment ça avance de votre côté ?"
+J.Davis: "J'ai quelques pistes. Vous ?"
+L.Lawson: "Je suis persuadée que le maire cache quelque chose. Il n'est pas si concerné par la sécurité de sa fille. En revanche il refuse à tout pris de me donner le testament. Vous en êtes le notaire signitaire non ? Vous avez noté quelque chose d'anormal ?"
+J.Davis: "C'était bien moi oui. Un assureur était là également. Anormal comme ? Vous pensez qu'il était faux ?"
+L.Lawson: "En effet. Je sais que le maire avait besoin d'argent. Il est endetté auprès de la pègre. Son père s'il était au courant ne lui aurait jamais légué ses biens. C'était lui-même un ancien mafieux repenti, mais il est devenu clean, si ce n'est cette passion pour l'occultisme."
+(J'en reviens pas qu'elle ait réfléchit aussi loin. Pas mauvaise la fouine !)
+J.Davis: "Vous ne soupçonnez tout de même pas son fils de l'avoir..?"
+(Elle jette un coup d'oeil autour d'elle)
+L.Lawson: "Eliminé ? Ce n'est pas exclu. Le rapport d'autopsie n'est toujours pas arrivé. Quoi qu'il en soit cette affaire est bien plus compliquée qu'il n'y paraît, et si la pègre est impliquée, vous devriez prendre ça pour vous protéger."
+'Vous recevez un couteau'
+L.Lawson: "Nous devrions reprendre nos enquêtes..."
+{RemoveActor("detective")}
+(Et maintenant voilà qu'elle m'aide. Peut-être qu'il existe UNE bonne détective après tout...)
+{Flush()}
+->DONE
+
+=detective_3
+{PlaceActor("davis", 2)}
+{PlaceActor("detective", 3)}
+L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérité."
+{Flush()}
+->DONE
+
+
+
+
+
 
 
 
