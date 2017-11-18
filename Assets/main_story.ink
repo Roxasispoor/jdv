@@ -135,7 +135,7 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 
 //{berta_status == "neutre"}
-=town_berta_1 //2e interaction avec Berta neutre
+=berta_1 //2e interaction avec Berta neutre
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, on veut manger autre chose ?"
@@ -144,7 +144,7 @@ J.Davis: "Non merci"
 ->DONE
 
 //{berta_status == "ouvert"}
-=town_berta_2 //2e interaction avec Berta ouverte
+=berta_2 //2e interaction avec Berta ouverte
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
@@ -152,13 +152,13 @@ J.Davis: "Non merci"
 ->DONE
 
 //{berta_status == "ferme"}
-=town_berta_3 //2e interaction avec Berta ouverte
+=berta_3 //2e interaction avec Berta ouverte
 (Elle m'ignore d'un air dédaigneux)
 ->DONE
 
 
 
-=town_berta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
+=berta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
 {SetDecor("town")}
 {PlaceActor("bigberta", 3)}
 "Bon pain tout chaud à peine sortie du four ! Il est bon il est chaud !
@@ -198,7 +198,7 @@ J.Davis: "C'est ça ouais."
 
 //ABIGAIL
 
-=town_abi_0
+=abi_0
 {SetDecor("town")}
 {PlaceActor("abi", 3)}
 {PlaceActor("davis", 2)}
@@ -241,7 +241,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 
 
 //{town_abi_ini}
-=town_abi_1
+=abi_1
 (Elle lit un vieux bouquin et ne me prête aucune attention.)
 ->DONE
 
@@ -261,7 +261,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 
 //Scarface
 
-=ba_scarface_0
+=scarface_0
 {PlaceActor("davis", 1)}
 (Lorsque je m'approche le type esquisse un pas menaçant dans ma direction. Il n'est clairement pas là pour faire la causette.)
 {PlaceActor("scarface", 3)}
@@ -305,7 +305,7 @@ J.Davis: "T'as intérêt à m'avoir dit la vérité !"
 
 ->DONE
 
-=ba_scarface_2 //Ouvert
+=scarface_2 //Ouvert
 {SetDecor("backalley")}
 {PlaceActor("davis", 1)}
 {PlaceActor("scarface", 3)}
@@ -314,7 +314,7 @@ Scarface: "Ecoute j'ai rien d'autre à te dire mec !"
 
 ->DONE
 
-=ba_scarface_3 //Fermé
+=scarface_3 //Fermé
 {SetDecor("backalley")}
 {PlaceActor("davis", 1)}
 {PlaceActor("scarface", 3)}
@@ -345,7 +345,20 @@ L.Lawson: "Mon job est de découvrir la vérité. Et pour cela j'ai besoin de co
 {PlaceActor("davis", 4)}
 L.Lawson: "Tch. Très bien, si vous le décidez ainsi..."
 (Elle me lance un regard noir et s'éloigne.)
+{RemoveActor("detective")}
+{SetStatus(3, "detective")}
+{SetStatus(2, "mayor")}
+A.Ferguson: "Merci pour votre aide monsieur Davis."
+{Flush()}
 
+*[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Qui plus est, l'enlèvement de votre fille peut y être lié."] //Jack Davis
+A.Ferguson: "Hmph."
+{RemoveActor("mayor")}
+(Il s'éloigne sans un regard)
+{SetStatus(2, "detective")}
+{SetStatus(3, "mayor")}
+L.Lawson: "Je suis persuadée qu'il y a un lien entre les deux. Occupez-vous de la fille, je cherche dans la famille"
+{Flush()}
 
 -> DONE
 
