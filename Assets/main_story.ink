@@ -2,7 +2,10 @@ EXTERNAL PlaceActor(ActorName, position)
 EXTERNAL RemoveActor(ActorName)
 EXTERNAL Flush()
 EXTERNAL SetDecor(DecorName)
-EXTERNAL SetStatus(int, ActorName)
+EXTERNAL SetStatus(ActorName, int)
+VAR alfred_status = 0
+VAR philippe_status = 0
+
 
 ->intro
 
@@ -53,7 +56,8 @@ Alfred: “J’ai bien peur que Mademoiselle ait disparu Monsieur, je ne la trou
 A.Ferguson: ”Seigneur !”
 L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller dehors avec monsieur Alfred, je m’occupe de l’intérieur avec monsieur Ferguson.”
 (Au revoir mon argent et bonjour le sale boulot d’enquête. Sans attendre le majordome je sors par la première porte. Plus vite je retrouve la gosse, plus vite toute cette histoire se termine).
-->manor_outside
+{Flush()}
+->manor_outside_1
 ->DONE
 
 =manor_outside_1
@@ -111,7 +115,6 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 (Mais dans quoi je me suis embarqué !?!)
 {SetDecor("black")}
 
-->town
 ->DONE
 
 
@@ -396,7 +399,7 @@ A.Ferguson: "Vous avancez sur votre enquête ?"
 J.Davis: "J'ai quelques pistes."
 A.Ferguson: "Vous devriez parler à Alfred, il connaît bien la ville et ses habitants, il pourrait vous aider. Voulez-vous que je l'appelle ?"
 J.Davis: "C'est bon, il me semble l'avoir vu à l'extérieur en arrivant."
-{SetStatus("alfred", 6)}
+~ alfred_status = 6
 {Flush()}
 ->DONE
 
@@ -424,7 +427,7 @@ L.Lawson: "Eliminé ? Ce n'est pas exclu. Le rapport d'autopsie n'est toujours p
 L.Lawson: "Nous devrions reprendre nos enquêtes..."
 {RemoveActor("detective")}
 (Et maintenant voilà qu'elle m'aide. Peut-être qu'il existe UNE bonne détective dans le monde après tout...).
-{SetStatus("philippe", 6)}
+~ philippe_status = 6
 {Flush()}
 ->DONE
 
@@ -457,8 +460,8 @@ Alfred: "Ah, monsieur Davis ! Votre tête va-t-elle mieux ?"
 J.Davis: "Merci, oui."
 (Van Herl reste silencieux mais son regard est acéré comme des lames.)
 
-//Si alfred_status == 6
-*[Puis-je vous parler un instant Alfred ?]
+
+* {alfred_status == 6} [Puis-je vous parler un instant Alfred ?]
 Alfred: "Bien sûr monsieur, de quoi s'agit-il ?"
 {RemoveActor("philippe")}
 J.Davis: "Monsieur Ferguson m'a dit de s'adresser à vous pour avoir des informations sur la ville et ses habitants."
@@ -472,11 +475,10 @@ Alfred: "Non, non, bien sûr que non ! Le testament est bien en sécurité dans 
 Alfred: "A vrai dire, seulement Monsieur...et Mademoiselle."
 J.Davis: "Oh...OH !"
 Alfred: "Je ne crains que cette affaire ne vienne de prendre une autre ampleur".
-{SetStatus("alfred", 1)}
 {Flush()}
 
-//Si philippe_status == 6
-*[Puis-je vous parler monsieur Van Herl ?]
+
+* {philippe_status == 6} [Puis-je vous parler monsieur Van Herl ?]
 P.Van Herl: "...Certainement."
 {RemoveActor("alfred")}
 (Son ton est aussi glacial que son reagrd. Discuter avec lui tient presque de la torture)
@@ -488,13 +490,12 @@ P.Van Herl: "Allons monsieur Davis. N'êtes-vous pas notaire ? Un homme de votre
 (Seigneur, non seulement il est terrifiant, mais au moins aussi intelligent que la détective)
 (Devant mon silence il reprend)
 P.Van Herl: "Au revoir monsieur Davis."
-{SetStatus("philippe", 1)}
 {Flush()}
 
 ->DONE
 
 
-=alfred_1
+=alfred_0
 {PlaceActor("davis", 2)}
 {PlaceActor("alfred", 3)}
 Alfred: "J'espère que vous et mademoiselle Lawson retrouverez Mademoiselle. Elle était si chère aux yeux de Monsieur Victor..."
@@ -502,7 +503,7 @@ Alfred: "J'espère que vous et mademoiselle Lawson retrouverez Mademoiselle. Ell
 ->DONE
 
 
-=philippe_1
+=philippe_0
 {PlaceActor("davis", 2)}
 {PlaceActor("philippe", 3)}
 (Son reagrd est glacial comme toujours)
@@ -515,6 +516,16 @@ P.Van Herl: "Ne vous mêlez pas des affaires qui ne vous concernent pas"
 
 
 
+
+
+
+==pub==
+{SetDecor("pub")}
+('L'Etalon Pavoisé' à tout du pub irlandais traditionnel: atmosphère enfumée, billard avec ses quelques habitués au fond, drapeux irlandais et Saint Patrick décorant les murs. Les clients sont néanmoins peu nombreux. Le barman travaille derrière le bar. Un panneau derrière lui indique 'L'Etalon Pavoisé, établissement de tradition depuis 1924. Propriétaire: Shawn O'Brien'. Je vais m'asseoir en face)
+S.O'Brien: "Je peux vous servir quelque chose ?"
+J.Davis 
+
+->DONE
 
 
 
