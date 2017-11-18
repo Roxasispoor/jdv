@@ -85,6 +85,7 @@ public class InkleManager : MonoBehaviour {
         {
             string text = story.Continue().Trim();
             yield return new WaitUntil(() => { return Input.GetKeyDown(KeyCode.Space); });
+            yield return new WaitForSeconds(0.1f);
             CreateContentView(text);
         }
 
