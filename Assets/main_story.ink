@@ -5,6 +5,7 @@ EXTERNAL SetDecor(DecorName)
 EXTERNAL SetStatus(ActorName, int)
 VAR alfred_status = 0
 VAR philippe_status = 0
+VAR barman_status = 0
 
 
 ->intro
@@ -143,7 +144,7 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 "Bon pain tout chaud à peine sortie du four ! Il est bon il est chaud !
 Et toi là mon mignon, tu veux du pain ? C'est le meilleur pain de tout Topeka, foi de Berta !
 {PlaceActor("davis", 2)}
-(La bonne femme typique des patelins perdus: pas vraiment belle, bruyante et peu raffinée. Sa voix nasillarde réveille déjà ma migraine.)
+(La bonne femme typique des patelins perdus: moche, bruyante et peu raffinée. Sa voix nasillarde réveille déjà ma migraine.)
 //Choice time !
 
 *[Volontier] //choix neutre, donne l'équipement pain
@@ -159,10 +160,11 @@ J.Davis: "Je vois."
 (Je lui explique l'histoire de l'enlèvement et lui demande des pistes)
 Berta: "ENLEVEE !?! Oula non je ne sais pas qui a pu faire ça ! Le maire est en froid avec Shawn, mais c'est un bon garçon il ne ferait jamais ça !"
 J.Davis: "Shawn ?"
-Berta: "Le barman du pub 'L'étalon Pavoisé'. Le maire a voulu le faire fermer il y a quelques temps. Mais Shawn c'est un bon gar, foi de Berta, il a rien à voir."
+Berta: "Le barman du pub 'L'étalon Pavoisé'. Le maire a voulu le faire fermer il y a quelques temps. Mais Shawn c'est un bon gars, foi de Berta, il a rien à voir."
 "J.Davis: "C'est ce qu'on verra"
 (Bon au moins ça fait une piste).
 {SetStatus(2, "bigberta")}
+~ barman_status = 4
 {Flush()}
 
 *[Moins fort grognasse, j'ai mal au crâne]
@@ -188,6 +190,7 @@ J.Davis: "Non merci"
 {PlaceActor("davis", 2)}
 Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
 J.Davis: "Non merci"
+{Flush()}
 ->DONE
 
 
@@ -305,6 +308,7 @@ J.Davis: "Attends, t'as rien à voir avec l'enlèvement !?"
 Scarface: "Je savais même pas qu'elle avait été enlevée ! Si quelqu'un a fait le coup c'est le barman !"
 J.Davis: "T'as intérêt à m'avoir dit la vérité !"
 {SetStatus(2, "scarface")}
+~ barman_status = 5
 {Flush()}
 
 ->DONE
@@ -343,7 +347,7 @@ J.Davis: "Attends, t'as rien à voir avec l'enlèvement !?"
 Scarface: "Je savais même pas qu'elle avait été enlevée ! Si quelqu'un a fait le coup c'est le barman !"
 J.Davis: "T'as intérêt à m'avoir dit la vérité !"
 {SetStatus(2, "scarface")}
-{SetStatus(5, "barman")}
+~ barman_status = 5
 {Flush()}
 
 ->DONE
@@ -522,12 +526,47 @@ P.Van Herl: "Ne vous mêlez pas des affaires qui ne vous concernent pas"
 ==pub==
 {SetDecor("pub")}
 ('L'Etalon Pavoisé' à tout du pub irlandais traditionnel: atmosphère enfumée, billard avec ses quelques habitués au fond, drapeux irlandais et Saint Patrick décorant les murs. Les clients sont néanmoins peu nombreux. Le barman travaille derrière le bar. Un panneau derrière lui indique 'L'Etalon Pavoisé, établissement de tradition depuis 1924. Propriétaire: Shawn O'Brien'. Je vais m'asseoir en face)
+{PlaceActor("davis", 2)}
+{PlaceActor("barman", 3)}
 S.O'Brien: "Je peux vous servir quelque chose ?"
-J.Davis 
+J.Davis: "Whisky"
+{Flush()}
 
 ->DONE
 
 
+=barman_0
+{PlaceActor("davis", 2)}
+{PlaceActor("barman", 3)}
+(Il nettoie consciencieusement un verre)
+
+*[Il paraît que la fille du maire a été enlevée hier soir, vous avez entendu quelque chose à ce sujet ?]//Jack Davis
+(A ces mots il se raidit légèrement. J'ai touché au bon endroit)
+S.O'Brien: "J'ai entendu dire. Et en quoi ça vous concerne ?"
+J.Davis: "J'enquête sur sa disparition et je compte bien la retrouver."
+S.O'Brien: "C'est parce que vous avez entendu les rumeurs que vous venez m'interroger je suppose ?"
+J.Davis: "Exact" (Pas du tout, mais il à l'air de vouloir parler, alors qu'il parle !)
+S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
+J.Davis: "Oh, vous semblez proche de 'Emily'"
+S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle. J'espère que votre enquête aboutira."
+{SetStatus("barman", 1)}
+{Flush()}
+
+*[Votre piquette vaut rien, mais peut-être que vous avez des infos: la fille du maire a été enlevée, vous avez des infos à ce sujet ?]//Victor
+J.O'Brien: "Si vous n'aimez pas libre à vous de partir. C'est pas le seul bar de Topeka. Et non j'ai pas d'infos."
+(Il continue de nettoyer son verre comme si de rien n'était)
+{SetStatus("barman", 1)}
+{Flush()}
+
+{barman_status == 4} *[J'ai entendu dire que vous étiez en conflit avec le maire. Vous ne vous en seriez pas pris à sa fille pour vous venger par hasard ?]
+S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
+J.Davis: "Oh, vous semblez proche de 'Emily'"
+S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle."
+(Il semble en effet boulversé. Pas comme un homme qui s'inquiète seuleùent pour une vieille connaissance)
+J.Davis: "A vous entendre, elle ne doit pas être si ancienne que ça."
+S.O'Brien: "Ca c'est pas vos oignons. J'espère que votre enquête aboutira."
+
+ ->DONE
 
 
 
