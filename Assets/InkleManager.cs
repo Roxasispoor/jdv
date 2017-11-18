@@ -68,7 +68,6 @@ public class InkleManager : MonoBehaviour {
 
     IEnumerator WaitForKeyDown(KeyCode keyCode)
     {
-        Debug.Log("la");
         while (!Input.GetKeyDown(keyCode))
             yield return null;
     }
@@ -86,8 +85,6 @@ public class InkleManager : MonoBehaviour {
         {
             string text = story.Continue().Trim();
             yield return new WaitUntil(() => { return Input.GetKeyDown(KeyCode.Space); });
-            //  Debug.Log(text);
-            //StartCoroutine(WaitForKeyDown(KeyCode.Space));
             CreateContentView(text);
         }
 
