@@ -2,7 +2,7 @@ EXTERNAL PlaceActor(ActorName, position)
 EXTERNAL RemoveActor(ActorName)
 EXTERNAL Flush()
 EXTERNAL SetDecor(DecorName)
-EXTERNAL SetStatus(int, ActorName)
+EXTERNAL SetStatus(ActorName, int)
 VAR alfred_status = 0
 VAR philippe_status = 0
 
@@ -56,7 +56,7 @@ Alfred: “J’ai bien peur que Mademoiselle ait disparu Monsieur, je ne la trou
 A.Ferguson: ”Seigneur !”
 L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller dehors avec monsieur Alfred, je m’occupe de l’intérieur avec monsieur Ferguson.”
 (Au revoir mon argent et bonjour le sale boulot d’enquête. Sans attendre le majordome je sors par la première porte. Plus vite je retrouve la gosse, plus vite toute cette histoire se termine).
-->manor_outside
+->manor_outside_1
 ->DONE
 
 =manor_outside_1
@@ -474,7 +474,6 @@ Alfred: "Non, non, bien sûr que non ! Le testament est bien en sécurité dans 
 Alfred: "A vrai dire, seulement Monsieur...et Mademoiselle."
 J.Davis: "Oh...OH !"
 Alfred: "Je ne crains que cette affaire ne vienne de prendre une autre ampleur".
-{SetStatus("alfred", 0)}
 {Flush()}
 
 
@@ -490,7 +489,6 @@ P.Van Herl: "Allons monsieur Davis. N'êtes-vous pas notaire ? Un homme de votre
 (Seigneur, non seulement il est terrifiant, mais au moins aussi intelligent que la détective)
 (Devant mon silence il reprend)
 P.Van Herl: "Au revoir monsieur Davis."
-{SetStatus("philippe", 0)}
 {Flush()}
 
 ->DONE
