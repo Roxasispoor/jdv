@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ink.Runtime;
 using UnityEngine.UI;
+using System;
 
 public class InkleManager : MonoBehaviour {
     private GameManager gameManager;
@@ -19,19 +20,6 @@ public class InkleManager : MonoBehaviour {
     [SerializeField]
     private Button buttonPrefab;
 
-    public Story Story
-    {
-        get
-        {
-            return story;
-        }
-
-        set
-        {
-            story = value;
-        }
-    }
-
     void Start()
     {
         gameManager = GetComponent<GameManager>();
@@ -40,48 +28,71 @@ public class InkleManager : MonoBehaviour {
 
     void StartStory()
     {
-        Story = new Story(inkJSONAsset.text);
+        story = new Story(inkJSONAsset.text);
         // on bind les fonctions ink
-        Story.BindExternalFunction("PlaceActor", (string actorName, int position) =>
+        story.BindExternalFunction("PlaceActor", (string actorName, int position) =>
          {
              gameManager.PlaceActor(actorName, position);
          });
-        Story.BindExternalFunction("Flush", () => {
+        story.BindExternalFunction("Flush", () => {
             gameManager.Flush();
-        });
-        Story.BindExternalFunction("RemoveActor", (string actorName) =>
+         });
+        story.BindExternalFunction("RemoveActor", (string actorName) =>
          {
              gameManager.RemoveActor(actorName);
          });
-        Story.BindExternalFunction("SetDecor", (string decorName) =>
+        story.BindExternalFunction("SetDecor", (string decorName) =>
         {
             gameManager.SetDecor(decorName);
         });
-        Story.BindExternalFunction("SetStatus", (int status, string actorName) =>
-         {
-             gameManager.SetStatus(status, actorName);
-         });
-    
+
         RefreshView();
+    }
+
+    int count = 0;
+
+    IEnumerator Example()
+    {
+        while (count != 5)
+        {
+            count++;
+            print(Time.time);
+            Debug.Log("la");
+            yield return new WaitForSeconds(2);
+            print(Time.time);
+        }
+    }
+
+    IEnumerator WaitForKeyDown(KeyCode keyCode)
+    {
+        Debug.Log("la");
+        while (!Input.GetKeyDown(keyCode))
+            yield return null;
     }
 
     void RefreshView()
     {
         RemoveChildren();
 
-        while (Story.canContinue)
+        StartCoroutine(DisplayTextOnSpace());
+    }
+
+    private IEnumerator DisplayTextOnSpace()
+    {
+        while (story.canContinue)
         {
-            
-            string text = Story.Continue().Trim();
+            string text = story.Continue().Trim();
+            yield return new WaitUntil(() => { return Input.GetKeyDown(KeyCode.Space); });
+            //  Debug.Log(text);
+            //StartCoroutine(WaitForKeyDown(KeyCode.Space));
             CreateContentView(text);
         }
-        
-        if (Story.currentChoices.Count > 0)
+
+        if (story.currentChoices.Count > 0)
         {
-            
-            for (int i = 0; i < Story.currentChoices.Count; i++)
+            for (int i = 0; i < story.currentChoices.Count; i++)
             {
-                Choice choice = Story.currentChoices[i];
+                Choice choice = story.currentChoices[i];
                 Button button = CreateChoiceView(choice.text.Trim());
                 button.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
@@ -99,7 +110,7 @@ public class InkleManager : MonoBehaviour {
 
     void OnClickChoiceButton(Choice choice)
     {
-        Story.ChooseChoiceIndex(choice.index);
+        story.ChooseChoiceIndex(choice.index);
         RefreshView();
     }
 

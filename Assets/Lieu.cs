@@ -47,8 +47,8 @@ public class Lieu : MonoBehaviour {
     void OnClickChoiceButton(string lieu)
     {
         //Ou on envoie dans le game Decider
-        inkleManager.Story.ChoosePathString("lieu");
-        inkleManager.Story.Continue();
+        //inkleManager.Story.ChoosePathString("lieu");
+        //inkleManager.Story.Continue();
 
     }
 
