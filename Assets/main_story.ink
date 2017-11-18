@@ -341,6 +341,8 @@ J.Davis: "T'as intérêt à m'avoir dit la vérité !"
 {SetStatus(5, "barman")}
 {Flush()}
 
+-> DONE
+
 
 
 
@@ -380,6 +382,10 @@ L.Lawson: "Je suis persuadée qu'il y a un lien entre les deux. Occupez-vous de 
 {Flush()}
 
 -> DONE
+
+
+
+//DETECTIVE ET MAIRE
 
 
 =mayor_2
@@ -435,7 +441,12 @@ L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérit�
 
 
 
-==default==
-Que faire ?
+
+
+
+
+
+//==default==
+//Que faire ?
 
 ->END
