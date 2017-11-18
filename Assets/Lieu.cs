@@ -14,7 +14,7 @@ public class Lieu : MonoBehaviour {
 
     [SerializeField]
     private Canvas canvas;
-   public InkleManager inkleManager;
+   public GameManager gameManager;
 
     public string Nom
     {
@@ -38,19 +38,14 @@ public class Lieu : MonoBehaviour {
             Text choiceText = bouger.GetComponentInChildren<Text>();
             choiceText.text = lieuxAccessibles[i].GetComponent<Lieu>().Nom;
             bouger.onClick.AddListener(delegate {
-                OnClickChoiceButton(choiceText.name);
+                gameManager.SetDecor(lieuxAccessibles[i].name); 
+                
             });
             
         }
 		
 	}
-    void OnClickChoiceButton(string lieu)
-    {
-        //Ou on envoie dans le game Decider
-        //inkleManager.Story.ChoosePathString("lieu");
-        //inkleManager.Story.Continue();
 
-    }
 
     // Update is called once per frame
     void Update () {

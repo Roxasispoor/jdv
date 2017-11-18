@@ -46,6 +46,10 @@ public class InkleManager : MonoBehaviour
         {
             gameManager.SetDecor(decorName);
         });
+        Story.BindExternalFunction("SetStatus", (int status, string actorName) =>
+         {
+             gameManager.SetStatus(status, actorName);
+         });
 
         RefreshView();
     }

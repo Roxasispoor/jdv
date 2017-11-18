@@ -2,8 +2,7 @@ EXTERNAL PlaceActor(ActorName, position)
 EXTERNAL RemoveActor(ActorName)
 EXTERNAL Flush()
 EXTERNAL SetDecor(DecorName)
-VAR berta_status = "null"
-VAR scarface_status = "null"
+EXTERNAL SetStatus(int, ActorName)
 
 ->intro
 
@@ -135,17 +134,8 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 //BERTA 
 
 
-//{berta_status == "ouvert"}
-=town_berta_o //2e interaction avec Berta ouverte
-{PlaceActor("bigberta", 3)}
-{PlaceActor("davis", 2)}
-Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
-J.Davis: "Non merci"
-->DONE
-
-
 //{berta_status == "neutre"}
-=town_berta_n //2e interaction avec Berta neutre
+=berta_1 //2e interaction avec Berta neutre
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, on veut manger autre chose ?"
@@ -153,15 +143,22 @@ J.Davis: "Non merci"
 {Flush()}
 ->DONE
 
+//{berta_status == "ouvert"}
+=berta_2 //2e interaction avec Berta ouverte
+{PlaceActor("bigberta", 3)}
+{PlaceActor("davis", 2)}
+Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
+J.Davis: "Non merci"
+->DONE
 
 //{berta_status == "ferme"}
-=town_berta_f //2e interaction avec Berta ouverte
+=berta_3 //2e interaction avec Berta ouverte
 (Elle m'ignore d'un air dédaigneux)
 ->DONE
 
 
 
-=town_berta_ini  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
+=berta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
 {SetDecor("town")}
 {PlaceActor("bigberta", 3)}
 "Bon pain tout chaud à peine sortie du four ! Il est bon il est chaud !
@@ -176,7 +173,7 @@ Berta: "T'es nouveau en ville mon chou nan ? C'est pas la joie en ce moment. Le 
 J.Davis: "Quel gâteau ?"
 Berta: "L'héritage pardi ! Le maire a hérité d'une belle petite somme, personne cracherais dessus moi jle dis. Ils lui tournent autour depuis, ct'assureur surtout."
 J.Davis: "Je vois."
-~ berta_status = "neutre"
+{SetStatus(1, "bigberta")}
 {Flush()}
 
 *[Non merci, il à l'air délicieux mais je préfèrerais plutôt quelques informations] //choix Jack Davis
@@ -186,13 +183,13 @@ J.Davis: "Shawn ?"
 Berta: "Le barman du pub 'L'étalon Pavoisé'. Le maire a voulu le faire fermer il y a quelques temps. Mais Shawn c'est un bon gar, foi de Berta, il a rien à voir."
 "J.Davis: "C'est ce qu'on verra"
 (Bon au moins ça fait une piste).
-~ berta_status = "ouvert"
+{SetStatus(2, "bigberta")}
 {Flush()}
 
 *[Moins fort grognasse, j'ai mal au crâne]
 Berta: "Oula t'es pas commode toi ? T'es un copain dl'autre balafré ou quoi !? Si tu cherches ton pote il traîne dans la ruelle, je veux rien avoir à faire avec vos magouilles moi !"
 J.Davis: "C'est ça ouais."
-~ berta_status = "ferme"
+{SetStatus(3, "bigberta")}
 {Flush()}
 ->DONE
 
@@ -201,7 +198,7 @@ J.Davis: "C'est ça ouais."
 
 //ABIGAIL
 
-=town_abi_ini
+=abi_0
 {SetDecor("town")}
 {PlaceActor("abi", 3)}
 {PlaceActor("davis", 2)}
@@ -244,7 +241,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 
 
 //{town_abi_ini}
-=town_abi_2
+=abi_1
 (Elle lit un vieux bouquin et ne me prête aucune attention.)
 ->DONE
 
@@ -264,7 +261,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 
 //Scarface
 
-=ba_scarface_ini
+=scarface_0
 {PlaceActor("davis", 1)}
 (Lorsque je m'approche le type esquisse un pas menaçant dans ma direction. Il n'est clairement pas là pour faire la causette.)
 {PlaceActor("scarface", 3)}
@@ -276,7 +273,7 @@ Scarface: "T'as rien à faire là et t'as pas le profil du 'client' moyen. Déga
 J.Davis: "Pas la tête du 'client' moyen ? Je suis pas assez beau c'est ça ?"
 Scarface: "Ah ah, très drôle." (De toute évidence ça ne l'est pas) "Maintenant vire de là crétin."
 (Je m'apprête à répliquer mais me ravise: il fait bien une tête de plus que moi et je ne suis pas vraiment du type bagarreur. Disons qu'il a eu de la chance pour cette fois.)
-~ scarface_status = "ferme"
+{SetStatus(3, "scarface")}
 {Flush()}
 
 *[Pourquoi, c'est interdit par la loi ?]//neutre
@@ -285,7 +282,7 @@ Scarface: "C'est interdit par moi. Tu veux que je demande à mon ami le mur de t
 (Après une longue réflexion d'environ 1 seconde sur mon envie de rencontrer ledit mur, je lui répond :)
 J.Davis: "Ca ira. Je suis sûr qu'il a mieux à faire n'est-ce pas ?" 
 Scarface: "Maintenant dégage"
-~ scarface_status = "ferme"
+{SetStatus(3, "scarface")}
 {Flush()}
 
 *[Tu ferais mieux te bouger ta graisse face de trou]//Victor
@@ -302,14 +299,22 @@ J.Davos: "Quels ordres ? Enlever la fille du maire ?"
 Scarface: "Quoi ?! Non ! Pourquoi j'enlèverai la fille de mon employeur !? Il m'a demandé d'effrayer un peu l'autre irlandais pour qu'il accepte de fermer son pub, mais ce mec est une foutu armoire à glace !"
 J.Davis: "Attends, t'as rien à voir avec l'enlèvement !?"
 Scarface: "Je savais même pas qu'elle avait été enlevée ! Si quelqu'un a fait le coup c'est le barman !"
-J.Davis: "T'as intêret à m'avoir dit la vérité !"
-~ scarface_status = "ouvert"
+J.Davis: "T'as intérêt à m'avoir dit la vérité !"
+{SetStatus(2, "scarface")}
 {Flush()}
 
 ->DONE
 
+=scarface_2 //Ouvert
+{SetDecor("backalley")}
+{PlaceActor("davis", 1)}
+{PlaceActor("scarface", 3)}
+Scarface: "Ecoute j'ai rien d'autre à te dire mec !"
+{Flush()}
 
-=ba_scarface_f //Fermé
+->DONE
+
+=scarface_3 //Fermé
 {SetDecor("backalley")}
 {PlaceActor("davis", 1)}
 {PlaceActor("scarface", 3)}
@@ -319,19 +324,43 @@ Scarface: "Dé-gage".
 
 ->DONE
 
-=ba_scarface_o //Ouvert
-{SetDecor("backalley")}
-{PlaceActor("davis", 1)}
-{PlaceActor("scarface", 3)}
-Scarface: "Ecoute j'ai rien d'autre à te dire mec !"
+
+
+
+
+
+
+
+==manor_inside==
+
+{SetDecor("manor_inside_day")}
+{PlaceActor("detective", 2)}
+{PlaceActor("mayor", 3)}
+A.Ferguson: "Ecoutez détective, ma fille a disparu, faites votre travail et retrouvez-là au lieu de vous intéresser à des histoires sans intérêt !"
+L.Lawson: "Votre père est mort dans des circonstances troubles et vous ne voulez pas savoir ce qu'il s'est vraiment passé ? Quelque chose à cacher peut-être ?"
+A.Ferguson: "Rien du tout ! Mais je ne vous laisserai pas fouiller les affaires de mon père et baffouer son nom ! Faites votre job !"
+L.Lawson: "Mon job est de découvrir la vérité. Et pour cela j'ai besoin de consulter le testament de votre père !"
+
+*[(S'allier au maire) "Il a raison, la disparition de la petite est plus importante détective !"] //Victor
+{PlaceActor("davis", 4)}
+L.Lawson: "Tch. Très bien, si vous le décidez ainsi..."
+(Elle me lance un regard noir et s'éloigne.)
+{RemoveActor("detective")}
+{SetStatus(3, "detective")}
+{SetStatus(2, "mayor")}
+A.Ferguson: "Merci pour votre aide monsieur Davis."
 {Flush()}
 
-->DONE
+*[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Qui plus est, l'enlèvement de votre fille peut y être lié."] //Jack Davis
+A.Ferguson: "Hmph."
+{RemoveActor("mayor")}
+(Il s'éloigne sans un regard)
+{SetStatus(2, "detective")}
+{SetStatus(3, "mayor")}
+L.Lawson: "Je suis persuadée qu'il y a un lien entre les deux. Occupez-vous de la fille, je cherche dans la famille"
+{Flush()}
 
-
-
-
-
+-> DONE
 
 
 

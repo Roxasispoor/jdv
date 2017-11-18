@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour {
     }
 
     /// <summary>
-    /// passe le decor a actif
+    /// passe le decor a actif, load les personnages qui sont sur ce lieu
     /// </summary>
     /// <param name="decorName"></param>
     public void SetDecor(string decorName)
@@ -55,13 +55,21 @@ public class GameManager : MonoBehaviour {
 
             if(decor.name==decorName)
             {
-                decor.SetActive(true);    
+                decor.SetActive(true);
+                foreach (GameObject actor in listeActors)
+                {
+                    if(actor.GetComponent<Actor>().Lieu==decor)
+                    {
+                        actor.SetActive(true);
+ }//j'active le personnage
+                }
             }
             else
             {
                 decor.SetActive(false);
             }
         }
+
     }
     /// <summary>
     /// place un actor dans la scène
@@ -74,7 +82,7 @@ public class GameManager : MonoBehaviour {
         {
             if (actor.name==actorName)
             {
-                Debug.Log("même nom");
+               
                 actor.SetActive(true);
                 actor.transform.position.Set(positionPersoStandard[position].x, positionPersoStandard[position].y, positionPersoStandard[position].z);
 
