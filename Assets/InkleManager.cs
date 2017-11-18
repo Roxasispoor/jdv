@@ -65,23 +65,37 @@ public class InkleManager : MonoBehaviour {
         RefreshView();
     }
 
+
+    IEnumerator WaitForKeyDown(KeyCode keyCode)
+    {
+        Debug.Log("la");
+        while (!Input.GetKeyDown(keyCode))
+            yield return null;
+    }
+
     void RefreshView()
     {
         RemoveChildren();
 
-        while (Story.canContinue)
+        StartCoroutine(DisplayTextOnSpace());
+    }
+
+    private IEnumerator DisplayTextOnSpace()
+    {
+        while (story.canContinue)
         {
-            
-            string text = Story.Continue().Trim();
+            string text = story.Continue().Trim();
+            yield return new WaitUntil(() => { return Input.GetKeyDown(KeyCode.Space); });
+            //  Debug.Log(text);
+            //StartCoroutine(WaitForKeyDown(KeyCode.Space));
             CreateContentView(text);
         }
-        
-        if (Story.currentChoices.Count > 0)
+
+        if (story.currentChoices.Count > 0)
         {
-            
-            for (int i = 0; i < Story.currentChoices.Count; i++)
+            for (int i = 0; i < story.currentChoices.Count; i++)
             {
-                Choice choice = Story.currentChoices[i];
+                Choice choice = story.currentChoices[i];
                 Button button = CreateChoiceView(choice.text.Trim());
                 button.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
@@ -99,7 +113,7 @@ public class InkleManager : MonoBehaviour {
 
     void OnClickChoiceButton(Choice choice)
     {
-        Story.ChooseChoiceIndex(choice.index);
+        story.ChooseChoiceIndex(choice.index);
         RefreshView();
     }
 
@@ -107,7 +121,9 @@ public class InkleManager : MonoBehaviour {
     {
         Text storyText = Instantiate(textPrefab) as Text;
         storyText.text = text;
+        RemoveChildren();
         storyText.transform.SetParent(canvas.transform, false);
+
     }
 
     Button CreateChoiceView(string text)
@@ -132,10 +148,11 @@ public class InkleManager : MonoBehaviour {
             GameObject.Destroy(canvas.transform.GetChild(i).gameObject);
         }
     }
-    
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 }
