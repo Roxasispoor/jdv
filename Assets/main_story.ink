@@ -2,8 +2,7 @@ EXTERNAL PlaceActor(ActorName, position)
 EXTERNAL RemoveActor(ActorName)
 EXTERNAL Flush()
 EXTERNAL SetDecor(DecorName)
-VAR berta_status = "null"
-VAR scarface_status = "null"
+EXTERNAL SetStatus(int, ActorName)
 
 ->intro
 
@@ -176,7 +175,7 @@ Berta: "T'es nouveau en ville mon chou nan ? C'est pas la joie en ce moment. Le 
 J.Davis: "Quel gâteau ?"
 Berta: "L'héritage pardi ! Le maire a hérité d'une belle petite somme, personne cracherais dessus moi jle dis. Ils lui tournent autour depuis, ct'assureur surtout."
 J.Davis: "Je vois."
-~ berta_status = "neutre"
+{SetStatus(1, "bigberta")}
 {Flush()}
 
 *[Non merci, il à l'air délicieux mais je préfèrerais plutôt quelques informations] //choix Jack Davis
@@ -186,13 +185,13 @@ J.Davis: "Shawn ?"
 Berta: "Le barman du pub 'L'étalon Pavoisé'. Le maire a voulu le faire fermer il y a quelques temps. Mais Shawn c'est un bon gar, foi de Berta, il a rien à voir."
 "J.Davis: "C'est ce qu'on verra"
 (Bon au moins ça fait une piste).
-~ berta_status = "ouvert"
+{SetStatus(2, "bigberta")}
 {Flush()}
 
 *[Moins fort grognasse, j'ai mal au crâne]
 Berta: "Oula t'es pas commode toi ? T'es un copain dl'autre balafré ou quoi !? Si tu cherches ton pote il traîne dans la ruelle, je veux rien avoir à faire avec vos magouilles moi !"
 J.Davis: "C'est ça ouais."
-~ berta_status = "ferme"
+{SetStatus(3, "bigberta")}
 {Flush()}
 ->DONE
 
@@ -276,7 +275,7 @@ Scarface: "T'as rien à faire là et t'as pas le profil du 'client' moyen. Déga
 J.Davis: "Pas la tête du 'client' moyen ? Je suis pas assez beau c'est ça ?"
 Scarface: "Ah ah, très drôle." (De toute évidence ça ne l'est pas) "Maintenant vire de là crétin."
 (Je m'apprête à répliquer mais me ravise: il fait bien une tête de plus que moi et je ne suis pas vraiment du type bagarreur. Disons qu'il a eu de la chance pour cette fois.)
-~ scarface_status = "ferme"
+{SetStatus(3, "scarface")}
 {Flush()}
 
 *[Pourquoi, c'est interdit par la loi ?]//neutre
@@ -285,7 +284,7 @@ Scarface: "C'est interdit par moi. Tu veux que je demande à mon ami le mur de t
 (Après une longue réflexion d'environ 1 seconde sur mon envie de rencontrer ledit mur, je lui répond :)
 J.Davis: "Ca ira. Je suis sûr qu'il a mieux à faire n'est-ce pas ?" 
 Scarface: "Maintenant dégage"
-~ scarface_status = "ferme"
+{SetStatus(3, "scarface")}
 {Flush()}
 
 *[Tu ferais mieux te bouger ta graisse face de trou]//Victor
@@ -302,8 +301,8 @@ J.Davos: "Quels ordres ? Enlever la fille du maire ?"
 Scarface: "Quoi ?! Non ! Pourquoi j'enlèverai la fille de mon employeur !? Il m'a demandé d'effrayer un peu l'autre irlandais pour qu'il accepte de fermer son pub, mais ce mec est une foutu armoire à glace !"
 J.Davis: "Attends, t'as rien à voir avec l'enlèvement !?"
 Scarface: "Je savais même pas qu'elle avait été enlevée ! Si quelqu'un a fait le coup c'est le barman !"
-J.Davis: "T'as intêret à m'avoir dit la vérité !"
-~ scarface_status = "ouvert"
+J.Davis: "T'as intérêt à m'avoir dit la vérité !"
+{SetStatus(2, "scarface")}
 {Flush()}
 
 ->DONE
@@ -332,6 +331,16 @@ Scarface: "Ecoute j'ai rien d'autre à te dire mec !"
 
 
 
+
+
+==manor_inside==
+
+{SetDecor("manor_inside_day")}
+{PlaceActor("detective", 2)}
+{PlaceActor("mayor", 3)}
+A.Ferguson: "Ecoutez détective, ma fille a disparu, faites votre travail et retrouvez-là au lieu de vous intéresser à des histoires sans intérêt !"
+L.Lawson: "Votre père est mort dans des circonstances troubles et vous ne voulez pas savoir ce qu'il s'est vraiment passé ?
+-> DONE
 
 
 
