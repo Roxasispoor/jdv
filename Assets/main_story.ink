@@ -1,6 +1,6 @@
 EXTERNAL PlaceActor(ActorName, position)
 EXTERNAL RemoveActor(ActorName)
-EXTERNAL flush()
+EXTERNAL Flush()
 EXTERNAL SetDecor(DecorName)
 
 ->intro
@@ -58,10 +58,10 @@ L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller deho
 =manor_outside
 {SetDecor("manor_outside_night")}
 {PlaceActor("daughter", 4)}
-{flush()}
+{Flush()}
 {PlaceActor("davis", 1)}
 J.Davis: “Hey !”
-{flush()}
+{Flush()}
 *BAAM*
 //Ecran noir et qui bouge un instant pour signifier le coup. Bruitage correspondant.
 {SetDecor("black")}
@@ -127,12 +127,12 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 
 
-*Manoir
-->manor_inside
-*Ruelle
-->backalley
-*Pub
-->pub
-->DONE
+//*Manoir
+//->manor_inside
+//*Ruelle
+//->backalley
+//*Pub
+//->pub
+//->DONE
 
 ->END

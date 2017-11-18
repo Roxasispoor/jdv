@@ -40,6 +40,10 @@ public class InkleManager : MonoBehaviour {
          {
              gameManager.RemoveActor(actorName);
          });
+        story.BindExternalFunction("SetDecor", (string decorName) =>
+        {
+            gameManager.SetDecor(decorName);
+        });
 
         RefreshView();
     }
