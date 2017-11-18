@@ -19,6 +19,19 @@ public class InkleManager : MonoBehaviour {
     [SerializeField]
     private Button buttonPrefab;
 
+    public Story Story
+    {
+        get
+        {
+            return story;
+        }
+
+        set
+        {
+            story = value;
+        }
+    }
+
     void Start()
     {
         gameManager = GetComponent<GameManager>();
@@ -27,24 +40,28 @@ public class InkleManager : MonoBehaviour {
 
     void StartStory()
     {
-        story = new Story(inkJSONAsset.text);
+        Story = new Story(inkJSONAsset.text);
         // on bind les fonctions ink
-        story.BindExternalFunction("PlaceActor", (string actorName, int position) =>
+        Story.BindExternalFunction("PlaceActor", (string actorName, int position) =>
          {
              gameManager.PlaceActor(actorName, position);
          });
-        story.BindExternalFunction("Flush", () => {
+        Story.BindExternalFunction("Flush", () => {
             gameManager.Flush();
-         });
-        story.BindExternalFunction("RemoveActor", (string actorName) =>
+        });
+        Story.BindExternalFunction("RemoveActor", (string actorName) =>
          {
              gameManager.RemoveActor(actorName);
          });
-        story.BindExternalFunction("SetDecor", (string decorName) =>
+        Story.BindExternalFunction("SetDecor", (string decorName) =>
         {
             gameManager.SetDecor(decorName);
         });
-
+        Story.BindExternalFunction("SetStatus", (int status, string actorName) =>
+         {
+             gameManager.SetStatus(status, actorName);
+         });
+    
         RefreshView();
     }
 
@@ -52,17 +69,19 @@ public class InkleManager : MonoBehaviour {
     {
         RemoveChildren();
 
-        while (story.canContinue)
+        while (Story.canContinue)
         {
-            string text = story.Continue().Trim();
+            
+            string text = Story.Continue().Trim();
             CreateContentView(text);
         }
-
-        if (story.currentChoices.Count > 0)
+        
+        if (Story.currentChoices.Count > 0)
         {
-            for (int i = 0; i < story.currentChoices.Count; i++)
+            
+            for (int i = 0; i < Story.currentChoices.Count; i++)
             {
-                Choice choice = story.currentChoices[i];
+                Choice choice = Story.currentChoices[i];
                 Button button = CreateChoiceView(choice.text.Trim());
                 button.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
@@ -80,7 +99,7 @@ public class InkleManager : MonoBehaviour {
 
     void OnClickChoiceButton(Choice choice)
     {
-        story.ChooseChoiceIndex(choice.index);
+        Story.ChooseChoiceIndex(choice.index);
         RefreshView();
     }
 

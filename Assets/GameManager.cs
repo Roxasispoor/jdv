@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public GameObject[] prefabsActors;
     public List<GameObject> listeActors = new List<GameObject>();
-    //  public GameObject[] prefabDecor;
     public List<GameObject> listeDecor;
     public Vector3[] positionPersoStandard = new Vector3[4];
 
@@ -29,6 +28,26 @@ public class GameManager : MonoBehaviour {
           }
     }
 
+    /// <summary>
+    /// change le statut narratif d'un personnage
+    /// </summary>
+    /// <param name="status"></param>
+    /// <param name="actorName"></param>
+    public void SetStatus(int status, string actorName)
+    {
+        foreach (GameObject actor in listeActors)
+        {
+            if (actor.name == actorName)
+            {
+                actor.GetComponent<Actor>().Status = status;
+            }
+        }
+    }
+
+    /// <summary>
+    /// passe le decor a actif
+    /// </summary>
+    /// <param name="decorName"></param>
     public void SetDecor(string decorName)
     {
         foreach (GameObject decor in listeDecor)
@@ -44,23 +63,32 @@ public class GameManager : MonoBehaviour {
             }
         }
     }
+    /// <summary>
+    /// place un actor dans la scène
+    /// </summary>
+    /// <param name="actorName"></param>
+    /// <param name="position"></param>
     public void PlaceActor(string actorName,int position)
     {
         foreach (GameObject actor in listeActors)
         {
             if (actor.name==actorName)
             {
+                Debug.Log("même nom");
                 actor.SetActive(true);
                 actor.transform.position.Set(positionPersoStandard[position].x, positionPersoStandard[position].y, positionPersoStandard[position].z);
 
                 actor.GetComponent<Actor>().PositionNum=position; // on le place au bon endroit dans le script
-               
+                
 
             }
 
         }
-    }
 
+    }
+    /// <summary>
+    /// supprime tous les acteurs de la scène
+    /// </summary>
     public void Flush()
     {
         foreach (GameObject actor in listeActors)
@@ -69,6 +97,10 @@ public class GameManager : MonoBehaviour {
         }
 
     }
+    /// <summary>
+    /// supprime un acteur de la scene
+    /// </summary>
+    /// <param name="actorName"></param>
     public void RemoveActor(string actorName)
     {
         foreach (GameObject actor in listeActors)
@@ -83,6 +115,21 @@ public class GameManager : MonoBehaviour {
 	void Update () {
 		
 	}
+
+    /// <summary>
+    /// Lis le contexte ink, décide vers quel noeud relancer?
+    /// </summary>
+    /// <param name="nomLieu"></param>
+    public void NodeDecider(string nomLieu)
+    {
+
+    }
+
+    /// <summary>
+    /// permet de changer quel sprite afficher
+    /// </summary>
+    /// <param name="actorName"></param>
+    /// <param name="mood"></param>
     public void ChangeState(string actorName ,string mood)
     { foreach(GameObject actor in listeActors )
         {
@@ -91,5 +138,6 @@ public class GameManager : MonoBehaviour {
                 actor.GetComponent<Actor>().ChangeState(mood);
             }
         }
+
     }
 }
