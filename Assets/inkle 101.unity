@@ -290,6 +290,7 @@ MonoBehaviour:
   prefabsActors:
   - {fileID: 1442635011405182, guid: 7e3389f4baa71d241a2d854806586653, type: 2}
   listeActors: []
+  listeDecor: []
   positionPersoStandard:
   - {x: 0, y: 0, z: 0}
   - {x: 0, y: 0, z: 0}
@@ -306,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2ffce5afdd62974f91e53a239f90368, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inkJSONAsset: {fileID: 0}
+  inkJSONAsset: {fileID: 4900000, guid: a1a7c764b8c6ac340a57ffdcf5a4ecb2, type: 3}
   canvas: {fileID: 1940550953}
   textPrefab: {fileID: 11456674, guid: 1aab6ef84d87c416f8f0b3e1ef3d77d2, type: 2}
   buttonPrefab: {fileID: 11455116, guid: 37c108a6c38964f79a6621eccb33ddc1, type: 2}

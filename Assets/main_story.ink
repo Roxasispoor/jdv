@@ -62,7 +62,11 @@ L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller deho
 {PlaceActor("davis", 1)}
 J.Davis: “Hey !”
 {Flush()}
+<<<<<<< HEAD
 'BAAM'
+=======
+*BAAM*
+>>>>>>> 3572466ff05f679ce8b809ceae33944c96f9d0d9
 //Ecran noir et qui bouge un instant pour signifier le coup. Bruitage correspondant.
 {SetDecor("black")}
 (Une douleur fulgurante se répand dans mon crâne et je tombe à genoux. Une brume rouge obscurcit ma vision. Une rage intense me saisit. À travers le brouillard, sans plus contrôler mes gestes, je saisis le premier objet à ma portée et frappe mon agresseur aveuglément. Le bruit sourd quand je le touche n’est que musique à mes oreilles.)
@@ -198,6 +202,10 @@ J.Davis: "Non merci"
 //->backalley
 //*Pub
 //->pub
+<<<<<<< HEAD
 ->DONE
+=======
+//->DONE
+>>>>>>> 3572466ff05f679ce8b809ceae33944c96f9d0d9
 
 ->END
