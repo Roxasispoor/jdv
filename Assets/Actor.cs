@@ -8,8 +8,9 @@ public class Actor : MonoBehaviour {    public enum CharacterEmotion
     public Sprite[] sprites;
     SpriteRenderer spriteRender;
     private int status;
+    private GameObject lieu;
     private int sens;//0gauche 1droite 2gauche coupé 3droitecoupé
-    private int positionNum; // 0 tout à gauche 3 tout à droite
+    public int positionNum; // 0 tout à gauche 3 tout à droite
     public CharacterEmotion CharacterEmo
     {
         get
@@ -46,6 +47,19 @@ public class Actor : MonoBehaviour {    public enum CharacterEmotion
         set
         {
             status = value;
+        }
+    }
+
+    public GameObject Lieu
+    {
+        get
+        {
+            return lieu;
+        }
+
+        set
+        {
+            lieu = value;
         }
     }
 
