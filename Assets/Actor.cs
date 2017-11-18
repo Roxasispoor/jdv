@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Actor : MonoBehaviour {    public enum CharacterEmotion
     { NORMAL, SPECIAL }
-    CharacterEmotion characterEmo;
+     CharacterEmotion characterEmo;
     public Sprite[] sprites;
     SpriteRenderer spriteRender;
+    private int status;
     private int sens;//0gauche 1droite 2gauche coupé 3droitecoupé
     private int positionNum; // 0 tout à gauche 3 tout à droite
     public CharacterEmotion CharacterEmo
@@ -35,11 +36,25 @@ public class Actor : MonoBehaviour {    public enum CharacterEmotion
         }
     }
 
+    public int Status
+    {
+        get
+        {
+            return status;
+        }
+
+        set
+        {
+            status = value;
+        }
+    }
+
 
     // Use this for initialization
     void Awake() {
         this.characterEmo = CharacterEmotion.NORMAL;
         this.spriteRender = GetComponent<SpriteRenderer>();
+        this.spriteRender.sprite = sprites[0];// a modifier avec le numéro du normal
     }
     public void ChangeState(string name)
     {
