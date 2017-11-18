@@ -64,9 +64,6 @@ J.Davis: “Hey !”
 {Flush()}
 <<<<<<< HEAD
 'BAAM'
-=======
-*BAAM*
->>>>>>> 3572466ff05f679ce8b809ceae33944c96f9d0d9
 //Ecran noir et qui bouge un instant pour signifier le coup. Bruitage correspondant.
 {SetDecor("black")}
 (Une douleur fulgurante se répand dans mon crâne et je tombe à genoux. Une brume rouge obscurcit ma vision. Une rage intense me saisit. À travers le brouillard, sans plus contrôler mes gestes, je saisis le premier objet à ma portée et frappe mon agresseur aveuglément. Le bruit sourd quand je le touche n’est que musique à mes oreilles.)
@@ -133,7 +130,7 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 //BERTA 
 
 
-=town_berta_1  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
+=town_berta_ini  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
 {SetDecor("town")}
 {PlaceActor("bigberta", 3)}
 "Bon pain tout chaud à peine sortie du four ! Il est bon il est chaud !
@@ -192,20 +189,65 @@ J.Davis: "Non merci"
 
 
 
+//ABIGAEL
 
+=town_abi_ini
+{SetDecor("town")}
+{PlaceActor("abi", 3)}
+{PlaceActor("davis", 2)}
+(Une gamine à lair sombre traîne dans la rue. Elle me regarde bizarrement, peut-être qu'elle sait quelque chose ?)
+"..." //Couleur abi mais pas encore son nom
+J.Davis: "Euh..Bonjour ?"
+"...'Jour." //Couleur abi
+(Ca commence bien...)
+J.Davis: "Dis-moi euh..."
+"..Abigail"
+J.Davis: "..Abigail. Je peux te poser quelques question ?"
+Abigail: "Sur la fille ou sur Victor ?"
 
+*[Quoi !?] //Neutre
+Abigail: "...Pour la fille je sais rien de toute façon, mais pour Victor vous devriez faire gaffe, il était connu pour être violent plus jeune..."
+J.Davis: "Attends, Victor...Ferguson ? Quel rapport avec tout ça ?!"
+Abigail: "Avec votre enquête je sais pas, avec vous par contre... Méfiez vous de vos penchants, les extrêmes sont dangereux"
+{RemoveActor("abi")}
+(Mais c'est quoi cette gamine ? Ils ont quoi dans cette ville !?)
+{Flush()}
 
+*[Victor ?!] //Jack Davis
+Abigail: "..Ferguson, le grand père. C'était un homme très porté sur l'occultisme. Spécialisé en projection astrale et possession."
+J.Davis: "Hmm, projection astrale, je vois..." (Mais c'est quoi ces conneries encore !?)
+Abigail: "Quoi qu'il en soit, si vous voulez retrouver le fille vous aurez besoin de lui. Méfiez vous quand même de vos penchants."
+J.Davis: "Merci du conseil"
+{RemoveActor("abi")}
+(Ville de tarés...)
+{Flush()}
 
-//*Manoir
-//->manor_inside
-//*Ruelle
-//->backalley
-//*Pub
-//->pub
-<<<<<<< HEAD
+*[Si tu sais quelque chose gamine tu ferais mieux de parler]//Victor
+Abigail: "Oula ! On voit déjà qui a l'ascendant !"
+J.Davis: "Mais qu'est-ce que tu marmonnes !?"
+Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces de la pièce pour trouver la fille et trouver la vérité, mais attention à pas vous égarer !"
+{RemoveActor("abi")}
+(Ville de barjes...)
+{Flush()}
+
 ->DONE
-=======
-//->DONE
->>>>>>> 3572466ff05f679ce8b809ceae33944c96f9d0d9
+
+
+=town_abi_2
+(Elle lit un vieux bouquin et ne me prête aucune attention.)
+
+->DONE
+
+
+
+
+
+
+
+
+
+
+==default==
+Que faire ?
 
 ->END
