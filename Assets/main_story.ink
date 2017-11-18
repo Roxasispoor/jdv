@@ -43,7 +43,7 @@ L.Lawson: “Ses “affaires” présentent de sérieuses zones d’ombre monsie
 J.Davis: “Ben voyons !”
 (Si un regard pouvait tuer…)
 L.Lawson: “Monsieur Davis, vous..!”
-“Veuillez m’excuser mais je crains que nous ayons un problème”
+'Tousse' “Veuillez m’excuser mais je crains que nous ayons un problème”
 //Sprite rapproché du majordome qui apparaît à l’écran.
 {PlaceActor("alfred", 4)}
 (Queue de pie, gants blancs: aucun doute, il s’agit du majordome)
@@ -56,27 +56,28 @@ L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller deho
 ->manor_outside
 ->DONE
 
-=manor_outside
+=manor_outside_1
 {SetDecor("manor_outside_night")}
 {PlaceActor("daughter", 4)}
+!
 {Flush()}
 {PlaceActor("davis", 1)}
 J.Davis: “Hey !”
 {Flush()}
-<<<<<<< HEAD
 'BAAM'
 //Ecran noir et qui bouge un instant pour signifier le coup. Bruitage correspondant.
 {SetDecor("black")}
 (Une douleur fulgurante se répand dans mon crâne et je tombe à genoux. Une brume rouge obscurcit ma vision. Une rage intense me saisit. À travers le brouillard, sans plus contrôler mes gestes, je saisis le premier objet à ma portée et frappe mon agresseur aveuglément. Le bruit sourd quand je le touche n’est que musique à mes oreilles.)
 //Réapparition sprite rapproché milieu écran et décor.
 {SetDecor("manor_outside_night")}
-{PlaceActor("davis", 2)}
-“SALE FILS DE...!”
+{PlaceActor("davis", 3)}
+“SALE...!”
 {PlaceActor("alfred", 1)}
 Alfred: “Monsieur Davis, vous allez bi…”
 //Fondu fond noir.
 (Je m’effondre avant d’entendre ses derniers mots).
 {SetDecor("black")}
+{Flush()}
 ->manor_inside_2
 ->DONE
 
@@ -290,6 +291,7 @@ Scarface: "Maintenant dégage"
 {SetDecor("black")}
 (Je me réveille après ce qui me paraît une éternité plus tard, menotté à un lit d'hôpital. La détective Lawson m'apprend que j'ai dormi 3 jours. Pendant ce temps la fille Ferguson est rentrée chez elle, et Scarface a été arrêté pour son enlèvement, ainsi qu'agression. Quant aux menottes: j'ai été inculpé également pour agression, ainsi que pour falsification de testament. Il semblerait que le vieux Victor n'était pas vraiment mort paisiblement, et que la question de l'héritage restait en suspens tant que le vrai testament n'aurait pas été retrouvé.)
 (Ma paye envolée, inculpé pour un crime que je ne savais même pas avoir commis, moi qui pensais que la vie de notaire était assez pourrie comme ça, j'avais tort. Si seulement j'avais pu changer les choses...)
+->end
 
 *[(Sort mon couteau) Ouais et tu vas faire sinon mon grand ?] //Nécessite couteau et Victorité
 (Scarface ici présent semble beaucoup moins serein d'un coup.)
@@ -363,7 +365,7 @@ L.Lawson: "Mon job est de découvrir la vérité. Et pour cela j'ai besoin de co
 *[(S'allier au maire) "Il a raison, la disparition de la petite est plus importante détective !"] //Victor
 {PlaceActor("davis", 4)}
 L.Lawson: "Tch. Très bien, si vous le décidez ainsi..."
-(Elle me lance un regard noir et s'éloigne.)
+(Elle me lance un regard noir et s'éloigne. Rabattre le caquet de cette fouine est déjà une victoire en soit)
 {RemoveActor("detective")}
 {SetStatus(3, "detective")}
 {SetStatus(2, "mayor")}
@@ -393,6 +395,9 @@ L.Lawson: "Je suis persuadée qu'il y a un lien entre les deux. Occupez-vous de 
 {PlaceActor("mayor", 3)}
 A.Ferguson: "Vous avancez sur votre enquête ?"
 J.Davis: "J'ai quelques pistes."
+A.Ferguson: "Vous devriez parler à Alfred, il connaît bien la ville et ses habitants, il pourrait vous aider. Voulez-vous que je l'appelle ?"
+J.Davis: "C'est bon, il me semble l'avoir vu à l'extérieur en arrivant."
+{SetStatus("alfred", 6)}
 {Flush()}
 ->DONE
 
@@ -409,8 +414,8 @@ A.Ferguson: "Hmph. Continuez donc votre enquête."
 (Comment j'ai pu prendre le parti de cette fouine !?)
 L.Lawson: "Comment ça avance de votre côté ?"
 J.Davis: "J'ai quelques pistes. Vous ?"
-L.Lawson: "Je suis persuadée que le maire cache quelque chose. Il n'est pas si concerné par la sécurité de sa fille. En revanche il refuse à tout pris de me donner le testament. Vous en êtes le notaire signitaire non ? Vous avez noté quelque chose d'anormal ?"
-J.Davis: "C'était bien moi oui. Un assureur était là également. Anormal comme ? Vous pensez qu'il était faux ?"
+L.Lawson: "Je suis persuadée que le maire cache quelque chose. Il n'est pas si concerné par la sécurité de sa fille. En revanche il refuse à tout pris de me donner le testament. Vous en êtes le notaire signitaire non ? Accompagné de cet assureur il me semble ? Vous avez noté quelque chose d'anormal ?"
+J.Davis: "Tout à fait. Anormal comme ? Vous pensez qu'il était faux ?"
 L.Lawson: "En effet. Je sais que le maire avait besoin d'argent. Il est endetté auprès de la pègre. Son père s'il était au courant ne lui aurait jamais légué ses biens. C'était lui-même un ancien mafieux repenti, mais il est devenu clean, si ce n'est cette passion pour l'occultisme."
 (J'en reviens pas qu'elle ait réfléchit aussi loin. Pas mauvaise la fouine !)
 J.Davis: "Vous ne soupçonnez tout de même pas son fils de l'avoir..?"
@@ -419,7 +424,8 @@ L.Lawson: "Eliminé ? Ce n'est pas exclu. Le rapport d'autopsie n'est toujours p
 'Vous recevez un couteau'
 L.Lawson: "Nous devrions reprendre nos enquêtes..."
 {RemoveActor("detective")}
-(Et maintenant voilà qu'elle m'aide. Peut-être qu'il existe UNE bonne détective après tout...)
+(Et maintenant voilà qu'elle m'aide. Peut-être qu'il existe UNE bonne détective dans le monde après tout...).
+{SetStatus("philippe", 6)}
 {Flush()}
 ->DONE
 
@@ -437,6 +443,79 @@ L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérit�
 
 
 
+==manor_outside==
+
+{SetDecor("manor_outside_day")}
+(Le majordome est en pleine discussion avec un homme sinistre que je reconnais sans peine. Philippe Van Hert, assureur de métier mais il pourrait tout aussi bien être croque-mort. Nous étions ensemble pour la signature du testament.)
+{PlaceActor("davis", 1)}
+(Alors que je m'approche d'eux j'entends des bribes de conversation.)
+{PlaceActor("alfred", 3)}
+{PlaceActor("philippe", 4)}
+Alfred: "...faire restera entre nous."
+P. Van Herl: "Bien entendu" 
+(Ils s'arrêtent en me voyant arriver. Ma présence ne les ravit visiblement pas.)
+Alfred: "Ah, monsieur Davis ! Votre tête va-t-elle mieux ?"
+J.Davis: "Merci, oui."
+(Van Herl reste silencieux mais son regard est acéré comme des lames.)
+
+//Si alfred_status == 6
+*[Puis-je vous parler un instant Alfred ?]
+Alfred: "Bien sûr monsieur, de quoi s'agit-il ?"
+{RemoveActor("philippe")}
+J.Davis: "Monsieur Ferguson m'a dit de s'adresser à vous pour avoir des informations sur la ville et ses habitants."
+Alfred: "Oh, je vois, en effet. J'ai entendu Monsieur s'énerver tout à l'heure, j'avais peur que ce soit contre vous."
+J.Davis: "Ah, non. Il se disputait avec l'autre fouin...détective. Au sujet du testament du défunt il me semble..."
+Alfred: "Ah !"
+(Il semble soudain nerveux. Ne me dites que la fouine avait vraimene mis le doigt sur quelque chose !?)
+J.Davis: "Quelque chose vous dérange ? Le testament n'est pas perdu au moins ?"
+Alfred: "Non, non, bien sûr que non ! Le testament est bien en sécurité dans le coffre personnel de Monsieur, avec une partie de sa fortune. Très peu de personnes ont le code, il ne risque rien."
+(Il palît soudain et son visage se tend comme s'il venait de réaliser quelque chose)
+Alfred: "A vrai dire, seulement Monsieur...et Mademoiselle."
+J.Davis: "Oh...OH !"
+Alfred: "Je ne crains que cette affaire ne vienne de prendre une autre ampleur".
+{SetStatus("alfred", 1)}
+{Flush()}
+
+//Si philippe_status == 6
+*[Puis-je vous parler monsieur Van Herl ?]
+P.Van Herl: "...Certainement."
+{RemoveActor("alfred")}
+(Son ton est aussi glacial que son reagrd. Discuter avec lui tient presque de la torture)
+J.Davis: "Je discutais avec la détective plus tôt et elle avait une théorie intéressante vis à vis de la mort de Victor. Elle semblait insinuer que le testament que nous avons tous les deux signé était un faux. Aviez-vous remarqué quelque chose d'anormal dans le document ?"
+(Il reste silentieux un moment avant de commencer à rire calmement. Il me glace le sang)
+P.Van Herl: "Monsieur Davis. Vous devriez rester hors des affaires qui ne vous concerne pas. Et je resterai hors de vos affaires."
+J.Davis: "Mes affaires ?"
+P.Van Herl: "Allons monsieur Davis. N'êtes-vous pas notaire ? Un homme de votre profession devrait sans problème reconnaître la validité d'un tel document. Du moins, si c'est vraiment votre profession..."
+(Seigneur, non seulement il est terrifiant, mais au moins aussi intelligent que la détective)
+(Devant mon silence il reprend)
+P.Van Herl: "Au revoir monsieur Davis."
+{SetStatus("philippe", 1)}
+{Flush()}
+
+->DONE
+
+
+=alfred_1
+{PlaceActor("davis", 2)}
+{PlaceActor("alfred", 3)}
+Alfred: "J'espère que vous et mademoiselle Lawson retrouverez Mademoiselle. Elle était si chère aux yeux de Monsieur Victor..."
+{Flush()}
+->DONE
+
+
+=philippe_1
+{PlaceActor("davis", 2)}
+{PlaceActor("philippe", 3)}
+(Son reagrd est glacial comme toujours)
+P.Van Herl: "Ne vous mêlez pas des affaires qui ne vous concernent pas"
+(Avec plaisir !)
+{Flush()}
+->DONE
+
+
+
+
+
 
 
 
@@ -449,4 +528,6 @@ L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérit�
 //==default==
 //Que faire ?
 
+
+==end==
 ->END
