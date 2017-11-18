@@ -65,13 +65,6 @@ public class InkleManager : MonoBehaviour {
         RefreshView();
     }
 
-
-    IEnumerator WaitForKeyDown(KeyCode keyCode)
-    {
-        while (!Input.GetKeyDown(keyCode))
-            yield return null;
-    }
-
     void RefreshView()
     {
         RemoveChildren();
