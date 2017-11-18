@@ -2,7 +2,7 @@ EXTERNAL PlaceActor(ActorName, position)
 EXTERNAL RemoveActor(ActorName)
 EXTERNAL Flush()
 EXTERNAL SetDecor(DecorName)
-
+EXTERNAL SetStatus(Status, ActorName)
 ->intro
 
 ==intro==
@@ -62,7 +62,8 @@ L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller deho
 {PlaceActor("davis", 1)}
 J.Davis: “Hey !”
 {Flush()}
-*BAAM*
+<<<<<<< HEAD
+'BAAM'
 //Ecran noir et qui bouge un instant pour signifier le coup. Bruitage correspondant.
 {SetDecor("black")}
 (Une douleur fulgurante se répand dans mon crâne et je tombe à genoux. Une brume rouge obscurcit ma vision. Une rage intense me saisit. À travers le brouillard, sans plus contrôler mes gestes, je saisis le premier objet à ma portée et frappe mon agresseur aveuglément. Le bruit sourd quand je le touche n’est que musique à mes oreilles.)
@@ -117,22 +118,136 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 
 ==town==
+
+=town_intro
+(J'arrive au centre ville pour commencer mon enquête. La place centrale est à l'image du reste de la ville: banale, sans aucun charme ni originalité. Ma migraine s'est légèrement calmée grâce au cachet.)
+->DONE
+
 //Mouvement perso détermine scène à jouer
 
-=town_berta_1
+
+
+//BERTA 
+
+
+=town_berta_ini  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
 {SetDecor("town")}
-{PlaceActor("davis", 2)}
 {PlaceActor("bigberta", 3)}
+"Bon pain tout chaud à peine sortie du four ! Il est bon il est chaud !
+Et toi là mon mignon, tu veux du pain ? C'est le meilleur pain de tout Topeka, foi de Berta !
+{PlaceActor("davis", 2)}
+(La bonne femme typique des patelins perdus: grosse, bruyante et peu raffinée. Sa voix nasillarde réveille déjà ma migraine.)
+//Choice time !
+
+*[Volontier] //choix neutre, donne l'équipement pain
+'Vous recevez du pain'  //Le pain sert à rien mais il introduit le système d'équipement.
+Berta: "T'es nouveau en ville mon chou nan ? C'est pas la joie en ce moment. Le père du maire vient de mourir. C'était quelqu'un de bien, même s'il a eu une jeunesse difficile. Maintenant tous ces vautours rôdent autour du maire pour se tailler une part du gâteau"
+J.Davis: "Quel gâteau ?"
+Berta: "L'héritage pardi ! Le maire a hérité d'une belle petite somme, personne cracherais dessus moi jle dis. Ils lui tournent autour depuis, ct'assureur surtout."
+J.Davis: "Je vois."
+{SetStatus("neutre", "bigberta")}
+{Flush()}
+
+*[Non merci, il à l'air délicieux mais je préfèrerais plutôt quelques informations] //choix Jack Davis
+(Je lui explique l'histoire de l'enlèvement et lui demande des pistes)
+Berta: "ENLEVEE !?! Oula non je ne sais pas qui a pu faire ça ! Le maire est en froid avec Shawn, mais c'est un bon garçon il ne ferait jamais ça !"
+J.Davis: "Shawn ?"
+Berta: "Le barman du pub 'L'étalon Pavoisé'. Le maire a voulu le faire fermer il y a quelques temps. Mais Shawn c'est un bon gar, foi de Berta, il a rien à voir."
+"J.Davis: "C'est ce qu'on verra"
+(Bon au moins ça fait une piste).
+{SetStatus("ouvert", "bigberta")}
+{Flush()}
+
+*[Moins fort la grosse j'ai mal au crâne]
+Berta: "Oula t'es pas commode toi ? T'es un copain dl'autre balafré ou quoi !? Si tu cherches ton pote il traîne dans la ruelle, je veux rien avoir à faire avec vos magouilles moi !"
+J.Davis: "C'est ça ouais."
+{SetStatus("fermé", "bigberta")}
+{Flush()}
+->DONE
+
+
+=town_berta_o //2e interaction avec Berta ouverte
+{PlaceActor("bigberta", 3)}
+{PlaceActor("davis", 2)}
+Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
+J.Davis: "Non merci"
+->DONE
+
+
+=town_berta_n //2e interaction avec Berta neutre
+{PlaceActor("bigberta", 3)}
+{PlaceActor("davis", 2)}
+Berta: "Alors, on veut manger autre chose ?"
+J.Davis: "Non merci"
+{Flush()}
+->DONE
+
+=town_berta_f //2e interaction avec Berta ouverte
+(Elle m'ignore d'un air dédaigneux)
+->DONE
 
 
 
 
-//*Manoir
-//->manor_inside
-//*Ruelle
-//->backalley
-//*Pub
-//->pub
-//->DONE
+//ABIGAEL
+
+=town_abi_ini
+{SetDecor("town")}
+{PlaceActor("abi", 3)}
+{PlaceActor("davis", 2)}
+(Une gamine à lair sombre traîne dans la rue. Elle me regarde bizarrement, peut-être qu'elle sait quelque chose ?)
+"..." //Couleur abi mais pas encore son nom
+J.Davis: "Euh..Bonjour ?"
+"...'Jour." //Couleur abi
+(Ca commence bien...)
+J.Davis: "Dis-moi euh..."
+"..Abigail"
+J.Davis: "..Abigail. Je peux te poser quelques question ?"
+Abigail: "Sur la fille ou sur Victor ?"
+
+*[Quoi !?] //Neutre
+Abigail: "...Pour la fille je sais rien de toute façon, mais pour Victor vous devriez faire gaffe, il était connu pour être violent plus jeune..."
+J.Davis: "Attends, Victor...Ferguson ? Quel rapport avec tout ça ?!"
+Abigail: "Avec votre enquête je sais pas, avec vous par contre... Méfiez vous de vos penchants, les extrêmes sont dangereux"
+{RemoveActor("abi")}
+(Mais c'est quoi cette gamine ? Ils ont quoi dans cette ville !?)
+{Flush()}
+
+*[Victor ?!] //Jack Davis
+Abigail: "..Ferguson, le grand père. C'était un homme très porté sur l'occultisme. Spécialisé en projection astrale et possession."
+J.Davis: "Hmm, projection astrale, je vois..." (Mais c'est quoi ces conneries encore !?)
+Abigail: "Quoi qu'il en soit, si vous voulez retrouver le fille vous aurez besoin de lui. Méfiez vous quand même de vos penchants."
+J.Davis: "Merci du conseil"
+{RemoveActor("abi")}
+(Ville de tarés...)
+{Flush()}
+
+*[Si tu sais quelque chose gamine tu ferais mieux de parler]//Victor
+Abigail: "Oula ! On voit déjà qui a l'ascendant !"
+J.Davis: "Mais qu'est-ce que tu marmonnes !?"
+Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces de la pièce pour trouver la fille et trouver la vérité, mais attention à pas vous égarer !"
+{RemoveActor("abi")}
+(Ville de barjes...)
+{Flush()}
+
+->DONE
+
+
+=town_abi_2
+(Elle lit un vieux bouquin et ne me prête aucune attention.)
+
+->DONE
+
+
+
+
+
+
+
+
+
+
+==default==
+Que faire ?
 
 ->END
