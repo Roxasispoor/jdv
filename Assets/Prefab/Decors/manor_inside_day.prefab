@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114420961575574256}
   - component: {fileID: 212994509063030234}
   m_Layer: 0
-  m_Name: manor_inside_night
+  m_Name: manor_inside_day
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
