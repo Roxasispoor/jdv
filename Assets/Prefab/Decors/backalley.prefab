@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 114420961575574256}
   - component: {fileID: 212994509063030234}
   m_Layer: 0
-  m_Name: manor_inside_night
+  m_Name: backalley
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 2eebd6c5c9e17034d9c5226af0b9e713, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 90931395c1cd75743997c8b65a8b8fd1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
