@@ -61,9 +61,9 @@ public class Lieu : MonoBehaviour {
         {
             for (int i = 0; i < LieuxAccessibles.Count; i++)
             {
-                Button bouger = Instantiate(buttonPrefab, new Vector3(100 * i, 0, 0), Quaternion.identity);
+                Button bouger = Instantiate(buttonPrefab, new Vector3(1 * i, 0, 0), Quaternion.identity);
                 Text choiceText = bouger.GetComponentInChildren<Text>();
-                choiceText.text = LieuxAccessibles[i].GetComponent<Lieu>().Nom;
+                choiceText.text = LieuxAccessibles[i].name;
                 bouger.onClick.AddListener(delegate
                 {
                     GameManager.SetDecor(LieuxAccessibles[i].name);

@@ -65,7 +65,7 @@ public class InkleManager : MonoBehaviour {
         RefreshView();
     }
 
-    void RefreshView()
+    public void RefreshView()
     {
         RemoveChildren();
 

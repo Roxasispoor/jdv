@@ -44,9 +44,9 @@ public class GameManager : MonoBehaviour {
         SetActorPlace("bigberta", "town");
         SetActorPlace("abi", "town");
         SetActorPlace("philippe", "manor_outside");
-        SetActorPlace("barman", "bar");
+        SetActorPlace("barman", "pub");
         SetActorPlace("scarface", "backalley");
-        SetActorPlace("daughter", "bar");
+        SetActorPlace("daughter", "pub");
 
         SetPlaceFille("manor_inside_night", "manor_outside_night");
         SetPlaceFille("manor_inside_day", "manor_outside_day");
@@ -58,14 +58,14 @@ public class GameManager : MonoBehaviour {
         SetPlaceFille("manor_outside_day", "town");
         SetPlaceFille("town","manor_outside_day");
 
-        SetPlaceFille("town", "bar");
-        SetPlaceFille("bar", "town");
+        SetPlaceFille("town", "pub");
+        SetPlaceFille("pub", "town");
 
         SetPlaceFille("town", "backalley");
         SetPlaceFille("backalley", "town");
 
-        SetPlaceFille("backalley", "bar");
-        SetPlaceFille( "bar", "backalley");
+        SetPlaceFille("backalley", "pub");
+        SetPlaceFille( "pub", "backalley");
 
 
 

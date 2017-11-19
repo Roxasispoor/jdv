@@ -211,6 +211,7 @@ J.Davis: "Non merci"
 
 =abi_0
 {SetDecor("town")}
+{Flush()}
 {PlaceActor("abi", 3)}
 {PlaceActor("davis", 2)}
 (Une gamine à lair sombre traîne dans la rue. Elle me regarde bizarrement, peut-être qu'elle sait quelque chose ?)
