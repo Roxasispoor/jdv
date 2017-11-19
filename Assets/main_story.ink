@@ -744,7 +744,7 @@ Mon travail est fini. Encore une affaire comme les autres, arnaquer un riche cli
 Mais cette fois la récompense a été à la hauteur du jeu. 
 J'ai quitté Topeka le jour même, une partie de l'héritage en poche. Faut croire que notaire ça rapporte.
 Cette affaire était quand même différente des autres: dans cette nouvelle vie d'arnaque j'ai dû changer pertpétuellement pour pouvoir avancer.
-La prochaine ? J'ai entendu parler d'une exposition archéologique dans une ville proche. Gotham je crois ?
+La prochaine ? J'ai entendu parler d'une exposition archéologique dans une ville proche. Arkham je crois ?
 {Flush()} 
 //{SetDecor("credit")}
 
