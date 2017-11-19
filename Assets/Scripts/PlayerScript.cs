@@ -30,7 +30,7 @@ public class PlayerScript : MonoBehaviour {
 
 	}
 
-	void AddVictorness ( float x )
+	public void AddVictorness ( float x )
 	{
 		if (victorness.CurrentVal * 8 + x > 8)
 		{
@@ -42,7 +42,7 @@ public class PlayerScript : MonoBehaviour {
 		}
 	}
 
-	void SubstractVictorness ( float x )
+	public void SubstractVictorness ( float x )
 	{
 		if (victorness.CurrentVal * 8 - x < 0)
 		{
