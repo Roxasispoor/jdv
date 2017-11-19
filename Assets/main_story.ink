@@ -371,7 +371,7 @@ J.Davis: "T'as intérêt à m'avoir dit la vérité !"
 
 
 
-==manor_inside==
+==manor_inside_day==
 
 {SetDecor("manor_inside_day")}
 {PlaceActor("detective", 2)}
