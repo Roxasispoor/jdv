@@ -741,6 +741,8 @@ MonoBehaviour:
   - {fileID: 1223943027130696, guid: 3d212cd56cd080344b22f14dde705cdd, type: 2}
   - {fileID: 1223943027130696, guid: 5a9ed9ad9b3d19843bd552799c4c9e02, type: 2}
   - {fileID: 1223943027130696, guid: 1c8a95306566cdd46a94dd5132c0747f, type: 2}
+  - {fileID: 1552987681813320, guid: 11a357c89b7ea1c40aa724dad8780f75, type: 2}
+  - {fileID: 1355160934400742, guid: d90d7841c8f9a0945b7104e09f39c799, type: 2}
   ButtonCanvas: {fileID: 1170496979}
 --- !u!114 &1178280574
 MonoBehaviour:
