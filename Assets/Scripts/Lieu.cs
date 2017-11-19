@@ -89,6 +89,7 @@ public class Lieu : MonoBehaviour {
                 button.onClick.AddListener(()=>
                 {
                     print(i);
+
                 gameManager.SetDecor(button.gameObject.name);
                     InkleManager  ink= gameManager.gameObject.GetComponent<InkleManager>();
 
@@ -96,8 +97,20 @@ public class Lieu : MonoBehaviour {
                     ink.RefreshView();
                     
 
+                    RemoveChildren();
+
+
                 });
             }
+        }
+    }
+
+    void RemoveChildren()
+    {
+        int childCount = canvas.transform.childCount;
+        for (int i = childCount - 1; i >= 0; --i)
+        {
+            GameObject.Destroy(canvas.transform.GetChild(i).gameObject);
         }
     }
 

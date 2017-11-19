@@ -268,6 +268,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 ==backalley==
 {SetDecor("backalley")}
 {Flush()}
+{PlaceActor("scarface", 3)}
 (Une ruelle sombre et puante entre les bâtiments. Il faut croire que même dans les villes paumées il existe ce genre d'endroits qui crient "coupe gorge". Tout y est: poubelles débordantes, rats, ordeur nauséabonde, même le type louche au fond de la ruelle qui surveille le coin.)
 
 -> DONE
@@ -387,7 +388,7 @@ A.Ferguson: "Merci pour votre aide monsieur Davis."
 ~ fin_1= true
 {Flush()}
 
-*[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Qui plus est, l'enlèvement de votre fille peut y être lié."] //Jack Davis
+*[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Et l'enlèvement peut être lié."] //Jack Davis
 {PlaceActor("davis", 1)}
 (J'en reviens pas d'être d'accord avec cette fouine)
 A.Ferguson: "Hmph."
@@ -568,7 +569,7 @@ J.Davis: "J'enquête sur sa disparition et je compte bien la retrouver."
 S.O'Brien: "C'est parce que vous avez entendu les rumeurs que vous venez m'interroger je suppose ?"
 J.Davis: "Exact" (Pas du tout, mais il à l'air de vouloir parler, alors qu'il parle !)
 S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
-J.Davis: "Oh, vous semblez proche de 'Emily'"
+J.Davis: "Oh, vous semblez proche d'Emily"
 S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle. J'espère que votre enquête aboutira."
 {SetStatus("barman", 1)}
 {Flush()}
@@ -581,7 +582,7 @@ J.O'Brien: "Si vous n'aimez pas libre à vous de partir. C'est pas le seul bar d
 
 {barman_status == 4} *[J'ai entendu dire que vous étiez en conflit avec le maire. Vous ne vous en seriez pas pris à sa fille pour vous venger par hasard ?]
 S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
-J.Davis: "Oh, vous semblez proche de 'Emily'"
+J.Davis: "Oh, vous semblez proche d'Emily"
 S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle."
 (Il semble en effet boulversé. Pas comme un homme qui s'inquiète seuleùent pour une vieille connaissance)
 J.Davis: "A vous entendre, elle ne doit pas être si ancienne que ça."
