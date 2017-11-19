@@ -423,7 +423,7 @@ L.Lawson: "Mon job est de découvrir la vérité. Et pour cela j'ai besoin de co
 
 *[(S'allier au maire) "Il a raison, la disparition de la petite est plus importante détective !"]//Victor
 {AddVictorness(2)}
-{PlaceActor("davis", 4)}
+{PlaceActor("davis", 1)}
 L.Lawson: "Tch. Très bien, si vous le décidez ainsi..."
 (Elle me lance un regard noir et s'éloigne. Rabattre le caquet de cette fouine est déjà une victoire en soit)
 {RemoveActor("detective")}
