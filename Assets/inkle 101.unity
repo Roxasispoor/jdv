@@ -77,17 +77,15 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFilterTypeDirect: 0
-    m_PVRFilterTypeIndirect: 0
-    m_PVRFilterTypeAO: 0
+    m_PVRFiltering: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
-    m_PVRFilteringAtrousPositionSigmaIndirect: 2
-    m_PVRFilteringAtrousPositionSigmaAO: 1
+    m_PVRFilteringAtrousColorSigma: 1
+    m_PVRFilteringAtrousNormalSigma: 1
+    m_PVRFilteringAtrousPositionSigma: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -109,8 +107,6 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
-    debug:
-      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &438948440
 GameObject:
@@ -187,6 +183,7 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+  m_StereoMirrorMode: 0
 --- !u!4 &438948445
 Transform:
   m_ObjectHideFlags: 0
@@ -224,7 +221,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 588848490}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -56.25, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1310989287}
@@ -359,16 +356,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabsActors:
-  - {fileID: 1810709549083236, guid: 0d271fe55141a7c44b7f36059bb1a868, type: 2}
-  - {fileID: 1718757576261956, guid: cdff12e4be6c64340a5b37d0bde9060b, type: 2}
-  - {fileID: 1990764869949184, guid: c23d764f6d92cb04e84ee79851841a84, type: 2}
-  - {fileID: 1858185851401028, guid: 95eaf38558f1be34ba62d44724aafdce, type: 2}
-  - {fileID: 1474435758038266, guid: 822192b47b0aa9b4d8f8760818e8f599, type: 2}
+  - {fileID: 1412994187039840, guid: 2ca70e2a7d9553442b7e7804b634ec56, type: 2}
+  - {fileID: 1467314657410952, guid: bf52a217cd057c445bf4cf720b140fd9, type: 2}
+  - {fileID: 1605315203462778, guid: cb9d29902b07cf346aa5857bcc1d4986, type: 2}
+  - {fileID: 1400472541302356, guid: adf461dd2ca328e46b765421a322221f, type: 2}
+  - {fileID: 1868144095354042, guid: 842bbeb49ecf9b34598989affaaca80f, type: 2}
   - {fileID: 1937456976395478, guid: 8135348a9b8a19d498a65ebaed3ea4b3, type: 2}
-  - {fileID: 1834273032928700, guid: de2d28799b2283b439223b897cae132e, type: 2}
-  - {fileID: 1859945451271880, guid: 06653f446c110bd48bdf7655a829e793, type: 2}
-  - {fileID: 1271733679809312, guid: 58229dab351955640b80d3c012565f23, type: 2}
-  - {fileID: 1065846440403788, guid: dce004b3d4808324c8fd4fceca9c7840, type: 2}
+  - {fileID: 1344758205191326, guid: 5db16f997ffc6f24db4ec2b0febd9b21, type: 2}
+  - {fileID: 1670271838367694, guid: 1a5b93ab10e052249851d85b8e53c88f, type: 2}
+  - {fileID: 1595029877927032, guid: fdb9eaf0ff26d654f94e54b6e15bdf0e, type: 2}
+  - {fileID: 1219260541118396, guid: a53adc6f5806c484884a3115bc1bca71, type: 2}
   listeActors: []
   listeDecor: []
   positionPersoStandard:
@@ -437,7 +434,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1310989286}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -243.64326, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 588848491}
@@ -564,8 +561,8 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1718554079}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 437, y: 246, z: 0}
-  m_LocalScale: {x: 0.54625, y: 0.54625, z: 0.54625}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1310989287}
   - {fileID: 1940550956}
@@ -660,7 +657,7 @@ RectTransform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1940550952}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -781, y: -437.1433, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1718554083}

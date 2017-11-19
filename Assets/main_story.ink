@@ -119,7 +119,7 @@ L.Lawson: “...Eh..Bien...Parfait alors !”
 L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir s’il n’y a pas de témoin.”
 (Mais dans quoi je me suis embarqué !?!)
 {Flush()}
-{SetDecor("black")}
+{SetDecor("town")}
 
 ->DONE
 
@@ -143,7 +143,7 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 //BERTA 
 
-=berta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
+=bigberta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
 {SetDecor("town")}
 {PlaceActor("bigberta", 3)}
 "Bon pain tout chaud à peine sortie du four ! Il est bon il est chaud !
@@ -181,7 +181,7 @@ J.Davis: "C'est ça ouais."
 
 
 
-=berta_1 //2e interaction avec Berta neutre
+=bigberta_1 //2e interaction avec Berta neutre
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, on veut manger autre chose ?"
@@ -190,7 +190,7 @@ J.Davis: "Non merci"
 ->DONE
 
 
-=berta_2 //2e interaction avec Berta ouverte
+=bigberta_2 //2e interaction avec Berta ouverte
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
@@ -199,7 +199,7 @@ J.Davis: "Non merci"
 ->DONE
 
 
-=berta_3 //2e interaction avec Berta ouverte
+=bigberta_3 //2e interaction avec Berta ouverte
 (Elle m'ignore d'un air dédaigneux)
 ->DONE
 
@@ -211,6 +211,7 @@ J.Davis: "Non merci"
 
 =abi_0
 {SetDecor("town")}
+{Flush()}
 {PlaceActor("abi", 3)}
 {PlaceActor("davis", 2)}
 (Une gamine à lair sombre traîne dans la rue. Elle me regarde bizarrement, peut-être qu'elle sait quelque chose ?)
@@ -639,11 +640,27 @@ Mon travail est fini. Encore une affaire comme les autres, arnaquer un riche cli
 Mais cette fois la récompense a été à la hauteur du jeu. 
 J'ai quitté Topeka le jour même, une partie de l'héritage en poche. Faut croire que notaire ça rapporte.
 Cette affaire était quand même différente des autres: dans cette nouvelle vie d'arnaque j'ai dû changer pertpétuellement pour pouvoir avancer.
-La prochaine ? J'ai entendu parler d'une exposition dans une ville proche, Gotham je crois ?
+La prochaine ? J'ai entendu parler d'une exposition archéologique dans une ville proche. Gotham je crois ?
 {Flush()} 
 FIN
 
 ->DONE
+
+
+
+==end_1==
+{SetDecor("manor_outside_day")}
+{Flush()}
+3 jours plus tard, la détective Lynn Lawson arrêta Archibald Ferguson pour patricide. Le rapport d'autopsie révélant des traces de poison dans l'organisme de Victor Ferguson, la thèse de la mort paisible était définitivement écartée.
+Emily ne fut jamais retrouvée. L'enquête avait révélée qu'Archibald avait des dettes auprès de la pègre locale, mais jamais leur implication dans l'enlèvement.
+{PlaceActor("davis", 2)}
+Quant à moi, je n'ai évidemment pas été payé. Ville pourri, enquête pourrie, boulot pourri. Je change de vie, j'arrêtes d'être notaire, ça rapporte pas assez. Ou c'est moi qui aurait peut-être dû changer.
+{Flush()} 
+END
+
+->DONE
+
+
 
 
 ==end_2==
@@ -653,6 +670,11 @@ FIN
 (Ma paye envolée, inculpé pour un crime que je ne savais même pas avoir commis, moi qui pensais que la vie de notaire était assez pourrie comme ça, j'avais tort. Si seulement j'avais pu changer les choses...)
 {Flush()} 
 END
+
+->DONE
+
+
+
 
 
 ->END

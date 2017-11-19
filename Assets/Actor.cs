@@ -111,6 +111,7 @@ void OnMouseOver()
         if (Input.GetMouseButtonDown(0)){
            
             InkleManager.Story.ChoosePathString(lieu.name + "." + this.name + "_" + status);
+            InkleManager.RefreshView();
               //       inkleManager.Story.ChoosePathString(lieu.name + "." + this.name + "_" + status);
             // Whatever you want it to do.
         }

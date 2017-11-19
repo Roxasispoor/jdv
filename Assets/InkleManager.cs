@@ -68,7 +68,7 @@ public class InkleManager : MonoBehaviour {
         RefreshView();
     }
 
-    void RefreshView()
+    public void RefreshView()
     {
         RemoveChildren();
 
@@ -94,6 +94,18 @@ public class InkleManager : MonoBehaviour {
                 button.onClick.AddListener(delegate {
                     OnClickChoiceButton(choice);
                 });
+            }
+        }
+        else
+        {
+            Debug.Log("L");
+
+            foreach (GameObject lieu in gameManager.listeDecor)
+            {
+                if (lieu.activeSelf)
+                {
+                    lieu.GetComponent<Lieu>().EnableButton();
+                }
             }
         }
      
