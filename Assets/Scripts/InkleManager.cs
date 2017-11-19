@@ -33,6 +33,17 @@ public class InkleManager : MonoBehaviour {
     public Color textPhilippe;
     public Color textScarface;
 
+    public Dictionary<string, AudioClip[]> textAudio = new Dictionary<string, AudioClip[]> { };
+    public AudioClip[] AudioDavis;
+    public AudioClip[] AudioAbi;
+    public AudioClip[] AudioAlfred;
+    public AudioClip[] AudioBarman;
+    public AudioClip[] AudioBigBerta;
+    public AudioClip[] AudioDaughter;
+    public AudioClip[] AudioDetective;
+    public AudioClip[] AudioMayor;
+    public AudioClip[] AudioPhilippe;
+    public AudioClip[] AudioScarface;
 
     void InitializeColor()
     {
@@ -49,6 +60,22 @@ public class InkleManager : MonoBehaviour {
         textColor.Add("Scarface", textScarface);
 
     }
+    void InitializeSound()
+    {
+        //textColor["J.Davis"] = textDavis;
+        textAudio.Add("J.Davis", AudioDavis);
+        textAudio.Add("Abigail", AudioAbi);
+        textAudio.Add("Alfred", AudioAlfred);
+        textAudio.Add("S.O'Brien", AudioBarman);
+        textAudio.Add("Berta", AudioBigBerta);
+        textAudio.Add("E.Ferguson", AudioDaughter);
+        textAudio.Add("L.Lawson", AudioDetective);
+        textAudio.Add("A.Ferguson", AudioMayor);
+        textAudio.Add("P.Van Herl", AudioPhilippe);
+        textAudio.Add("Scarface", AudioScarface);
+
+    }
+
 
     public Story Story
     {
@@ -79,6 +106,7 @@ public class InkleManager : MonoBehaviour {
     void Start()
     {
         InitializeColor();
+        InitializeSound();
         gameManager = GetComponent<GameManager>();
         StartStory();
     }
@@ -181,9 +209,16 @@ public class InkleManager : MonoBehaviour {
         storyText.text = text;
         string speaker = WhoSpeak(text);
         Debug.Log(speaker);
+
         try
         {
             storyText.color = textColor[speaker];
+            if(textAudio[speaker].Length !=0)
+            { 
+            AudioClip clipie= textAudio[speaker][Random.Range(0, textAudio[speaker].Length)]; ;
+            gameObject.GetComponent<AudioSource>().clip = clipie;
+            gameObject.GetComponent<AudioSource>().Play();
+            }
         }
         catch (KeyNotFoundException)
         {

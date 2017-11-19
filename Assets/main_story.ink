@@ -566,6 +566,7 @@ Alfred: "Je ne crains que cette affaire ne vienne de prendre une autre ampleur".
 {Flush()}
 {PlaceActor("alfred", 3)}
 {PlaceActor("philippe", 4)}
+->end_1
 ->DONE
 
 
@@ -752,13 +753,12 @@ FIN
 
 
 ==end_1==
-{SetDecor("manor_outside_day")}
 {Flush()}
 3 jours plus tard, la détective Lynn Lawson arrêta Archibald Ferguson pour patricide. Le rapport d'autopsie révélant des traces de poison dans l'organisme de Victor Ferguson, la thèse de la mort paisible était définitivement écartée.
 Emily ne fut jamais retrouvée. L'enquête avait révélée qu'Archibald avait des dettes auprès de la pègre locale, mais jamais leur implication dans l'enlèvement.
 {PlaceActor("davis", 2)}
 Quant à moi, je n'ai évidemment pas été payé. Ville pourri, enquête pourrie, boulot pourri. Je change de vie, j'arrêtes d'être notaire, ça rapporte pas assez. Ou c'est moi qui aurait peut-être dû changer.
-{SetDecor("manor_outside_day")}
+{SetDecor("black")}
 {Flush()} 
 END
 
