@@ -624,7 +624,7 @@ S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mai
 {Flush()}
 {SetDecor("pub")}
 
-*[Votre piquette vaut rien, mais peut-être que vous avez des infos: la fille du maire a été enlevée, vous avez des infos à ce sujet ?]//Victor
+*[Votre piquette vaut rien, mais peut-être que vous avez des infos: la fille du maire a été enlevée]//Victor
 {AddVictorness(1)}
 J.O'Brien: "Si vous n'aimez pas libre à vous de partir. C'est pas le seul bar de Topeka. Et non j'ai pas d'infos."
 (Il continue de nettoyer son verre comme si de rien n'était)
