@@ -18,10 +18,6 @@ J’appose ma signature sur le testament et le tend à mon client.
 Mon travail est fini. Encore un, comme les autres, une banale affaire d’héritage. Un vieux mort dans son lit. Un fils, maire nanti de Topeka, une petite ville sans histoire. Une petite fille éplorée par la mort de son grand-père. Un manoir qui cri l’opulence, de ses colonnes en marbre à son majordome. Au centre la veillée funèbre du défunt, amis, famille, prêtre et tout le cortège des doléances. 
 Une affaire comme les autres, qui me rapportera pas grand chose. 
 //Intro sur fond noir, en fondu progressif sur le décor (on ne voit pas les persos).
-->manor_inside_1
-->DONE
-
-=manor_inside_1
 {SetDecor("manor_inside_night")}
 {Flush()}
 “...et que son âme repose en paix auprès de notre Seigneur. Amen”
@@ -60,10 +56,8 @@ A.Ferguson: ”Seigneur !”
 L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller dehors avec monsieur Alfred, je m’occupe de l’intérieur avec monsieur Ferguson.”
 (Au revoir mon argent et bonjour le sale boulot d’enquête. Sans attendre le majordome je sors par la première porte. Plus vite je retrouve la gosse, plus vite toute cette histoire se termine).
 {Flush()}
-->manor_outside_1
-->DONE
 
-=manor_outside_1
+
 {SetDecor("manor_outside_night")}
 {Flush()}
 {PlaceActor("daughter", 4)}
@@ -87,10 +81,8 @@ Alfred: “Monsieur Davis, vous allez bi…”
 (Je m’effondre avant d’entendre ses derniers mots).
 {SetDecor("black")}
 {Flush()}
-->manor_inside_2
-->DONE
 
-=manor_inside_2
+
 ...ène..a..
 (...)
 ...mène..a…
@@ -371,7 +363,7 @@ J.Davis: "T'as intérêt à m'avoir dit la vérité !"
 
 
 
-==manor_inside==
+==manor_inside_day==
 
 {SetDecor("manor_inside_day")}
 {PlaceActor("detective", 2)}
