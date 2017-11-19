@@ -6,9 +6,9 @@ public class PlayerScript : MonoBehaviour {
 
 	[SerializeField]
 	private BarStat victorness;
-	public int test = 0;
 	void Start () {
-
+		AddVictorness (8f);
+		SubstractVictorness(4f);
 	}
 	/*
 	private void Awake()
@@ -18,48 +18,39 @@ public class PlayerScript : MonoBehaviour {
 	*/
 	// Update is called once per frame
 	void Update () {
-		test += 1;
-		if ( test == 100)
-		{
-			AddVictorness (2);
-		}
-		if ( test == 300)
-		{
-			AddVictorness (2);
-		}
 		if (Input.GetKeyDown(KeyCode.Q)) 
 		{
-			victorness.CurrentVal -= 0.1f;
+			AddVictorness(1f);
 		}
 
 		if (Input.GetKeyDown(KeyCode.W)) 
 		{
-			victorness.CurrentVal += 0.1f;
+			SubstractVictorness(1f);
 		}
 
 	}
 
-	void AddVictorness ( int n )
+	void AddVictorness ( float x )
 	{
-		if (victorness.CurrentVal * 8 + n > 8)
+		if (victorness.CurrentVal * 8 + x > 8)
 		{
 			victorness.CurrentVal = 1;
 		}
 		else
 		{
-			victorness.CurrentVal += n / 8;
+			victorness.CurrentVal += x / 8;
 		}
 	}
 
-	void SubstractVictorness ( int n )
+	void SubstractVictorness ( float x )
 	{
-		if (victorness.CurrentVal * 8 - n < 0)
+		if (victorness.CurrentVal * 8 - x < 0)
 		{
 			victorness.CurrentVal = 0;
 		}
 		else
 		{
-			victorness.CurrentVal -= n / 8;
+			victorness.CurrentVal -= x / 8;
 		}
 	}
 
