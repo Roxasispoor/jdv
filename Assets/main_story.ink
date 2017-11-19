@@ -10,16 +10,20 @@ VAR philippe_status = 0
 VAR barman_status = 0
 VAR couteau = false
 
+->titre
 
 ==titre==
+“Avis de décès : 25 mai 1943”
+
 {SetDecor("ecrantitre")}
+J’appose ma signature sur le testament et le tend à mon client.
+
 ->intro
 ->DONE
 
 ==intro==
+
 {SetDecor("black")}
-“Avis de décès : 25 mai 1943”
-J’appose ma signature sur le testament et le tend à mon client.
 Mon travail est fini. Encore un, comme les autres, une banale affaire d’héritage. Un vieux mort dans son lit. Un fils, maire nanti de Topeka, une petite ville sans histoire. Une petite fille éplorée par la mort de son grand-père. Un manoir qui cri l’opulence, de ses colonnes en marbre à son majordome. Au centre la veillée funèbre du défunt, amis, famille, prêtre et tout le cortège des doléances. 
 Une affaire comme les autres, qui me rapportera pas grand chose. 
 //Intro sur fond noir, en fondu progressif sur le décor (on ne voit pas les persos).
@@ -784,6 +788,7 @@ Quant à moi, je n'ai évidemment pas été payé. Ville pourri, enquête pourri
 
 ==credit==
 {SetDecor("credit")}
+Merci d'avoir joué
 ->DONE
 
 

@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour {
 
 
         //On set les positions de chaque personnage
+        
 
     }
     public void SetPlaceFille(string mere, string fille)
