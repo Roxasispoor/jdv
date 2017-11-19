@@ -18,7 +18,7 @@ J’appose ma signature sur le testament et le tend à mon client.
 Mon travail est fini. Encore un, comme les autres, une banale affaire d’héritage. Un vieux mort dans son lit. Un fils, maire nanti de Topeka, une petite ville sans histoire. Une petite fille éplorée par la mort de son grand-père. Un manoir qui cri l’opulence, de ses colonnes en marbre à son majordome. Au centre la veillée funèbre du défunt, amis, famille, prêtre et tout le cortège des doléances. 
 Une affaire comme les autres, qui me rapportera pas grand chose. 
 //Intro sur fond noir, en fondu progressif sur le décor (on ne voit pas les persos).
-{SetDecor("manor_inside_night")}
+{SetDecor("manor_inside")}
 {Flush()}
 “...et que son âme repose en paix auprès de notre Seigneur. Amen”
 Tous: “Amen”
@@ -89,7 +89,7 @@ Alfred: “Monsieur Davis, vous allez bi…”
 (Qu..?)
 ...Ramène la !...
 (Quoi!?)
-{SetDecor("manor_inside_day")}
+{SetDecor("manor_inside")}
 {Flush()}
 “Ah bon retour parmi nous monsieur !”
 //Apparition maire.
@@ -363,9 +363,9 @@ J.Davis: "T'as intérêt à m'avoir dit la vérité !"
 
 
 
-==manor_inside_day==
+==manor_inside==
 
-{SetDecor("manor_inside_day")}
+{SetDecor("manor_inside")}
 {PlaceActor("detective", 2)}
 {PlaceActor("mayor", 3)}
 A.Ferguson: "Ecoutez détective, ma fille a disparu, faites votre travail et retrouvez-là au lieu de vous intéresser à des histoires sans intérêt !"
