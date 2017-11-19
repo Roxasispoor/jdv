@@ -32,13 +32,41 @@ public class GameManager : MonoBehaviour {
             listeActors.Add(newActor);
 
             newActor.GetComponent<Actor>().InkleManager = gameObject.GetComponent<InkleManager>();
-
-            //bool activeSelf
+              //bool activeSelf
         }
         for (int i = 0; i < listeDecor.Count; i++) //on enlève tout les décors
         {
               listeDecor[i].SetActive(false);
           }
+        SetActorPlace("mayor", "manor_inside_night");
+        SetActorPlace("detective", "manor_inside_night");
+        SetActorPlace("alfred", "manor_outside");
+        SetActorPlace("bigberta", "town");
+        SetActorPlace("abi", "town");
+        SetActorPlace("philippe", "manor_outside");
+        SetActorPlace("barman", "bar");
+        SetActorPlace("scarface", "backalley");
+        SetActorPlace("daughter", "bar");
+
+
+        //On set les positions de chaque personnage
+
+    }
+    public void SetActorPlace(string actorName, string place)
+    {
+        foreach (GameObject actor in listeActors)
+        {
+            if (actor.name == actorName)
+            {
+                foreach(GameObject lieu in listeDecor)
+                {
+                    if(lieu.name==place)
+                    {
+                        actor.GetComponent<Actor>().Lieu = lieu;
+                }
+                }
+            }
+        }
     }
 
     /// <summary>

@@ -8,7 +8,7 @@ public class Actor : MonoBehaviour {    public enum CharacterEmotion
     public Sprite[] sprites;
     SpriteRenderer spriteRender;
     private int status=0;
-    private GameObject lieu;
+    public GameObject lieu;
     public InkleManager inkleManager;//weird
 
 
