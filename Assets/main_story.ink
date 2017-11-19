@@ -127,6 +127,7 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 ==town==
 
 =town_intro
+{Flush()}
 (J'arrive au centre ville pour commencer mon enquête. La place centrale est à l'image du reste de la ville: banale, sans aucun charme ni originalité. Ma migraine s'est légèrement calmée grâce au cachet.)
 ->DONE
 
@@ -264,6 +265,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 
 ==backalley==
 {SetDecor("backalley")}
+{Flush()}
 (Une ruelle sombre et puante entre les bâtiments. Il faut croire que même dans les villes paumées il existe ce genre d'endroits qui crient "coupe gorge". Tout y est: poubelles débordantes, rats, ordeur nauséabonde, même le type louche au fond de la ruelle qui surveille le coin.)
 
 -> DONE
@@ -364,6 +366,7 @@ J.Davis: "T'as intérêt à m'avoir dit la vérité !"
 ==manor_inside==
 
 {SetDecor("manor_inside")}
+{Flush()}
 {PlaceActor("detective", 2)}
 {PlaceActor("mayor", 3)}
 A.Ferguson: "Ecoutez détective, ma fille a disparu, faites votre travail et retrouvez-là au lieu de vous intéresser à des histoires sans intérêt !"
@@ -537,6 +540,7 @@ P.Van Herl: "Ne vous mêlez pas des affaires qui ne vous concernent pas"
 
 ==pub==
 {SetDecor("pub")}
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
 
@@ -625,6 +629,7 @@ J.Davis: "Non merci"
 
 ==end_0== //La bonne fin
 {SetDecor("pub")}
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
 "C'est bon Shawn. Monsieur Davis a déjà compris toute l'histoire. N'est-ce pas ?
@@ -683,6 +688,7 @@ END
 
 ==end_2==
 {SetDecor("black")}
+{Flush()}
 {PlaceActor("davis", 2)}
 (Je me réveille après ce qui me paraît une éternité plus tard, menotté à un lit d'hôpital. La détective Lawson m'apprend que j'ai dormi 3 jours. Pendant ce temps la fille Ferguson est rentrée chez elle, et Scarface a été arrêté pour son enlèvement, ainsi qu'agression. Quant aux menottes: j'ai été inculpé également pour agression, ainsi que pour falsification de testament. Il semblerait que le vieux Victor n'était pas vraiment mort paisiblement, et que la question de l'héritage restait en suspens tant que le vrai testament n'aurait pas été retrouvé.)
 (Ma paye envolée, inculpé pour un crime que je ne savais même pas avoir commis, moi qui pensais que la vie de notaire était assez pourrie comme ça, j'avais tort. Si seulement j'avais pu changer les choses...)
