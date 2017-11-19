@@ -6,6 +6,7 @@ EXTERNAL SetStatus(ActorName, int)
 VAR alfred_status = 0
 VAR philippe_status = 0
 VAR barman_status = 0
+VAR fin_1 = false
 
 
 ->intro
@@ -145,6 +146,7 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 =bigberta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
 {SetDecor("town")}
+{Flush()}
 {PlaceActor("bigberta", 3)}
 "Bon pain tout chaud à peine sortie du four ! Il est bon il est chaud !
 Et toi là mon mignon, tu veux du pain ? C'est le meilleur pain de tout Topeka, foi de Berta !
@@ -182,6 +184,7 @@ J.Davis: "C'est ça ouais."
 
 
 =bigberta_1 //2e interaction avec Berta neutre
+{Flush()}
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, on veut manger autre chose ?"
@@ -191,6 +194,7 @@ J.Davis: "Non merci"
 
 
 =bigberta_2 //2e interaction avec Berta ouverte
+{Flush()}
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
@@ -214,7 +218,7 @@ J.Davis: "Non merci"
 {Flush()}
 {PlaceActor("abi", 3)}
 {PlaceActor("davis", 2)}
-(Une gamine à lair sombre traîne dans la rue. Elle me regarde bizarrement, peut-être qu'elle sait quelque chose ?)
+(Une gamine à l'air sombre traîne dans la rue. Elle me regarde bizarrement, peut-être qu'elle sait quelque chose ?)
 "..." //Couleur abi mais pas encore son nom
 J.Davis: "Euh..Bonjour ?"
 "...'Jour." //Couleur abi
@@ -230,6 +234,7 @@ J.Davis: "Attends, Victor...Ferguson ? Quel rapport avec tout ça ?!"
 Abigail: "Avec votre enquête je sais pas, avec vous par contre... Méfiez vous de vos penchants, les extrêmes sont dangereux"
 {RemoveActor("abi")}
 (Mais c'est quoi cette gamine ? Ils ont quoi dans cette ville !?)
+{SetStatus("abi", 1)}
 {Flush()}
 
 *[Victor ?!] //Jack Davis
@@ -239,6 +244,7 @@ Abigail: "Quoi qu'il en soit, si vous voulez retrouver le fille vous aurez besoi
 J.Davis: "Merci du conseil"
 {RemoveActor("abi")}
 (Ville de tarés...)
+{SetStatus("abi", 1)}
 {Flush()}
 
 *[Si tu sais quelque chose gamine tu ferais mieux de parler]//Victor
@@ -247,6 +253,7 @@ J.Davis: "Mais qu'est-ce que tu marmonnes !?"
 Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces de la pièce pour trouver la fille et trouver la vérité, mais attention à pas vous égarer !"
 {RemoveActor("abi")}
 (Ville de barjes...)
+{SetStatus("abi", 1)}
 {Flush()}
 
 ->DONE
@@ -274,6 +281,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 //Scarface
 
 =scarface_0
+{Flush()}
 {PlaceActor("davis", 1)}
 (Lorsque je m'approche le type esquisse un pas menaçant dans ma direction. Il n'est clairement pas là pour faire la causette.)
 {PlaceActor("scarface", 3)}
@@ -300,6 +308,7 @@ Scarface: "Maintenant dégage"
 *[Tu ferais mieux te bouger ta graisse face de trou]//Victor
 ('Qui dit grand dit lent non.' Celui qui a dit ça n'avais jamais rencontré Scarface. Avant même de réagir, il écrase son poing sur mon visage et mon nez craque horriblement. Je lui rend avec un uppercut dans la mâchoire mais il bronche à peine. S'en suit un combat qui malgré ma rage est à sens unique. Je finis rapidement par m'évanouir.)
 {Flush()}
+{SetStatus("scarface", 1)}
 {SetDecor("black")}
 ->end_2
 
@@ -380,6 +389,7 @@ L.Lawson: "Tch. Très bien, si vous le décidez ainsi..."
 {SetStatus(3, "detective")}
 {SetStatus(2, "mayor")}
 A.Ferguson: "Merci pour votre aide monsieur Davis."
+~ fin_1= true
 {Flush()}
 
 *[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Qui plus est, l'enlèvement de votre fille peut y être lié."] //Jack Davis
@@ -401,6 +411,7 @@ L.Lawson: "Je suis persuadée qu'il y a un lien entre les deux. Occupez-vous de 
 
 
 =mayor_2
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("mayor", 3)}
 A.Ferguson: "Vous avancez sur votre enquête ?"
@@ -419,6 +430,7 @@ A.Ferguson: "Hmph. Continuez donc votre enquête."
 ->DONE
 
 =detective_2
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("detective", 3)}
 (Comment j'ai pu prendre le parti de cette fouine !?)
@@ -440,6 +452,7 @@ L.Lawson: "Nous devrions reprendre nos enquêtes..."
 ->DONE
 
 =detective_3
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("detective", 3)}
 L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérité."
@@ -453,9 +466,10 @@ L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérit�
 
 
 
-==manor_outside==
+==manor_outside_day==
 
 {SetDecor("manor_outside_day")}
+{Flush()}
 (Le majordome est en pleine discussion avec un homme sinistre que je reconnais sans peine. Philippe Van Hert, assureur de métier mais il pourrait tout aussi bien être croque-mort. Nous étions ensemble pour la signature du testament.)
 {PlaceActor("davis", 1)}
 (Alors que je m'approche d'eux j'entends des bribes de conversation.)
@@ -467,6 +481,8 @@ P.Van Herl: "Bien entendu"
 Alfred: "Ah, monsieur Davis ! Votre tête va-t-elle mieux ?"
 J.Davis: "Merci, oui."
 (Van Herl reste silencieux mais son regard est acéré comme des lames.)
+{SetStatus("alfred", 1)}
+{SetStatus("philippe", 1)}
 
 
 * {alfred_status == 6} [Puis-je vous parler un instant Alfred ?]
@@ -503,7 +519,8 @@ P.Van Herl: "Au revoir monsieur Davis."
 ->DONE
 
 
-=alfred_0
+=alfred_1
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("alfred", 3)}
 Alfred: "J'espère que vous et mademoiselle Lawson retrouverez Mademoiselle. Elle était si chère aux yeux de Monsieur Victor..."
@@ -511,7 +528,8 @@ Alfred: "J'espère que vous et mademoiselle Lawson retrouverez Mademoiselle. Ell
 ->DONE
 
 
-=philippe_0
+=philippe_1
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("philippe", 3)}
 (Son reagrd est glacial comme toujours)
@@ -533,8 +551,6 @@ P.Van Herl: "Ne vous mêlez pas des affaires qui ne vous concernent pas"
 {PlaceActor("barman", 3)}
 
 ('L'Etalon Pavoisé' à tout du pub irlandais traditionnel: atmosphère enfumée, billard avec ses quelques habitués au fond, drapeux irlandais et Saint Patrick décorant les murs. Les clients sont néanmoins peu nombreux. Le barman travaille derrière le bar. Un panneau derrière lui indique 'L'Etalon Pavoisé, établissement de tradition depuis 1924. Propriétaire: Shawn O'Brien'. Je vais m'asseoir en face)
-{PlaceActor("davis", 2)}
-{PlaceActor("barman", 3)}
 S.O'Brien: "Je peux vous servir quelque chose ?"
 J.Davis: "Whisky"
 
@@ -548,7 +564,6 @@ S.O'Brien: "Ok ok ça va j'étais bien là mais tu te trompes..."
 {Flush()}
 ->end_0
 
-{Flush()}
 
 ->DONE
 
@@ -588,10 +603,22 @@ S.O'Brien: "Ca c'est pas vos oignons. J'espère qu'au moins votre enquête about
 {SetStatus("barman", 1)}
 {Flush()}
 
+{barman_status == 5} *['Planter le couteau dans le bar']
+(O'Brien sursaute. Bien, j'ai son attention)
+J.Davis: "Ecoute moi bien: j'enquête sur la disparition d'Emily Ferguson et mon nouvel ami Scarface à deux rues d'ici m'a dit que si quelqu'un a fait le coup c'est toi. T'as pas aimé que le maire utilise ses petits copains de la pègre pour te menacer, ça je comprends bien, donc en retour tu t'es dit que t'aller en prendre à sa fille, j'ai raison ?"
+(Il est nerveux, visiblement j'ai touché un point sensible)
+S.O'Brien: "T'y es pas du tout ! C'est vrai que Cocimo, Scarface comme tu l'appelles, a voulu me menacer un peu mais il s'est pris une raclée et est rentré chez lui ! Bien sûr que je savais que c'était le maire et que je voulais me venger mais jamais j'aurais fait de mal à Emily !"
+J.Davis: "Pourquoi pas, c'était une cible facile: la jeune fille éplorée par la mort de son grand père, elle s'éloigne un peu du groupe et BAAM ! Dommage que quelqu'un se soit entreposé. J'en ai encore une vilaine migraine, mais je sais que je t'en ai mis une belle aussi."
+S.O'Brien: "Ok ok ça va j'étais bien là mais tu te trompes..."
+{SetStatus("alfred", 1)}
+{Flush()}
+->end_0
+
+
  ->DONE
  
  =barman_1
- {PlaceActor("davis", 2)}
+{PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
 (Il nettoie toujours consciencieusement un verre)
 S.O'Brien: "Je peux vous servir autre chose ?
@@ -655,6 +682,7 @@ FIN
 Emily ne fut jamais retrouvée. L'enquête avait révélée qu'Archibald avait des dettes auprès de la pègre locale, mais jamais leur implication dans l'enlèvement.
 {PlaceActor("davis", 2)}
 Quant à moi, je n'ai évidemment pas été payé. Ville pourri, enquête pourrie, boulot pourri. Je change de vie, j'arrêtes d'être notaire, ça rapporte pas assez. Ou c'est moi qui aurait peut-être dû changer.
+{SetDecor("manor_outside_day")}
 {Flush()} 
 END
 
