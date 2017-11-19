@@ -47,11 +47,30 @@ public class GameManager : MonoBehaviour {
         SetActorPlace("barman", "bar");
         SetActorPlace("scarface", "backalley");
         SetActorPlace("daughter", "bar");
+        SetPlaceFille("manor_inside_night", "manor_outside");
 
 
         //On set les positions de chaque personnage
 
     }
+    public void SetPlaceFille(string mere, string fille)
+    {
+        foreach (GameObject aMere in listeDecor)
+        {
+            if (aMere.name == mere)
+            {
+
+                foreach (GameObject lieuFille in listeDecor)
+                {
+                    if (lieuFille.name == fille)
+                    {
+                        aMere.GetComponent<Lieu>().LieuxAccessibles.Add(lieuFille);
+                    }
+                }
+            }
+        }
+    }
+
     public void SetActorPlace(string actorName, string place)
     {
         foreach (GameObject actor in listeActors)
@@ -102,7 +121,9 @@ public class GameManager : MonoBehaviour {
                     if(actor.GetComponent<Actor>().Lieu==decor)
                     {
                         actor.SetActive(true);
- }//j'active le personnage
+                        actor.transform.position = new Vector3(positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].x, 
+                            positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].y, positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].z);
+                    }//j'active le personnage
                 }
             }
             else

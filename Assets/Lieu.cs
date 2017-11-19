@@ -6,10 +6,10 @@ using Ink.Runtime;
 
 public class Lieu : MonoBehaviour {
     private string nom ;
-    public GameObject[] lieuxAccessibles;
-  
+    private List<GameObject> lieuxAccessibles;
 
-   [SerializeField]
+
+    [SerializeField]
     private Button buttonPrefab;
 
 
@@ -41,19 +41,38 @@ public class Lieu : MonoBehaviour {
         }
     }
 
+    public List<GameObject> LieuxAccessibles
+    {
+        get
+        {
+            return lieuxAccessibles;
+        }
+
+        set
+        {
+            lieuxAccessibles = value;
+        }
+    }
+
+    public void EnableButton()
+    {
+        Debug.Log("ENABLE BUTTONS");
+        for (int i = 0; i < LieuxAccessibles.Count; i++)
+        {
+            Button bouger = Instantiate(buttonPrefab, new Vector3(100 * i, 0, 0), Quaternion.identity);
+            Text choiceText = bouger.GetComponentInChildren<Text>();
+            choiceText.text = LieuxAccessibles[i].GetComponent<Lieu>().Nom;
+            bouger.onClick.AddListener(delegate {
+                GameManager.SetDecor(LieuxAccessibles[i].name);
+
+            });
+
+        }
+    }
+
     // Use this for initialization
     void Start () { //dès qu'on est enable on instancie les boutons
-       for (int i=0;i< lieuxAccessibles.Length;i++)
-        {
-            Button bouger=Instantiate(buttonPrefab,new Vector3(100*i,0,0),Quaternion.identity);
-            Text choiceText = bouger.GetComponentInChildren<Text>();
-            choiceText.text = lieuxAccessibles[i].GetComponent<Lieu>().Nom;
-            bouger.onClick.AddListener(delegate {
-                GameManager.SetDecor(lieuxAccessibles[i].name); 
-                
-            });
-            
-        }
+      
 		
 	}
    

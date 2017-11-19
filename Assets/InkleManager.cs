@@ -93,6 +93,18 @@ public class InkleManager : MonoBehaviour {
                 });
             }
         }
+        else
+        {
+            Debug.Log("L");
+
+            foreach (GameObject lieu in gameManager.listeDecor)
+            {
+                if (lieu.activeSelf)
+                {
+                    lieu.GetComponent<Lieu>().EnableButton();
+                }
+            }
+        }
      
     }
 
