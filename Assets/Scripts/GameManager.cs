@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour {
         SetActorPlace("philippe", "manor_outside_day");
         SetActorPlace("barman", "pub");
         SetActorPlace("scarface", "backalley");
-        SetActorPlace("daughter", "pub");
+        SetActorPlace("daughter", "cmabite");
 
         SetPlaceFille("manor_inside", "manor_outside_night");
         SetPlaceFille("manor_inside", "manor_outside_day");
