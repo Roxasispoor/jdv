@@ -157,13 +157,15 @@ public class InkleManager : MonoBehaviour {
         storyText.text = text;
         Debug.Log(WhoSpeak(text)[0]);
         string speaker = WhoSpeak(text);
+        Debug.Log(speaker[0]);
         try
         {
             storyText.color = textColor[speaker];
         }
         catch (KeyNotFoundException)
         {
-            if (speaker[0].Equals("(")){
+            if (speaker[0].Equals('(')){
+                Debug.Log("la");
                 storyText.fontStyle = FontStyle.Italic;
             }
             else
