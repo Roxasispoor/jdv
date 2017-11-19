@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> listeDecor;
     public Vector3[] positionPersoStandard = new Vector3[4];
     public GameObject[] prefabsDecor;
+    public Canvas ButtonCanvas;
 
     // Use this for initialization
     void Start()
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour {
             newDecor.SetActive(false);
             newDecor.name = prefabsDecor[i].name;
             newDecor.GetComponent<Lieu>().GameManager = this;
+            newDecor.GetComponent<Lieu>().Canvas = ButtonCanvas;
             listeDecor.Add(newDecor);
 
         }
@@ -44,14 +46,58 @@ public class GameManager : MonoBehaviour {
         SetActorPlace("bigberta", "town");
         SetActorPlace("abi", "town");
         SetActorPlace("philippe", "manor_outside");
-        SetActorPlace("barman", "bar");
+        SetActorPlace("barman", "pub");
         SetActorPlace("scarface", "backalley");
-        SetActorPlace("daughter", "bar");
+        SetActorPlace("daughter", "pub");
+
+        SetPlaceFille("manor_inside_night", "manor_outside_night");
+        SetPlaceFille("manor_inside_day", "manor_outside_day");
+        SetPlaceFille("manor_outside_day","manor_inside_day");
+
+
+
+        SetPlaceFille("manor_outside_night", "town");
+        SetPlaceFille("manor_outside_day", "town");
+        SetPlaceFille("town","manor_outside_day");
+
+        SetPlaceFille("town", "pub");
+        SetPlaceFille("pub", "town");
+
+        SetPlaceFille("town", "backalley");
+        SetPlaceFille("backalley", "town");
+
+        SetPlaceFille("backalley", "pub");
+        SetPlaceFille( "pub", "backalley");
+
+
+
+
+
+
+
 
 
         //On set les positions de chaque personnage
 
     }
+    public void SetPlaceFille(string mere, string fille)
+    {
+        foreach (GameObject aMere in listeDecor)
+        {
+            if (aMere.name == mere)
+            {
+
+                foreach (GameObject lieuFille in listeDecor)
+                {
+                    if (lieuFille.name == fille)
+                    {
+                        aMere.GetComponent<Lieu>().LieuxAccessibles.Add(lieuFille);
+                    }
+                }
+            }
+        }
+    }
+
     public void SetActorPlace(string actorName, string place)
     {
         foreach (GameObject actor in listeActors)
@@ -102,7 +148,9 @@ public class GameManager : MonoBehaviour {
                     if(actor.GetComponent<Actor>().Lieu==decor)
                     {
                         actor.SetActive(true);
- }//j'active le personnage
+                        actor.transform.position = new Vector3(positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].x, 
+                            positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].y, positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].z);
+                    }//j'active le personnage
                 }
             }
             else

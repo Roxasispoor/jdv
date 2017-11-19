@@ -19,6 +19,35 @@ public class InkleManager : MonoBehaviour {
     [SerializeField]
     private Button buttonPrefab;
 
+    public Dictionary<string,Color> textColor = new Dictionary<string, Color> { };
+    public Color textDavis;
+    public Color textAbi;
+    public Color textAlfred;
+    public Color textBarman;
+    public Color textBigBerta;
+    public Color textDaughter;
+    public Color textDetective;
+    public Color textMayor;
+    public Color textPhilippe;
+    public Color textScarface;
+
+
+    void InitializeColor()
+    {
+        textColor["J.Davis"] = textDavis;
+        //textColor.Add("J.Davis", textDavis);
+        textColor.Add("Abigail", textAbi);
+        textColor.Add("Alfred", textAlfred);
+        textColor.Add("S.O'Brien", textBarman);
+        textColor.Add("Berta", textBigBerta);
+        textColor.Add("E.Ferguson", textDaughter);
+        textColor.Add("L.Lawson", textDetective);
+        textColor.Add("A.Ferguson", textMayor);
+        textColor.Add("P.Van Herl", textPhilippe);
+        textColor.Add("Scarface", textScarface);
+
+    }
+
     public Story Story
     {
         get
@@ -32,8 +61,22 @@ public class InkleManager : MonoBehaviour {
         }
     }
 
+    public Canvas Canvas
+    {
+        get
+        {
+            return canvas;
+        }
+
+        set
+        {
+            canvas = value;
+        }
+    }
+
     void Start()
     {
+        InitializeColor();
         gameManager = GetComponent<GameManager>();
         StartStory();
     }
@@ -65,7 +108,7 @@ public class InkleManager : MonoBehaviour {
         RefreshView();
     }
 
-    void RefreshView()
+    public void RefreshView()
     {
         RemoveChildren();
 
@@ -93,6 +136,18 @@ public class InkleManager : MonoBehaviour {
                 });
             }
         }
+        else
+        {
+            Debug.Log("L");
+
+            foreach (GameObject lieu in gameManager.listeDecor)
+            {
+                if (lieu.activeSelf)
+                {
+                    lieu.GetComponent<Lieu>().EnableButton();
+                }
+            }
+        }
      
     }
 
@@ -102,19 +157,45 @@ public class InkleManager : MonoBehaviour {
         RefreshView();
     }
 
+    string WhoSpeak(string line)
+    {
+        string[] splited = line.Split(':');
+        return splited[0];
+
+    }
+
     void CreateContentView(string text)
     {
         Text storyText = Instantiate(textPrefab) as Text;
         storyText.text = text;
+        Debug.Log(WhoSpeak(text)[0]);
+        string speaker = WhoSpeak(text);
+        Debug.Log(speaker[0]);
+        try
+        {
+            storyText.color = textColor[speaker];
+        }
+        catch (KeyNotFoundException)
+        {
+            if (speaker[0].Equals('(')){
+                Debug.Log("la");
+                storyText.fontStyle = FontStyle.Italic;
+            }
+            else
+            {
+                storyText.fontStyle = FontStyle.Normal;
+            }
+        }
+
         RemoveChildren();
-        storyText.transform.SetParent(canvas.transform, false);
+        storyText.transform.SetParent(Canvas.transform, false);
 
     }
 
     Button CreateChoiceView(string text)
     {
         Button choice = Instantiate(buttonPrefab) as Button;
-        choice.transform.SetParent(canvas.transform, false);
+        choice.transform.SetParent(Canvas.transform, false);
 
         Text choiceText = choice.GetComponentInChildren<Text>();
         choiceText.text = text;
@@ -127,10 +208,10 @@ public class InkleManager : MonoBehaviour {
 
     void RemoveChildren()
     {
-        int childCount = canvas.transform.childCount;
+        int childCount = Canvas.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
         {
-            GameObject.Destroy(canvas.transform.GetChild(i).gameObject);
+            GameObject.Destroy(Canvas.transform.GetChild(i).gameObject);
         }
     }
 
