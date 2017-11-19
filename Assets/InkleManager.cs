@@ -19,6 +19,9 @@ public class InkleManager : MonoBehaviour {
     [SerializeField]
     private Button buttonPrefab;
 
+    public Dictionary<string,Color> textColor = new Dictionary<string, Color> { { "test", Color.black } };
+    public Color Davis;
+
     public Story Story
     {
         get
@@ -102,10 +105,22 @@ public class InkleManager : MonoBehaviour {
         RefreshView();
     }
 
+    string WhoSpeak(string line)
+    {
+        string[] splited = line.Split(':');
+        return splited[0];
+
+    }
+
     void CreateContentView(string text)
     {
         Text storyText = Instantiate(textPrefab) as Text;
         storyText.text = text;
+        Debug.Log(WhoSpeak(text));
+        if (WhoSpeak(text) == "J.Davis")
+        {
+            storyText.color = Davis;
+        }
         RemoveChildren();
         storyText.transform.SetParent(canvas.transform, false);
 
