@@ -11,10 +11,10 @@ VAR barman_status = 0
 VAR couteau = false
 
 
-
 ->intro
 
 ==intro==
+//{SetDecor("begin")}
 {SetDecor("black")}
 “Avis de décès : 25 mai 1943”
 J’appose ma signature sur le testament et le tend à mon client.
@@ -423,7 +423,7 @@ L.Lawson: "Mon job est de découvrir la vérité. Et pour cela j'ai besoin de co
 
 *[(S'allier au maire) "Il a raison, la disparition de la petite est plus importante détective !"]//Victor
 {AddVictorness(2)}
-{PlaceActor("davis", 4)}
+{PlaceActor("davis", 1)}
 L.Lawson: "Tch. Très bien, si vous le décidez ainsi..."
 (Elle me lance un regard noir et s'éloigne. Rabattre le caquet de cette fouine est déjà une victoire en soit)
 {RemoveActor("detective")}
@@ -648,7 +648,7 @@ S.O'Brien: "C'est parce que vous avez entendu les rumeurs que vous venez m'inter
 J.Davis: "Exact" (Pas du tout, mais il à l'air de vouloir parler, alors qu'il parle !)
 S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
 J.Davis: "Oh, vous semblez proche d'Emily"
-S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle. J'espère que votre enquête aboutira."
+S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle. J'espère que votre enquête aboutir."
 {SetStatus("barman", 1)}
 {Flush()}
 {PlaceActor("davis", 2)}
@@ -746,7 +746,7 @@ J'ai quitté Topeka le jour même, une partie de l'héritage en poche. Faut croi
 Cette affaire était quand même différente des autres: dans cette nouvelle vie d'arnaque j'ai dû changer pertpétuellement pour pouvoir avancer.
 La prochaine ? J'ai entendu parler d'une exposition archéologique dans une ville proche. Gotham je crois ?
 {Flush()} 
-FIN
+//{SetDecor("credit")}
 
 ->DONE
 
@@ -754,13 +754,13 @@ FIN
 
 ==end_1==
 {Flush()}
+{SetDecor("black")}
 3 jours plus tard, la détective Lynn Lawson arrêta Archibald Ferguson pour patricide. Le rapport d'autopsie révélant des traces de poison dans l'organisme de Victor Ferguson, la thèse de la mort paisible était définitivement écartée.
 Emily ne fut jamais retrouvée. L'enquête avait révélée qu'Archibald avait des dettes auprès de la pègre locale, mais jamais leur implication dans l'enlèvement.
 {PlaceActor("davis", 2)}
 Quant à moi, je n'ai évidemment pas été payé. Ville pourri, enquête pourrie, boulot pourri. Je change de vie, j'arrêtes d'être notaire, ça rapporte pas assez. Ou c'est moi qui aurait peut-être dû changer.
-{SetDecor("black")}
 {Flush()} 
-END
+//{SetDecor("credit")}
 
 ->DONE
 
@@ -774,7 +774,7 @@ END
 (Je me réveille après ce qui me paraît une éternité plus tard, menotté à un lit d'hôpital. La détective Lawson m'apprend que j'ai dormi 3 jours. Pendant ce temps la fille Ferguson est rentrée chez elle, et Scarface a été arrêté pour son enlèvement, ainsi qu'agression. Quant aux menottes: j'ai été inculpé également pour agression, ainsi que pour falsification de testament. Il semblerait que le vieux Victor n'était pas vraiment mort paisiblement, et que la question de l'héritage restait en suspens tant que le vrai testament n'aurait pas été retrouvé.)
 (Ma paye envolée, inculpé pour un crime que je ne savais même pas avoir commis, moi qui pensais que la vie de notaire était assez pourrie comme ça, j'avais tort. Si seulement j'avais pu changer les choses...)
 {Flush()} 
-END
+//{SetDecor("credit")}
 
 ->DONE
 
