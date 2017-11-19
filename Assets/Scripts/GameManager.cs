@@ -9,6 +9,20 @@ public class GameManager : MonoBehaviour {
     public Vector3[] positionPersoStandard = new Vector3[4];
     public GameObject[] prefabsDecor;
     public Canvas ButtonCanvas;
+    private bool activeButton;
+
+    public bool ActiveButton
+    {
+        get
+        {
+            return activeButton;
+        }
+
+        set
+        {
+            activeButton = value;
+        }
+    }
 
     // Use this for initialization
     void Start()

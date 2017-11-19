@@ -142,7 +142,7 @@ public class InkleManager : MonoBehaviour {
 
             foreach (GameObject lieu in gameManager.listeDecor)
             {
-                if (lieu.activeSelf)
+                if (lieu.activeSelf && !gameManager.ActiveButton)
                 {
                     lieu.GetComponent<Lieu>().EnableButton();
                 }
