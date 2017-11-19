@@ -717,16 +717,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabsActors:
-  - {fileID: 1412994187039840, guid: 2ca70e2a7d9553442b7e7804b634ec56, type: 2}
-  - {fileID: 1467314657410952, guid: bf52a217cd057c445bf4cf720b140fd9, type: 2}
-  - {fileID: 1605315203462778, guid: cb9d29902b07cf346aa5857bcc1d4986, type: 2}
-  - {fileID: 1400472541302356, guid: adf461dd2ca328e46b765421a322221f, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 1868144095354042, guid: 842bbeb49ecf9b34598989affaaca80f, type: 2}
   - {fileID: 1937456976395478, guid: 8135348a9b8a19d498a65ebaed3ea4b3, type: 2}
-  - {fileID: 1344758205191326, guid: 5db16f997ffc6f24db4ec2b0febd9b21, type: 2}
-  - {fileID: 1670271838367694, guid: 1a5b93ab10e052249851d85b8e53c88f, type: 2}
-  - {fileID: 1595029877927032, guid: fdb9eaf0ff26d654f94e54b6e15bdf0e, type: 2}
-  - {fileID: 1219260541118396, guid: a53adc6f5806c484884a3115bc1bca71, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   listeActors: []
   listeDecor: []
   positionPersoStandard:
