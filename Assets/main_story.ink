@@ -309,7 +309,7 @@ Scarface: "T'as rien à faire là et t'as pas le profil du 'client' moyen. Déga
 J.Davis: "Pas la tête du 'client' moyen ? Je suis pas assez beau c'est ça ?"
 Scarface: "Ah ah, très drôle." (De toute évidence ça ne l'est pas) "Maintenant vire de là crétin."
 (Je m'apprête à répliquer mais me ravise: il fait bien une tête de plus que moi et je ne suis pas vraiment du type bagarreur. Disons qu'il a eu de la chance pour cette fois.)
-{SetStatus(3, "scarface")}
+{SetStatus("scarface", 3)}
 {Flush()}
 {SetDecor("backalley")}
 
@@ -319,7 +319,7 @@ Scarface: "C'est interdit par moi. Tu veux que je demande à mon ami le mur de t
 (Après une longue réflexion d'environ 1 seconde sur mon envie de rencontrer ledit mur, je lui répond :)
 J.Davis: "Ca ira. Je suis sûr qu'il a mieux à faire n'est-ce pas ?" 
 Scarface: "Maintenant dégage"
-{SetStatus(3, "scarface")}
+{SetStatus("scarface", 3)}
 {Flush()}
 {SetDecor("backalley")}
 
@@ -637,14 +637,14 @@ J.O'Brien: "Si vous n'aimez pas libre à vous de partir. C'est pas le seul bar d
 S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
 J.Davis: "Oh, vous semblez proche d'Emily"
 S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle."
-(Il semble en effet boulversé. Pas comme un homme qui s'inquiète seuleùent pour une vieille connaissance)
+(Il semble en effet boulversé. Pas comme un homme qui s'inquiète seulement pour une vieille connaissance)
 J.Davis: "A vous entendre, elle ne doit pas être si ancienne que ça."
 S.O'Brien: "Ca c'est pas vos oignons. J'espère qu'au moins votre enquête aboutira."
 {SetStatus("barman", 1)}
 {Flush()}
 {SetDecor("pub")}
 
-{barman_status == 5} *['Planter le couteau dans le bar']
+{barman_status == 5} *[Planter le couteau dans le bar]
 (O'Brien sursaute. Bien, j'ai son attention)
 J.Davis: "Ecoute moi bien: j'enquête sur la disparition d'Emily Ferguson et mon nouvel ami Scarface à deux rues d'ici m'a dit que si quelqu'un a fait le coup c'est toi. T'as pas aimé que le maire utilise ses petits copains de la pègre pour te menacer, ça je comprends bien, donc en retour tu t'es dit que t'aller en prendre à sa fille, j'ai raison ?"
 (Il est nerveux, visiblement j'ai touché un point sensible)
