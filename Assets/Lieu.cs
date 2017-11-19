@@ -12,8 +12,7 @@ public class Lieu : MonoBehaviour {
    [SerializeField]
     private Button buttonPrefab;
 
-    [SerializeField]
-    private Canvas canvas;
+
    public GameManager gameManager;
 
     public string Nom
@@ -29,23 +28,35 @@ public class Lieu : MonoBehaviour {
         }
     }
 
+    public GameManager GameManager
+    {
+        get
+        {
+            return gameManager;
+        }
+
+        set
+        {
+            gameManager = value;
+        }
+    }
+
     // Use this for initialization
     void Start () { //dès qu'on est enable on instancie les boutons
        for (int i=0;i< lieuxAccessibles.Length;i++)
         {
-            float x=canvas.GetComponent<RectTransform>().rect.width;
-            Button bouger=Instantiate(buttonPrefab,new Vector3(x/lieuxAccessibles.Length*i,0,0),Quaternion.identity);
+            Button bouger=Instantiate(buttonPrefab,new Vector3(100*i,0,0),Quaternion.identity);
             Text choiceText = bouger.GetComponentInChildren<Text>();
             choiceText.text = lieuxAccessibles[i].GetComponent<Lieu>().Nom;
             bouger.onClick.AddListener(delegate {
-                gameManager.SetDecor(lieuxAccessibles[i].name); 
+                GameManager.SetDecor(lieuxAccessibles[i].name); 
                 
             });
             
         }
 		
 	}
-
+   
 
     // Update is called once per frame
     void Update () {
