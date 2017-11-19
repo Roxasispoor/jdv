@@ -74,6 +74,7 @@ public class Lieu : MonoBehaviour {
     public void EnableButton()
     {
         Debug.Log("ENABLE BUTTONS");
+        gameManager.ActiveButton = true;
         if (LieuxAccessibles != null)
         {
             for (int i = 0; i < LieuxAccessibles.Count; i++)
@@ -88,8 +89,16 @@ public class Lieu : MonoBehaviour {
                 button.onClick.AddListener(()=>
                 {
                     print(i);
-                GameManager.SetDecor(button.gameObject.name);
+
+                gameManager.SetDecor(button.gameObject.name);
+                    InkleManager  ink= gameManager.gameObject.GetComponent<InkleManager>();
+
+                    ink.Story.ChoosePathString(button.gameObject.name);
+                    ink.RefreshView();
+                    
+
                     RemoveChildren();
+
 
                 });
             }

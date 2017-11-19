@@ -9,6 +9,20 @@ public class GameManager : MonoBehaviour {
     public Vector3[] positionPersoStandard = new Vector3[4];
     public GameObject[] prefabsDecor;
     public Canvas ButtonCanvas;
+    private bool activeButton;
+
+    public bool ActiveButton
+    {
+        get
+        {
+            return activeButton;
+        }
+
+        set
+        {
+            activeButton = value;
+        }
+    }
 
     // Use this for initialization
     void Start()
@@ -48,7 +62,7 @@ public class GameManager : MonoBehaviour {
         SetActorPlace("philippe", "manor_outside_day");
         SetActorPlace("barman", "pub");
         SetActorPlace("scarface", "backalley");
-        SetActorPlace("daughter", "pub");
+        SetActorPlace("daughter", "cmabite");
 
         SetPlaceFille("manor_inside", "manor_outside_night");
         SetPlaceFille("manor_inside", "manor_outside_day");
