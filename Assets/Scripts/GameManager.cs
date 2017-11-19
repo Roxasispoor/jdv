@@ -142,15 +142,18 @@ public class GameManager : MonoBehaviour {
 
             if(decor.name==decorName)
             {
+                this.positionPersoStandard = decor.GetComponent<Lieu>().positionPersoStandard;
+
                 decor.SetActive(true);
                 foreach (GameObject actor in listeActors)
                 {
                     if(actor.GetComponent<Actor>().Lieu==decor)
                     {
                         actor.SetActive(true);
-                        actor.transform.position = new Vector3(positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].x, 
-                            positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].y, positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].z);
-                    }//j'active le personnage
+                        actor.transform.position = 
+                            new Vector3(positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].x, positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].y, positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].z);
+                        
+                           }//j'active le personnage
                 }
             }
             else
