@@ -12,8 +12,11 @@ public class Lieu : MonoBehaviour {
     [SerializeField]
     private Button buttonPrefab;
 
+    [SerializeField]
+    private Canvas canvas;
 
-   public GameManager gameManager;
+
+    public GameManager gameManager;
 
     public string Nom
     {
@@ -61,17 +64,31 @@ public class Lieu : MonoBehaviour {
         {
             for (int i = 0; i < LieuxAccessibles.Count; i++)
             {
-                Button bouger = Instantiate(buttonPrefab, new Vector3(1 * i, 0, 0), Quaternion.identity);
-                Text choiceText = bouger.GetComponentInChildren<Text>();
-                choiceText.text = LieuxAccessibles[i].name;
-                bouger.onClick.AddListener(delegate
-                {
-                    GameManager.SetDecor(LieuxAccessibles[i].name);
+                //Button bouger = Instantiate(buttonPrefab, new Vector3(1 * i, 0, 0), Quaternion.identity);
+                //Text choiceText = bouger.GetComponentInChildren<Text>();
+                //choiceText.text = LieuxAccessibles[i].name;
+                //bouger.onClick.AddListener(delegate
+                //{
+                //    GameManager.SetDecor(LieuxAccessibles[i].name);
 
-                });
-
+                //});
+                Button button = CreateButton(LieuxAccessibles[i].name);
             }
         }
+    }
+
+    Button CreateButton(string text)
+    {
+        Button button = Instantiate(buttonPrefab) as Button;
+        button.transform.SetParent(canvas.transform, false);
+
+        Text buttonText = button.GetComponentInChildren<Text>();
+        buttonText.text = text;
+
+        HorizontalLayoutGroup layoutGroup = button.GetComponent<HorizontalLayoutGroup>();
+        layoutGroup.childForceExpandHeight = false;
+
+        return button;
     }
 
     // Use this for initialization
