@@ -146,6 +146,7 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 =bigberta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
 {SetDecor("town")}
+{Flush()}
 {PlaceActor("bigberta", 3)}
 "Bon pain tout chaud à peine sortie du four ! Il est bon il est chaud !
 Et toi là mon mignon, tu veux du pain ? C'est le meilleur pain de tout Topeka, foi de Berta !
@@ -183,6 +184,7 @@ J.Davis: "C'est ça ouais."
 
 
 =bigberta_1 //2e interaction avec Berta neutre
+{Flush()}
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, on veut manger autre chose ?"
@@ -192,6 +194,7 @@ J.Davis: "Non merci"
 
 
 =bigberta_2 //2e interaction avec Berta ouverte
+{Flush()}
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
@@ -278,6 +281,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 //Scarface
 
 =scarface_0
+{Flush()}
 {PlaceActor("davis", 1)}
 (Lorsque je m'approche le type esquisse un pas menaçant dans ma direction. Il n'est clairement pas là pour faire la causette.)
 {PlaceActor("scarface", 3)}
@@ -407,6 +411,7 @@ L.Lawson: "Je suis persuadée qu'il y a un lien entre les deux. Occupez-vous de 
 
 
 =mayor_2
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("mayor", 3)}
 A.Ferguson: "Vous avancez sur votre enquête ?"
@@ -425,6 +430,7 @@ A.Ferguson: "Hmph. Continuez donc votre enquête."
 ->DONE
 
 =detective_2
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("detective", 3)}
 (Comment j'ai pu prendre le parti de cette fouine !?)
@@ -446,6 +452,7 @@ L.Lawson: "Nous devrions reprendre nos enquêtes..."
 ->DONE
 
 =detective_3
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("detective", 3)}
 L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérité."
@@ -459,9 +466,10 @@ L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérit�
 
 
 
-==manor_outside==
+==manor_outside_day==
 
 {SetDecor("manor_outside_day")}
+{Flush()}
 (Le majordome est en pleine discussion avec un homme sinistre que je reconnais sans peine. Philippe Van Hert, assureur de métier mais il pourrait tout aussi bien être croque-mort. Nous étions ensemble pour la signature du testament.)
 {PlaceActor("davis", 1)}
 (Alors que je m'approche d'eux j'entends des bribes de conversation.)
@@ -512,6 +520,7 @@ P.Van Herl: "Au revoir monsieur Davis."
 
 
 =alfred_1
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("alfred", 3)}
 Alfred: "J'espère que vous et mademoiselle Lawson retrouverez Mademoiselle. Elle était si chère aux yeux de Monsieur Victor..."
@@ -520,6 +529,7 @@ Alfred: "J'espère que vous et mademoiselle Lawson retrouverez Mademoiselle. Ell
 
 
 =philippe_1
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("philippe", 3)}
 (Son reagrd est glacial comme toujours)
@@ -541,8 +551,6 @@ P.Van Herl: "Ne vous mêlez pas des affaires qui ne vous concernent pas"
 {PlaceActor("barman", 3)}
 
 ('L'Etalon Pavoisé' à tout du pub irlandais traditionnel: atmosphère enfumée, billard avec ses quelques habitués au fond, drapeux irlandais et Saint Patrick décorant les murs. Les clients sont néanmoins peu nombreux. Le barman travaille derrière le bar. Un panneau derrière lui indique 'L'Etalon Pavoisé, établissement de tradition depuis 1924. Propriétaire: Shawn O'Brien'. Je vais m'asseoir en face)
-{PlaceActor("davis", 2)}
-{PlaceActor("barman", 3)}
 S.O'Brien: "Je peux vous servir quelque chose ?"
 J.Davis: "Whisky"
 
@@ -610,7 +618,7 @@ S.O'Brien: "Ok ok ça va j'étais bien là mais tu te trompes..."
  ->DONE
  
  =barman_1
- {PlaceActor("davis", 2)}
+{PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
 (Il nettoie toujours consciencieusement un verre)
 S.O'Brien: "Je peux vous servir autre chose ?
@@ -674,6 +682,7 @@ FIN
 Emily ne fut jamais retrouvée. L'enquête avait révélée qu'Archibald avait des dettes auprès de la pègre locale, mais jamais leur implication dans l'enlèvement.
 {PlaceActor("davis", 2)}
 Quant à moi, je n'ai évidemment pas été payé. Ville pourri, enquête pourrie, boulot pourri. Je change de vie, j'arrêtes d'être notaire, ça rapporte pas assez. Ou c'est moi qui aurait peut-être dû changer.
+{SetDecor("manor_outside_day")}
 {Flush()} 
 END
 
