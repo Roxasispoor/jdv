@@ -7,6 +7,7 @@ VAR alfred_status = 0
 VAR philippe_status = 0
 VAR barman_status = 0
 VAR fin_1 = false
+VAR couteau = false
 
 
 ->intro
@@ -60,10 +61,10 @@ L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller deho
 
 {SetDecor("manor_outside_night")}
 {Flush()}
-{PlaceActor("daughter", 4)}
+{PlaceActor("daughter", 2)}
 !
 {Flush()}
-{PlaceActor("davis", 1)}
+{PlaceActor("davis", 2)}
 J.Davis: “Hey !”
 {Flush()}
 'BAAM'
@@ -73,7 +74,7 @@ J.Davis: “Hey !”
 //Réapparition sprite rapproché milieu écran et décor.
 {SetDecor("manor_outside_night")}
 {Flush()}
-{PlaceActor("davis", 3)}
+{PlaceActor("davis", 2)}
 “SALE...!”
 {PlaceActor("alfred", 1)}
 Alfred: “Monsieur Davis, vous allez bi…”
@@ -267,6 +268,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 ==backalley==
 {SetDecor("backalley")}
 {Flush()}
+{PlaceActor("scarface", 3)}
 (Une ruelle sombre et puante entre les bâtiments. Il faut croire que même dans les villes paumées il existe ce genre d'endroits qui crient "coupe gorge". Tout y est: poubelles débordantes, rats, ordeur nauséabonde, même le type louche au fond de la ruelle qui surveille le coin.)
 
 -> DONE
@@ -305,7 +307,7 @@ Scarface: "Maintenant dégage"
 {SetDecor("black")}
 ->end_2
 
-*[(Sort mon couteau) Ouais et tu vas faire sinon mon grand ?] //Nécessite couteau et Victorité
+{ couteau == true } *[(Sort mon couteau) Ouais et tu vas faire sinon mon grand ?] 
 (Scarface ici présent semble beaucoup moins serein d'un coup.)
 Scarface: "Ecoute mon gars, je sais pas ce que tu veux mais moi je suis juste les ordres hein !"
 J.Davos: "Quels ordres ? Enlever la fille du maire ?"
@@ -386,7 +388,7 @@ A.Ferguson: "Merci pour votre aide monsieur Davis."
 ~ fin_1= true
 {Flush()}
 
-*[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Qui plus est, l'enlèvement de votre fille peut y être lié."] //Jack Davis
+*[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Et l'enlèvement peut être lié."] //Jack Davis
 {PlaceActor("davis", 1)}
 (J'en reviens pas d'être d'accord avec cette fouine)
 A.Ferguson: "Hmph."
@@ -440,6 +442,7 @@ L.Lawson: "Eliminé ? Ce n'est pas exclu. Le rapport d'autopsie n'est toujours p
 'Vous recevez un couteau'
 L.Lawson: "Nous devrions reprendre nos enquêtes..."
 {RemoveActor("detective")}
+~ couteau = true
 (Et maintenant voilà qu'elle m'aide. Peut-être qu'il existe UNE bonne détective dans le monde après tout...).
 ~ philippe_status = 6
 {Flush()}
@@ -549,17 +552,6 @@ P.Van Herl: "Ne vous mêlez pas des affaires qui ne vous concernent pas"
 S.O'Brien: "Je peux vous servir quelque chose ?"
 J.Davis: "Whisky"
 
-{barman_status == 5} *['Planter le couteau dans le bar']
-(O'Brien sursaute. Bien, j'ai son attention)
-J.Davis: "Ecoute moi bien: j'enquête sur la disparition d'Emily Ferguson et mon nouvel ami Scarface à deux rues d'ici m'a dit que si quelqu'un a fait le coup c'est toi. T'as pas aimé que le maire utilise ses petits copains de la pègre pour te menacer, ça je comprends bien, donc en retour tu t'es dit que t'aller en prendre à sa fille, j'ai raison ?"
-(Il est nerveux, visiblement j'ai touché un point sensible)
-S.O'Brien: "T'y es pas du tout ! C'est vrai que Cocimo, Scarface comme tu l'appelles, a voulu me menacer un peu mais il s'est pris une raclée et est rentré chez lui ! Bien sûr que je savais que c'était le maire et que je voulais me venger mais jamais j'aurais fait de mal à Emily !"
-J.Davis: "Pourquoi pas, c'était une cible facile: la jeune fille éplorée par la mort de son grand père, elle s'éloigne un peu du groupe et BAAM ! Dommage que quelqu'un se soit entreposé. J'en ai encore une vilaine migraine, mais je sais que je t'en ai mis une belle aussi."
-S.O'Brien: "Ok ok ça va j'étais bien là mais tu te trompes..."
-{Flush()}
-->end_0
-
-
 ->DONE
 
 
@@ -577,7 +569,7 @@ J.Davis: "J'enquête sur sa disparition et je compte bien la retrouver."
 S.O'Brien: "C'est parce que vous avez entendu les rumeurs que vous venez m'interroger je suppose ?"
 J.Davis: "Exact" (Pas du tout, mais il à l'air de vouloir parler, alors qu'il parle !)
 S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
-J.Davis: "Oh, vous semblez proche de 'Emily'"
+J.Davis: "Oh, vous semblez proche d'Emily"
 S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle. J'espère que votre enquête aboutira."
 {SetStatus("barman", 1)}
 {Flush()}
@@ -590,7 +582,7 @@ J.O'Brien: "Si vous n'aimez pas libre à vous de partir. C'est pas le seul bar d
 
 {barman_status == 4} *[J'ai entendu dire que vous étiez en conflit avec le maire. Vous ne vous en seriez pas pris à sa fille pour vous venger par hasard ?]
 S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
-J.Davis: "Oh, vous semblez proche de 'Emily'"
+J.Davis: "Oh, vous semblez proche d'Emily"
 S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle."
 (Il semble en effet boulversé. Pas comme un homme qui s'inquiète seuleùent pour une vieille connaissance)
 J.Davis: "A vous entendre, elle ne doit pas être si ancienne que ça."
@@ -605,7 +597,7 @@ J.Davis: "Ecoute moi bien: j'enquête sur la disparition d'Emily Ferguson et mon
 S.O'Brien: "T'y es pas du tout ! C'est vrai que Cocimo, Scarface comme tu l'appelles, a voulu me menacer un peu mais il s'est pris une raclée et est rentré chez lui ! Bien sûr que je savais que c'était le maire et que je voulais me venger mais jamais j'aurais fait de mal à Emily !"
 J.Davis: "Pourquoi pas, c'était une cible facile: la jeune fille éplorée par la mort de son grand père, elle s'éloigne un peu du groupe et BAAM ! Dommage que quelqu'un se soit entreposé. J'en ai encore une vilaine migraine, mais je sais que je t'en ai mis une belle aussi."
 S.O'Brien: "Ok ok ça va j'étais bien là mais tu te trompes..."
-{SetStatus("alfred", 1)}
+{SetStatus("barman", 1)}
 {Flush()}
 ->end_0
 

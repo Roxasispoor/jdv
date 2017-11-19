@@ -89,9 +89,19 @@ public class Lieu : MonoBehaviour {
                 {
                     print(i);
                 GameManager.SetDecor(button.gameObject.name);
+                    RemoveChildren();
 
                 });
             }
+        }
+    }
+
+    void RemoveChildren()
+    {
+        int childCount = canvas.transform.childCount;
+        for (int i = childCount - 1; i >= 0; --i)
+        {
+            GameObject.Destroy(canvas.transform.GetChild(i).gameObject);
         }
     }
 
