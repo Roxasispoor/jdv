@@ -521,7 +521,7 @@ MonoBehaviour:
   textBarman: {r: 1, g: 0.4705882, b: 0.4705882, a: 1}
   textBigBerta: {r: 1, g: 0.9894523, b: 0.61764705, a: 1}
   textDaughter: {r: 0.64705884, g: 1, b: 1, a: 1}
-  textDetective: {r: 0.5605536, g: 0.5789286, b: 0.9411765, a: 1}
+  textDetective: {r: 0.5514706, g: 0.5916837, b: 1, a: 1}
   textMayor: {r: 1, g: 0.86237323, b: 0.5661765, a: 1}
   textPhilippe: {r: 0.63235295, g: 0.63235295, b: 0.63235295, a: 1}
   textScarface: {r: 0.41186017, g: 0.64705884, b: 0.38062283, a: 1}
