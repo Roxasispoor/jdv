@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> listeDecor;
     public Vector3[] positionPersoStandard = new Vector3[4];
     public GameObject[] prefabsDecor;
+    public Canvas ButtonCanvas;
 
     // Use this for initialization
     void Start()
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour {
             newDecor.SetActive(false);
             newDecor.name = prefabsDecor[i].name;
             newDecor.GetComponent<Lieu>().GameManager = this;
+            newDecor.GetComponent<Lieu>().Canvas = ButtonCanvas;
             listeDecor.Add(newDecor);
 
         }

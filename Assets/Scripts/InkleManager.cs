@@ -61,6 +61,19 @@ public class InkleManager : MonoBehaviour {
         }
     }
 
+    public Canvas Canvas
+    {
+        get
+        {
+            return canvas;
+        }
+
+        set
+        {
+            canvas = value;
+        }
+    }
+
     void Start()
     {
         InitializeColor();
@@ -175,14 +188,14 @@ public class InkleManager : MonoBehaviour {
         }
 
         RemoveChildren();
-        storyText.transform.SetParent(canvas.transform, false);
+        storyText.transform.SetParent(Canvas.transform, false);
 
     }
 
     Button CreateChoiceView(string text)
     {
         Button choice = Instantiate(buttonPrefab) as Button;
-        choice.transform.SetParent(canvas.transform, false);
+        choice.transform.SetParent(Canvas.transform, false);
 
         Text choiceText = choice.GetComponentInChildren<Text>();
         choiceText.text = text;
@@ -195,10 +208,10 @@ public class InkleManager : MonoBehaviour {
 
     void RemoveChildren()
     {
-        int childCount = canvas.transform.childCount;
+        int childCount = Canvas.transform.childCount;
         for (int i = childCount - 1; i >= 0; --i)
         {
-            GameObject.Destroy(canvas.transform.GetChild(i).gameObject);
+            GameObject.Destroy(Canvas.transform.GetChild(i).gameObject);
         }
     }
 

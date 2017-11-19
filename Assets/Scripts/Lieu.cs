@@ -57,6 +57,19 @@ public class Lieu : MonoBehaviour {
         }
     }
 
+    public Canvas Canvas
+    {
+        get
+        {
+            return canvas;
+        }
+
+        set
+        {
+            canvas = value;
+        }
+    }
+
     public void EnableButton()
     {
         Debug.Log("ENABLE BUTTONS");
@@ -80,7 +93,8 @@ public class Lieu : MonoBehaviour {
     Button CreateButton(string text)
     {
         Button button = Instantiate(buttonPrefab) as Button;
-        button.transform.SetParent(canvas.transform, false);
+       
+        button.transform.SetParent(Canvas.transform, false);
 
         Text buttonText = button.GetComponentInChildren<Text>();
         buttonText.text = text;
