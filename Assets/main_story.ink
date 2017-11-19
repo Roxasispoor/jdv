@@ -9,10 +9,11 @@ VAR alfred_status = 0
 VAR philippe_status = 0
 VAR barman_status = 0
 VAR couteau = false
+VAR ini = 0
 
 
-==titre==
-{SetDecor("ecrantitre")}
+
+
 ->intro
 ->DONE
 
@@ -117,7 +118,7 @@ L.Lawson: “...Eh..Bien...Parfait alors !”
 L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir s’il n’y a pas de témoin.”
 (Mais dans quoi je me suis embarqué !?!)
 {Flush()}
-{SetDecor("town")}
+->town
 
 ->DONE
 
@@ -131,13 +132,18 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 ==town==
 
-=town_intro
+->town_ini
+->DONE
+
+
+=town_ini
 {Flush()}
 {SetDecor("town")}
 {Flush()}
 (J'arrive au centre ville pour commencer mon enquête. La place centrale est à l'image du reste de la ville: banale, sans aucun charme ni originalité. Ma migraine s'est légèrement calmée grâce au cachet.)
 {PlaceActor("bigberta", 3)}
 {PlaceActor("abi", 2)}
+
 ->DONE
 
 //Mouvement perso détermine scène à jouer
@@ -418,12 +424,15 @@ J.Davis: "T'as intérêt à m'avoir dit la vérité !"
 {Flush()}
 {PlaceActor("detective", 2)}
 {PlaceActor("mayor", 3)}
+
+
+ 
 A.Ferguson: "Ecoutez détective, ma fille a disparu, faites votre travail et retrouvez-là au lieu de vous intéresser à des histoires sans intérêt !"
 L.Lawson: "Votre père est mort dans des circonstances troubles et vous ne voulez pas savoir ce qu'il s'est vraiment passé ? Quelque chose à cacher peut-être ?"
 A.Ferguson: "Rien du tout ! Mais je ne vous laisserai pas fouiller les affaires de mon père et baffouer son nom ! Faites votre job !"
 L.Lawson: "Mon job est de découvrir la vérité. Et pour cela j'ai besoin de consulter le testament de votre père !"
 
-*[(S'allier au maire) "Il a raison, la disparition de la petite est plus importante détective !"]//Victor
+* {ini == 0} [(S'allier au maire) "Il a raison, la disparition de la petite est plus importante détective !"]//Victor
 {AddVictorness(2)}
 {PlaceActor("davis", 1)}
 L.Lawson: "Tch. Très bien, si vous le décidez ainsi..."
@@ -433,6 +442,7 @@ A.Ferguson: "Merci pour votre aide monsieur Davis."
 {SetStatus("detective", 3)}
 {SetStatus("mayor", 2)}
 ~ alfred_status = 6
+~ ini = 1
 {Flush()}
 {PlaceActor("detective", 2)}
 {PlaceActor("mayor", 3)}
@@ -440,7 +450,7 @@ A.Ferguson: "Merci pour votre aide monsieur Davis."
 ->DONE
 
 
-*[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Et l'enlèvement peut être lié."] //Jack Davis
+* {ini == 0} [(S'allier avec la détective) "Elle a raison monsieur Ferguson. Et l'enlèvement peut être lié."] //Jack Davis
 {SubstractVictorness(2)}
 {PlaceActor("davis", 1)}
 (J'en reviens pas d'être d'accord avec cette fouine)
@@ -451,6 +461,7 @@ L.Lawson: "Je suis persuadée qu'il y a un lien entre les deux. Occupez-vous de 
 {SetStatus("detective", 2)}
 {SetStatus("mayor", 3)}
 ~ philippe_status = 6
+~ ini = 1
 {Flush()}
 {PlaceActor("detective", 2)}
 {PlaceActor("mayor", 3)}
@@ -535,7 +546,6 @@ L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérit�
 {Flush()}
 {PlaceActor("alfred", 3)}
 {PlaceActor("philippe", 4)}
-
 
 (Le majordome est en pleine discussion avec un homme sinistre que je reconnais sans peine. Philippe Van Hert, assureur de métier mais il pourrait tout aussi bien être croque-mort. Nous étions ensemble pour la signature du testament.)
 {PlaceActor("davis", 1)}
