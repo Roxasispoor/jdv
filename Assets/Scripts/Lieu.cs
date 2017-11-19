@@ -8,6 +8,7 @@ public class Lieu : MonoBehaviour {
     private string nom ;
     public List<GameObject> lieuxAccessibles;
 
+    public Vector3[] positionPersoStandard = new Vector3[4];
 
     [SerializeField]
     private Button buttonPrefab;
