@@ -717,16 +717,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabsActors:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1337391389041948, guid: e63509878ed5fd94e86a8fdcafd061dd, type: 2}
+  - {fileID: 1297050098255326, guid: f6035fc04c0e2a645bf3fc667746aad5, type: 2}
+  - {fileID: 1505985643333488, guid: 12c2febe56ab6b9438a801a95c682667, type: 2}
+  - {fileID: 1944735387944376, guid: 148e33ad449add2439d5dabd6ddb9233, type: 2}
   - {fileID: 1868144095354042, guid: 842bbeb49ecf9b34598989affaaca80f, type: 2}
   - {fileID: 1937456976395478, guid: 8135348a9b8a19d498a65ebaed3ea4b3, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1578353567849738, guid: 70377c753bf465e4897adb55e974222c, type: 2}
+  - {fileID: 1380436544158288, guid: 8bce8845a440136439936a49c216bc7e, type: 2}
+  - {fileID: 1665479821311692, guid: fb15e8dbe709dea42be1f81db82eb01f, type: 2}
+  - {fileID: 1798568671711070, guid: 6f96af25599793c40bd3731c2274aa73, type: 2}
   listeActors: []
   listeDecor: []
   positionPersoStandard:
