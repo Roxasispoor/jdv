@@ -84,10 +84,11 @@ public class Lieu : MonoBehaviour {
                 
                 Button button = CreateButton(LieuxAccessibles[i].name);
                 Debug.Log(i);
+
                 button.onClick.AddListener(()=>
                 {
                     print(i);
-                 //   GameManager.SetDecor(LieuxAccessibles[i].name);
+                GameManager.SetDecor(button.gameObject.name);
 
                 });
             }
@@ -97,7 +98,7 @@ public class Lieu : MonoBehaviour {
     Button CreateButton(string text)
     {
         Button button = Instantiate(buttonPrefab) as Button;
-       
+        button.gameObject.name = text;
         button.transform.SetParent(Canvas.transform, false);
 
         Text buttonText = button.GetComponentInChildren<Text>();
