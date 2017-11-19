@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class InkleManager : MonoBehaviour {
     private GameManager gameManager;
     [SerializeField]
-    private TextAsset inkJSONAsset;
+	private TextAsset inkJSONAsset;
+	[SerializeField]
+	private GameObject Victor;
     private Story story;
 
     [SerializeField]
@@ -104,7 +106,17 @@ public class InkleManager : MonoBehaviour {
          {
              gameManager.SetStatus(actorName,status);
          });
-    
+
+		Story.BindExternalFunction("AddVictorness", ( float quantity) =>
+			{
+				Victor.GetComponent<PlayerScript>().AddVictorness(quantity);
+			});
+
+		Story.BindExternalFunction("SubstractVictorness", ( float quantity) =>
+			{
+				Victor.GetComponent<PlayerScript>().SubstractVictorness(quantity);
+			});
+		
         RefreshView();
     }
 
@@ -141,7 +153,7 @@ public class InkleManager : MonoBehaviour {
 
             foreach (GameObject lieu in gameManager.listeDecor)
             {
-                if (lieu.activeSelf)
+                if (lieu.activeSelf && !gameManager.ActiveButton)
                 {
                     lieu.GetComponent<Lieu>().EnableButton();
                 }
