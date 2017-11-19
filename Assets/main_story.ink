@@ -97,7 +97,7 @@ Alfred: “Monsieur Davis, vous allez bi…”
 “Ah bon retour parmi nous monsieur !”
 //Apparition maire.
 {PlaceActor("mayor", 2)}
-A.Ferguson : “Merci pour vos soins docteur. Comment vous sentez-vous monsieur Davis ?”
+A.Ferguson: “Merci pour vos soins docteur. Comment vous sentez-vous monsieur Davis ?”
 {PlaceActor("davis", 1)}
 //Première apparition du HUD
 (La lumière du jour est un supplice. Me relever est un supplice. La douleur dans mon crâne est un supplice. Même ma pire gueule de bois n’égale pas cette douleur).
