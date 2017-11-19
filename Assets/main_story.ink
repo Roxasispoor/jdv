@@ -224,7 +224,6 @@ Abigail: "Sur la fille ou sur Victor ?"
 Abigail: "...Pour la fille je sais rien de toute façon, mais pour Victor vous devriez faire gaffe, il était connu pour être violent plus jeune..."
 J.Davis: "Attends, Victor...Ferguson ? Quel rapport avec tout ça ?!"
 Abigail: "Avec votre enquête je sais pas, avec vous par contre... Méfiez vous de vos penchants, les extrêmes sont dangereux"
-{RemoveActor("abi")}
 (Mais c'est quoi cette gamine ? Ils ont quoi dans cette ville !?)
 {SetStatus("abi", 1)}
 {Flush()}
@@ -234,7 +233,6 @@ Abigail: "..Ferguson, le grand père. C'était un homme très porté sur l'occul
 J.Davis: "Hmm, projection astrale, je vois..." (Mais c'est quoi ces conneries encore !?)
 Abigail: "Quoi qu'il en soit, si vous voulez retrouver le fille vous aurez besoin de lui. Méfiez vous quand même de vos penchants."
 J.Davis: "Merci du conseil"
-{RemoveActor("abi")}
 (Ville de tarés...)
 {SetStatus("abi", 1)}
 {Flush()}
@@ -243,7 +241,6 @@ J.Davis: "Merci du conseil"
 Abigail: "Oula ! On voit déjà qui a l'ascendant !"
 J.Davis: "Mais qu'est-ce que tu marmonnes !?"
 Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces de la pièce pour trouver la fille et trouver la vérité, mais attention à pas vous égarer !"
-{RemoveActor("abi")}
 (Ville de barjes...)
 {SetStatus("abi", 1)}
 {Flush()}
