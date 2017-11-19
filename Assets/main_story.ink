@@ -77,7 +77,7 @@ J.Davis: “Hey !”
 (Une douleur fulgurante se répand dans mon crâne et je tombe à genoux. Une brume rouge obscurcit ma vision. Une rage intense me saisit. À travers le brouillard, sans plus contrôler mes gestes, je saisis le premier objet à ma portée et frappe mon agresseur aveuglément. Le bruit sourd quand je le touche n’est que musique à mes oreilles.)
 //Réapparition sprite rapproché milieu écran et décor.
 {SetDecor("manor_outside_night")}
-{(Flash()}
+{Flush()}
 {PlaceActor("davis", 3)}
 “SALE...!”
 {PlaceActor("alfred", 1)}
@@ -623,7 +623,7 @@ J.Davis: "Et oui, moi. On eut cru qu'un détective aurait résolu l'affaire, mai
 E.Ferguson: "Désolé de casser vos rêves mais Lawson savait depuis le début. A votre avis, pourquoi elle vous a envoyé à ma poursuite avec Alfred ?"
 (Et là je réalise. Il n'y pas de bon détective, seuelement de sales fouines fourbes)
 J.Davis: "Le coffre."
-E.Ferguson: "Le coffre. Lawson a toujours enquêté sur le meurtre de mon grand père - car oui c'en est un à coup sûr. Voyez de quoi est capable mon père pour l'argent, alors à sa propre fille..."
+E.Ferguson: "Le coffre. Lawson a toujours enquêté sur le meurtre de mon grand père - car oui c'en est un à coup sûr. Voyez de quoi est capable mon père pour l'argent, alors ce qu'il ferait à sa propre fille..."
 (Un instant elle semble vulnérable. Seulement un instant.)
 E.Ferguson: "Quoi qu'il en soit, annoncez votre prix."
 J.Davis: "Pardon !?"
