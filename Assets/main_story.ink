@@ -8,6 +8,7 @@ VAR philippe_status = 0
 VAR barman_status = 0
 VAR fin_1 = false
 VAR couteau = false
+VAR trigger_outside_manor = true
 
 
 ->intro
@@ -129,6 +130,8 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 =town_intro
 {Flush()}
+{PlaceActor("bigberta", 3)}
+{PlaceActor("abi", 2)}
 (J'arrive au centre ville pour commencer mon enquête. La place centrale est à l'image du reste de la ville: banale, sans aucun charme ni originalité. Ma migraine s'est légèrement calmée grâce au cachet.)
 ->DONE
 
@@ -467,11 +470,13 @@ L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérit�
 
 {SetDecor("manor_outside_day")}
 {Flush()}
+{PlaceActor("alfred", 3)}
+{PlaceActor("philippe", 4)}
+
+{trigger_outside_manor == true}
 (Le majordome est en pleine discussion avec un homme sinistre que je reconnais sans peine. Philippe Van Hert, assureur de métier mais il pourrait tout aussi bien être croque-mort. Nous étions ensemble pour la signature du testament.)
 {PlaceActor("davis", 1)}
 (Alors que je m'approche d'eux j'entends des bribes de conversation.)
-{PlaceActor("alfred", 3)}
-{PlaceActor("philippe", 4)}
 Alfred: "...faire restera entre nous."
 P.Van Herl: "Bien entendu" 
 (Ils s'arrêtent en me voyant arriver. Ma présence ne les ravit visiblement pas.)
@@ -512,6 +517,8 @@ P.Van Herl: "Allons monsieur Davis. N'êtes-vous pas notaire ? Un homme de votre
 (Devant mon silence il reprend)
 P.Van Herl: "Au revoir monsieur Davis."
 {Flush()}
+
+~ trigger_outside_manor = false
 
 ->DONE
 
