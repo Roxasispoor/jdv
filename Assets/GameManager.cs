@@ -47,7 +47,32 @@ public class GameManager : MonoBehaviour {
         SetActorPlace("barman", "bar");
         SetActorPlace("scarface", "backalley");
         SetActorPlace("daughter", "bar");
-        SetPlaceFille("manor_inside_night", "manor_outside");
+
+        SetPlaceFille("manor_inside_night", "manor_outside_night");
+        SetPlaceFille("manor_inside_day", "manor_outside_day");
+        SetPlaceFille("manor_outside_day","manor_inside_day");
+
+
+
+        SetPlaceFille("manor_outside_night", "town");
+        SetPlaceFille("manor_outside_day", "town");
+        SetPlaceFille("town","manor_outside_day");
+
+        SetPlaceFille("town", "bar");
+        SetPlaceFille("bar", "town");
+
+        SetPlaceFille("town", "backalley");
+        SetPlaceFille("backalley", "town");
+
+        SetPlaceFille("backalley", "bar");
+        SetPlaceFille( "bar", "backalley");
+
+
+
+
+
+
+
 
 
         //On set les positions de chaque personnage

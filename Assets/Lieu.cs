@@ -6,7 +6,7 @@ using Ink.Runtime;
 
 public class Lieu : MonoBehaviour {
     private string nom ;
-    private List<GameObject> lieuxAccessibles;
+    public List<GameObject> lieuxAccessibles;
 
 
     [SerializeField]
@@ -57,16 +57,20 @@ public class Lieu : MonoBehaviour {
     public void EnableButton()
     {
         Debug.Log("ENABLE BUTTONS");
-        for (int i = 0; i < LieuxAccessibles.Count; i++)
+        if (LieuxAccessibles != null)
         {
-            Button bouger = Instantiate(buttonPrefab, new Vector3(100 * i, 0, 0), Quaternion.identity);
-            Text choiceText = bouger.GetComponentInChildren<Text>();
-            choiceText.text = LieuxAccessibles[i].GetComponent<Lieu>().Nom;
-            bouger.onClick.AddListener(delegate {
-                GameManager.SetDecor(LieuxAccessibles[i].name);
+            for (int i = 0; i < LieuxAccessibles.Count; i++)
+            {
+                Button bouger = Instantiate(buttonPrefab, new Vector3(100 * i, 0, 0), Quaternion.identity);
+                Text choiceText = bouger.GetComponentInChildren<Text>();
+                choiceText.text = LieuxAccessibles[i].GetComponent<Lieu>().Nom;
+                bouger.onClick.AddListener(delegate
+                {
+                    GameManager.SetDecor(LieuxAccessibles[i].name);
 
-            });
+                });
 
+            }
         }
     }
 

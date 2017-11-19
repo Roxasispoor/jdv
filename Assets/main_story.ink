@@ -143,7 +143,7 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 //BERTA 
 
-=berta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
+=bigberta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
 {SetDecor("town")}
 {PlaceActor("bigberta", 3)}
 "Bon pain tout chaud à peine sortie du four ! Il est bon il est chaud !
@@ -181,7 +181,7 @@ J.Davis: "C'est ça ouais."
 
 
 
-=berta_1 //2e interaction avec Berta neutre
+=bigberta_1 //2e interaction avec Berta neutre
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, on veut manger autre chose ?"
@@ -190,7 +190,7 @@ J.Davis: "Non merci"
 ->DONE
 
 
-=berta_2 //2e interaction avec Berta ouverte
+=bigberta_2 //2e interaction avec Berta ouverte
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
@@ -199,7 +199,7 @@ J.Davis: "Non merci"
 ->DONE
 
 
-=berta_3 //2e interaction avec Berta ouverte
+=bigberta_3 //2e interaction avec Berta ouverte
 (Elle m'ignore d'un air dédaigneux)
 ->DONE
 
