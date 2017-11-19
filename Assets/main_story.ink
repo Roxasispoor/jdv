@@ -27,7 +27,7 @@ J’appose ma signature sur le testament et le tend à mon client.
 ==intro==
 
 {SetDecor("black")}
-Mon travail est fini. Encore un, comme les autres, une banale affaire d’héritage. Un vieux mort dans son lit. Un fils, maire nanti de Topeka, une petite ville sans histoire. Une petite fille éplorée par la mort de son grand-père. Un manoir qui cri l’opulence, de ses colonnes en marbre à son majordome. Au centre la veillée funèbre du défunt, amis, famille, prêtre et tout le cortège des doléances. 
+Mon travail est fini. Encore un, comme les autres, une banale affaire d’héritage. Un vieux mort dans son lit. Un fils, maire nanti de Topeka, une petite ville sans histoire. Une petite fille éplorée par la mort de son grand-père. Un manoir qui crit l’opulence, de ses colonnes en marbre à son majordome. Au centre la veillée funèbre du défunt, amis, famille, prêtre et tout le cortège des doléances. 
 Une affaire comme les autres, qui me rapportera pas grand chose. 
 //Intro sur fond noir, en fondu progressif sur le décor (on ne voit pas les persos).
 {SetDecor("manor_inside")}
