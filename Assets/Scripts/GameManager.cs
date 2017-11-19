@@ -40,25 +40,25 @@ public class GameManager : MonoBehaviour {
         {
               listeDecor[i].SetActive(false);
           }
-        SetActorPlace("mayor", "manor_inside_night");
-        SetActorPlace("detective", "manor_inside_night");
-        SetActorPlace("alfred", "manor_outside");
+        SetActorPlace("mayor", "manor_inside");
+        SetActorPlace("detective", "manor_inside");
+        SetActorPlace("alfred", "manor_outside_day");
         SetActorPlace("bigberta", "town");
         SetActorPlace("abi", "town");
-        SetActorPlace("philippe", "manor_outside");
+        SetActorPlace("philippe", "manor_outside_day");
         SetActorPlace("barman", "pub");
         SetActorPlace("scarface", "backalley");
         SetActorPlace("daughter", "pub");
 
-        SetPlaceFille("manor_inside_night", "manor_outside_night");
-        SetPlaceFille("manor_inside_day", "manor_outside_day");
-        SetPlaceFille("manor_outside_day","manor_inside_day");
+        SetPlaceFille("manor_inside", "manor_outside_night");
+        SetPlaceFille("manor_inside", "manor_outside_day");
+        SetPlaceFille("manor_outside_day","manor_inside");
 
 
 
-        SetPlaceFille("manor_outside_night", "town");
-        SetPlaceFille("manor_outside_day", "town");
-        SetPlaceFille("town","manor_outside_day");
+        SetPlaceFille("manor_inside", "town");
+        SetPlaceFille( "town", "manor_inside");
+        //SetPlaceFille("town","manor_outside_day");
 
         SetPlaceFille("town", "pub");
         SetPlaceFille("pub", "town");
@@ -150,8 +150,11 @@ public class GameManager : MonoBehaviour {
                     if(actor.GetComponent<Actor>().Lieu==decor)
                     {
                         actor.SetActive(true);
+                        Debug.Log(actor.GetComponent<Actor>().PositionNum - 1);
                         actor.transform.position = 
-                            new Vector3(positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].x, positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].y, positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].z);
+                            new Vector3(positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].x,
+                            positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].y,
+                            positionPersoStandard[actor.GetComponent<Actor>().PositionNum - 1].z);
                         
                            }//j'active le personnage
                 }
