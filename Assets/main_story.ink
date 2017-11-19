@@ -61,10 +61,10 @@ L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller deho
 
 {SetDecor("manor_outside_night")}
 {Flush()}
-{PlaceActor("daughter", 4)}
+{PlaceActor("daughter", 2)}
 !
 {Flush()}
-{PlaceActor("davis", 1)}
+{PlaceActor("davis", 2)}
 J.Davis: “Hey !”
 {Flush()}
 'BAAM'
@@ -74,7 +74,7 @@ J.Davis: “Hey !”
 //Réapparition sprite rapproché milieu écran et décor.
 {SetDecor("manor_outside_night")}
 {Flush()}
-{PlaceActor("davis", 3)}
+{PlaceActor("davis", 2)}
 “SALE...!”
 {PlaceActor("alfred", 1)}
 Alfred: “Monsieur Davis, vous allez bi…”
