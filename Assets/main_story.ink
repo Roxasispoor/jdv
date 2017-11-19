@@ -7,6 +7,7 @@ VAR alfred_status = 0
 VAR philippe_status = 0
 VAR barman_status = 0
 VAR fin_1 = false
+VAR couteau = false
 
 
 ->intro
@@ -305,7 +306,7 @@ Scarface: "Maintenant dégage"
 {SetDecor("black")}
 ->end_2
 
-*[(Sort mon couteau) Ouais et tu vas faire sinon mon grand ?] //Nécessite couteau et Victorité
+{ couteau == true } *[(Sort mon couteau) Ouais et tu vas faire sinon mon grand ?] 
 (Scarface ici présent semble beaucoup moins serein d'un coup.)
 Scarface: "Ecoute mon gars, je sais pas ce que tu veux mais moi je suis juste les ordres hein !"
 J.Davos: "Quels ordres ? Enlever la fille du maire ?"
@@ -440,6 +441,7 @@ L.Lawson: "Eliminé ? Ce n'est pas exclu. Le rapport d'autopsie n'est toujours p
 'Vous recevez un couteau'
 L.Lawson: "Nous devrions reprendre nos enquêtes..."
 {RemoveActor("detective")}
+~ couteau = true
 (Et maintenant voilà qu'elle m'aide. Peut-être qu'il existe UNE bonne détective dans le monde après tout...).
 ~ philippe_status = 6
 {Flush()}
