@@ -1,8 +1,10 @@
-﻿EXTERNAL PlaceActor(ActorName, position)
+EXTERNAL PlaceActor(ActorName, position)
 EXTERNAL RemoveActor(ActorName)
 EXTERNAL Flush()
 EXTERNAL SetDecor(DecorName)
 EXTERNAL SetStatus(ActorName, int)
+EXTERNAL AddVictorness(float)
+EXTERNAL SubstractVictorness(float)
 VAR alfred_status = 0
 VAR philippe_status = 0
 VAR barman_status = 0
@@ -157,24 +159,26 @@ Berta: "T'es nouveau en ville mon chou nan ? C'est pas la joie en ce moment. Le 
 J.Davis: "Quel gâteau ?"
 Berta: "L'héritage pardi ! Le maire a hérité d'une belle petite somme, personne cracherais dessus moi jle dis. Ils lui tournent autour depuis, ct'assureur surtout."
 J.Davis: "Je vois."
-{SetStatus(1, "bigberta")}
+{SetStatus("bigberta", 1)}
 {Flush()}
 
-*[Non merci, il à l'air délicieux mais je préfèrerais plutôt quelques informations] //choix Jack Davis
+*[Non merci, il à l'air délicieux mais je préfèrerais plutôt quelques informations]//choix Jack Davis
+{SubstractVictorness(1)}
 (Je lui explique l'histoire de l'enlèvement et lui demande des pistes)
 Berta: "ENLEVEE !?! Oula non je ne sais pas qui a pu faire ça ! Le maire est en froid avec Shawn, mais c'est un bon garçon il ne ferait jamais ça !"
 J.Davis: "Shawn ?"
 Berta: "Le barman du pub 'L'étalon Pavoisé'. Le maire a voulu le faire fermer il y a quelques temps. Mais Shawn c'est un bon gars, foi de Berta, il a rien à voir."
 "J.Davis: "C'est ce qu'on verra"
 (Bon au moins ça fait une piste).
-{SetStatus(2, "bigberta")}
+{SetStatus("bigberta", 2)}
 ~ barman_status = 4
 {Flush()}
 
 *[Moins fort grognasse, j'ai mal au crâne]
+{AddVictorness(1)}
 Berta: "Oula t'es pas commode toi ? T'es un copain dl'autre balafré ou quoi !? Si tu cherches ton pote il traîne dans la ruelle, je veux rien avoir à faire avec vos magouilles moi !"
 J.Davis: "C'est ça ouais."
-{SetStatus(3, "bigberta")}
+{SetStatus("bigberta", 3)}
 {Flush()}
 ->DONE
 
@@ -234,6 +238,7 @@ Abigail: "Avec votre enquête je sais pas, avec vous par contre... Méfiez vous 
 {Flush()}
 
 *[Victor ?!] //Jack Davis
+{SubstractVictorness(1)}
 Abigail: "..Ferguson, le grand père. C'était un homme très porté sur l'occultisme. Spécialisé en projection astrale et possession."
 J.Davis: "Hmm, projection astrale, je vois..." (Mais c'est quoi ces conneries encore !?)
 Abigail: "Quoi qu'il en soit, si vous voulez retrouver le fille vous aurez besoin de lui. Méfiez vous quand même de vos penchants."
@@ -243,6 +248,7 @@ J.Davis: "Merci du conseil"
 {Flush()}
 
 *[Si tu sais quelque chose gamine tu ferais mieux de parler]//Victor
+{AddVictorness(1)}
 Abigail: "Oula ! On voit déjà qui a l'ascendant !"
 J.Davis: "Mais qu'est-ce que tu marmonnes !?"
 Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces de la pièce pour trouver la fille et trouver la vérité, mais attention à pas vous égarer !"
@@ -286,6 +292,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 "Dégage de là, on ne passe pas"
 
 *[Toutes mes excuses, je ne suis pas d'ici et je suis perdu] //Jack Davis
+{SubstractVictorness(1)}
 (Scarface ici présent n'a pas l'air convaincu. Il reste tendu mais n'esquisse pas de nouveau geste.)
 Scarface: "T'as rien à faire là et t'as pas le profil du 'client' moyen. Dégage."
 J.Davis: "Pas la tête du 'client' moyen ? Je suis pas assez beau c'est ça ?"
@@ -304,6 +311,7 @@ Scarface: "Maintenant dégage"
 {Flush()}
 
 *[Tu ferais mieux te bouger ta graisse face de trou]//Victor
+{AddVictorness(1)}
 ('Qui dit grand dit lent non.' Celui qui a dit ça n'avais jamais rencontré Scarface. Avant même de réagir, il écrase son poing sur mon visage et mon nez craque horriblement. Je lui rend avec un uppercut dans la mâchoire mais il bronche à peine. S'en suit un combat qui malgré ma rage est à sens unique. Je finis rapidement par m'évanouir.)
 {Flush()}
 {SetStatus("scarface", 1)}
@@ -380,7 +388,8 @@ L.Lawson: "Votre père est mort dans des circonstances troubles et vous ne voule
 A.Ferguson: "Rien du tout ! Mais je ne vous laisserai pas fouiller les affaires de mon père et baffouer son nom ! Faites votre job !"
 L.Lawson: "Mon job est de découvrir la vérité. Et pour cela j'ai besoin de consulter le testament de votre père !"
 
-*[(S'allier au maire) "Il a raison, la disparition de la petite est plus importante détective !"] //Victor
+*[(S'allier au maire) "Il a raison, la disparition de la petite est plus importante détective !"]
+{AddVictorness(2)}//Victor
 {PlaceActor("davis", 4)}
 L.Lawson: "Tch. Très bien, si vous le décidez ainsi..."
 (Elle me lance un regard noir et s'éloigne. Rabattre le caquet de cette fouine est déjà une victoire en soit)
@@ -391,7 +400,8 @@ A.Ferguson: "Merci pour votre aide monsieur Davis."
 ~ fin_1= true
 {Flush()}
 
-*[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Et l'enlèvement peut être lié."] //Jack Davis
+*[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Et l'enlèvement peut être lié."]
+{SubstractVictorness(2)}//Jack Davis
 {PlaceActor("davis", 1)}
 (J'en reviens pas d'être d'accord avec cette fouine)
 A.Ferguson: "Hmph."
@@ -417,6 +427,7 @@ A.Ferguson: "Vous avancez sur votre enquête ?"
 J.Davis: "J'ai quelques pistes."
 A.Ferguson: "Vous devriez parler à Alfred, il connaît bien la ville et ses habitants, il pourrait vous aider. Voulez-vous que je l'appelle ?"
 J.Davis: "C'est bon, il me semble l'avoir vu à l'extérieur en arrivant."
+{AddVictorness(1)}
 ~ alfred_status = 6
 {Flush()}
 ->DONE
@@ -447,6 +458,7 @@ L.Lawson: "Nous devrions reprendre nos enquêtes..."
 {RemoveActor("detective")}
 ~ couteau = true
 (Et maintenant voilà qu'elle m'aide. Peut-être qu'il existe UNE bonne détective dans le monde après tout...).
+{SubstractVictorness(1)}
 ~ philippe_status = 6
 {Flush()}
 ->DONE
@@ -501,6 +513,7 @@ Alfred: "Non, non, bien sûr que non ! Le testament est bien en sécurité dans 
 Alfred: "A vrai dire, seulement Monsieur...et Mademoiselle."
 J.Davis: "Oh...OH !"
 Alfred: "Je ne crains que cette affaire ne vienne de prendre une autre ampleur".
+{AddVictorness(1)}
 {Flush()}
 
 
@@ -516,6 +529,7 @@ P.Van Herl: "Allons monsieur Davis. N'êtes-vous pas notaire ? Un homme de votre
 (Seigneur, non seulement il est terrifiant, mais au moins aussi intelligent que la détective)
 (Devant mon silence il reprend)
 P.Van Herl: "Au revoir monsieur Davis."
+{SubstractVictorness(1)}
 {Flush()}
 
 ~ trigger_outside_manor = false
@@ -570,6 +584,7 @@ J.Davis: "Whisky"
 (Il nettoie consciencieusement un verre)
 
 *[Il paraît que la fille du maire a été enlevée hier soir, vous avez entendu quelque chose à ce sujet ?]//Jack Davis
+{SubstractVictorness(1)}
 (A ces mots il se raidit légèrement. J'ai touché au bon endroit)
 S.O'Brien: "J'ai entendu dire. Et en quoi ça vous concerne ?"
 J.Davis: "J'enquête sur sa disparition et je compte bien la retrouver."
@@ -582,12 +597,14 @@ S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mai
 {Flush()}
 
 *[Votre piquette vaut rien, mais peut-être que vous avez des infos: la fille du maire a été enlevée, vous avez des infos à ce sujet ?]//Victor
+{AddVictorness(1)}
 J.O'Brien: "Si vous n'aimez pas libre à vous de partir. C'est pas le seul bar de Topeka. Et non j'ai pas d'infos."
 (Il continue de nettoyer son verre comme si de rien n'était)
 {SetStatus("barman", 1)}
 {Flush()}
 
 {barman_status == 4} *[J'ai entendu dire que vous étiez en conflit avec le maire. Vous ne vous en seriez pas pris à sa fille pour vous venger par hasard ?]
+{SubstractVictorness(1)}
 S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
 J.Davis: "Oh, vous semblez proche d'Emily"
 S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle."
@@ -638,7 +655,7 @@ J.Davis: "Non merci"
 (Emily. Pas le moins du monde effrayée, et je le comprends maintenant, pas le moins du monde enlevée)
 E.Ferguson: "Le testament était un faux. Mon grand père n'aurait jamais rien légué à mon père. Ce gros idiot est endetté jusqu'à la moelle auprès de la pègre local."
 J.Davis: "Vous étiez l'héritière."
-E.Ferguson: "Exact. Et comme j'aurai 20 ans dans 1 mois, mon père n'aurait pas pu toucher une centime même s'il l'avait voulu. Alors il a tout falsifié, avec l'aide de l'assureur, et sans que vous le sachiez la vôtre"
+E.Ferguson: "Exact. Et comme j'aurai 16 ans dans 1 mois, mon père n'aurait pas pu toucher une centime même s'il l'avait voulu. Alors il a tout falsifié, avec l'aide de l'assureur, et sans que vous le sachiez la vôtre"
 J.Davis: "Laissez-moi deviner, il comptait vous envoyer en pension quelque part loin de votre héritage. Alors vous avez fuit avant."
 E.Ferguson: "Je suis la seule autre personne à connaître la combinaison de son coffre, alors j'ai pris ce qui me revenait. Je quittes Topeka avec Shawn. Cette ville n'a plus rien pour moi. J'avais juste besoin de faire profil bas quelques jours. Mais vous m'avez rattrapée d'abord."
 J.Davis: "Et oui, moi. On eut cru qu'un détective aurait résolu l'affaire, mais c'était le notaire dans le pub avec le couteau !"
