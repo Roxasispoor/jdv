@@ -7,25 +7,66 @@ public class GameManager : MonoBehaviour {
     public List<GameObject> listeActors = new List<GameObject>();
     public List<GameObject> listeDecor;
     public Vector3[] positionPersoStandard = new Vector3[4];
-
+    public GameObject[] prefabsDecor;
 
     // Use this for initialization
     void Start()
     {
+       //On initialise les lieux, puis les acteurs
+       for (int i=0;i<prefabsDecor.Length;i++)
+        {
+            GameObject newDecor = Instantiate(prefabsDecor[i]);
+            newDecor.SetActive(false);
+            newDecor.name = prefabsDecor[i].name;
+            newDecor.GetComponent<Lieu>().GameManager = this;
+            listeDecor.Add(newDecor);
+
+        }
         for (int i = 0; i < prefabsActors.Length; i++)
         {
             GameObject newActor = Instantiate(prefabsActors[i]);
 
+            
             newActor.SetActive(false);
             newActor.name = prefabsActors[i].name;
             listeActors.Add(newActor);
 
-            //bool activeSelf
+            newActor.GetComponent<Actor>().InkleManager = gameObject.GetComponent<InkleManager>();
+              //bool activeSelf
         }
         for (int i = 0; i < listeDecor.Count; i++) //on enlève tout les décors
         {
               listeDecor[i].SetActive(false);
           }
+        SetActorPlace("mayor", "manor_inside_night");
+        SetActorPlace("detective", "manor_inside_night");
+        SetActorPlace("alfred", "manor_outside");
+        SetActorPlace("bigberta", "town");
+        SetActorPlace("abi", "town");
+        SetActorPlace("philippe", "manor_outside");
+        SetActorPlace("barman", "bar");
+        SetActorPlace("scarface", "backalley");
+        SetActorPlace("daughter", "bar");
+
+
+        //On set les positions de chaque personnage
+
+    }
+    public void SetActorPlace(string actorName, string place)
+    {
+        foreach (GameObject actor in listeActors)
+        {
+            if (actor.name == actorName)
+            {
+                foreach(GameObject lieu in listeDecor)
+                {
+                    if(lieu.name==place)
+                    {
+                        actor.GetComponent<Actor>().Lieu = lieu;
+                }
+                }
+            }
+        }
     }
 
     /// <summary>
@@ -33,7 +74,7 @@ public class GameManager : MonoBehaviour {
     /// </summary>
     /// <param name="status"></param>
     /// <param name="actorName"></param>
-    public void SetStatus(int status, string actorName)
+    public void SetStatus( string actorName,int status)
     {
         foreach (GameObject actor in listeActors)
         {

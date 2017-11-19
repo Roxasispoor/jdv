@@ -8,7 +8,7 @@ public class Actor : MonoBehaviour {    public enum CharacterEmotion
     public Sprite[] sprites;
     SpriteRenderer spriteRender;
     private int status=0;
-    private GameObject lieu;
+    public GameObject lieu;
     public InkleManager inkleManager;//weird
 
 
@@ -66,6 +66,19 @@ public class Actor : MonoBehaviour {    public enum CharacterEmotion
         }
     }
 
+    public InkleManager InkleManager
+    {
+        get
+        {
+            return inkleManager;
+        }
+
+        set
+        {
+            inkleManager = value;
+        }
+    }
+
 
     // Use this for initialization
     void Awake() {
@@ -92,11 +105,12 @@ public class Actor : MonoBehaviour {    public enum CharacterEmotion
 
     }
 
-  public  void OnMouseOver()
+void OnMouseOver()
     {
+        Debug.Log("AHHHHHH");
         if (Input.GetMouseButtonDown(0)){
            
-            inkleManager.Story.ChoosePathString(lieu.name + "." + this.name + "_" + status);
+            InkleManager.Story.ChoosePathString(lieu.name + "." + this.name + "_" + status);
               //       inkleManager.Story.ChoosePathString(lieu.name + "." + this.name + "_" + status);
             // Whatever you want it to do.
         }
