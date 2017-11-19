@@ -22,6 +22,7 @@ Une affaire comme les autres, qui me rapportera pas grand chose.
 
 =manor_inside_1
 {SetDecor("manor_inside_night")}
+{Flush()}
 “...et que son âme repose en paix auprès de notre Seigneur. Amen”
 Tous: “Amen”
 //Jack Davis apparaît à l’écran (sprite approché).
@@ -63,6 +64,7 @@ L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller deho
 
 =manor_outside_1
 {SetDecor("manor_outside_night")}
+{Flush()}
 {PlaceActor("daughter", 4)}
 !
 {Flush()}
@@ -75,6 +77,7 @@ J.Davis: “Hey !”
 (Une douleur fulgurante se répand dans mon crâne et je tombe à genoux. Une brume rouge obscurcit ma vision. Une rage intense me saisit. À travers le brouillard, sans plus contrôler mes gestes, je saisis le premier objet à ma portée et frappe mon agresseur aveuglément. Le bruit sourd quand je le touche n’est que musique à mes oreilles.)
 //Réapparition sprite rapproché milieu écran et décor.
 {SetDecor("manor_outside_night")}
+{(Flash()}
 {PlaceActor("davis", 3)}
 “SALE...!”
 {PlaceActor("alfred", 1)}
@@ -94,6 +97,7 @@ Alfred: “Monsieur Davis, vous allez bi…”
 ...Ramène la !...
 (Quoi!?)
 {SetDecor("manor_inside_day")}
+{Flush()}
 “Ah bon retour parmi nous monsieur !”
 //Apparition maire.
 {PlaceActor("mayor", 2)}
@@ -114,6 +118,7 @@ L.Lawson: “...Eh..Bien...Parfait alors !”
 (De toute évidence, ma réponse l’a surprise autant que moi).
 L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir s’il n’y a pas de témoin.”
 (Mais dans quoi je me suis embarqué !?!)
+{Flush()}
 {SetDecor("black")}
 
 ->DONE
@@ -295,9 +300,7 @@ Scarface: "Maintenant dégage"
 ('Qui dit grand dit lent non.' Celui qui a dit ça n'avais jamais rencontré Scarface. Avant même de réagir, il écrase son poing sur mon visage et mon nez craque horriblement. Je lui rend avec un uppercut dans la mâchoire mais il bronche à peine. S'en suit un combat qui malgré ma rage est à sens unique. Je finis rapidement par m'évanouir.)
 {Flush()}
 {SetDecor("black")}
-(Je me réveille après ce qui me paraît une éternité plus tard, menotté à un lit d'hôpital. La détective Lawson m'apprend que j'ai dormi 3 jours. Pendant ce temps la fille Ferguson est rentrée chez elle, et Scarface a été arrêté pour son enlèvement, ainsi qu'agression. Quant aux menottes: j'ai été inculpé également pour agression, ainsi que pour falsification de testament. Il semblerait que le vieux Victor n'était pas vraiment mort paisiblement, et que la question de l'héritage restait en suspens tant que le vrai testament n'aurait pas été retrouvé.)
-(Ma paye envolée, inculpé pour un crime que je ne savais même pas avoir commis, moi qui pensais que la vie de notaire était assez pourrie comme ça, j'avais tort. Si seulement j'avais pu changer les choses...)
-->end
+->end_2
 
 *[(Sort mon couteau) Ouais et tu vas faire sinon mon grand ?] //Nécessite couteau et Victorité
 (Scarface ici présent semble beaucoup moins serein d'un coup.)
@@ -525,19 +528,35 @@ P.Van Herl: "Ne vous mêlez pas des affaires qui ne vous concernent pas"
 
 ==pub==
 {SetDecor("pub")}
+{PlaceActor("davis", 2)}
+{PlaceActor("barman", 3)}
+
 ('L'Etalon Pavoisé' à tout du pub irlandais traditionnel: atmosphère enfumée, billard avec ses quelques habitués au fond, drapeux irlandais et Saint Patrick décorant les murs. Les clients sont néanmoins peu nombreux. Le barman travaille derrière le bar. Un panneau derrière lui indique 'L'Etalon Pavoisé, établissement de tradition depuis 1924. Propriétaire: Shawn O'Brien'. Je vais m'asseoir en face)
 {PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
 S.O'Brien: "Je peux vous servir quelque chose ?"
 J.Davis: "Whisky"
+
+{barman_status == 5} *['Planter le couteau dans le bar']
+(O'Brien sursaute. Bien, j'ai son attention)
+J.Davis: "Ecoute moi bien: j'enquête sur la disparition d'Emily Ferguson et mon nouvel ami Scarface à deux rues d'ici m'a dit que si quelqu'un a fait le coup c'est toi. T'as pas aimé que le maire utilise ses petits copains de la pègre pour te menacer, ça je comprends bien, donc en retour tu t'es dit que t'aller en prendre à sa fille, j'ai raison ?"
+(Il est nerveux, visiblement j'ai touché un point sensible)
+S.O'Brien: "T'y es pas du tout ! C'est vrai que Cocimo, Scarface comme tu l'appelles, a voulu me menacer un peu mais il s'est pris une raclée et est rentré chez lui ! Bien sûr que je savais que c'était le maire et que je voulais me venger mais jamais j'aurais fait de mal à Emily !"
+J.Davis: "Pourquoi pas, c'était une cible facile: la jeune fille éplorée par la mort de son grand père, elle s'éloigne un peu du groupe et BAAM ! Dommage que quelqu'un se soit entreposé. J'en ai encore une vilaine migraine, mais je sais que je t'en ai mis une belle aussi."
+S.O'Brien: "Ok ok ça va j'étais bien là mais tu te trompes..."
+{Flush()}
+->end_0
+
 {Flush()}
 
 ->DONE
 
 
 =barman_0
+{SetDecor("pub")}
 {PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
+
 (Il nettoie consciencieusement un verre)
 
 *[Il paraît que la fille du maire a été enlevée hier soir, vous avez entendu quelque chose à ce sujet ?]//Jack Davis
@@ -564,12 +583,20 @@ J.Davis: "Oh, vous semblez proche de 'Emily'"
 S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle."
 (Il semble en effet boulversé. Pas comme un homme qui s'inquiète seuleùent pour une vieille connaissance)
 J.Davis: "A vous entendre, elle ne doit pas être si ancienne que ça."
-S.O'Brien: "Ca c'est pas vos oignons. J'espère que votre enquête aboutira."
+S.O'Brien: "Ca c'est pas vos oignons. J'espère qu'au moins votre enquête aboutira."
+{SetStatus("barman", 1)}
+{Flush()}
 
  ->DONE
-
-
-
+ 
+ =barman_1
+ {PlaceActor("davis", 2)}
+{PlaceActor("barman", 3)}
+(Il nettoie toujours consciencieusement un verre)
+S.O'Brien: "Je peux vous servir autre chose ?
+J.Davis: "Non merci"
+{Flush()}
+->DONE
 
 
 
@@ -578,5 +605,54 @@ S.O'Brien: "Ca c'est pas vos oignons. J'espère que votre enquête aboutira."
 //Que faire ?
 
 
-==end==
+==end_0== //La bonne fin
+{SetDecor("pub")}
+{PlaceActor("davis", 2)}
+{PlaceActor("barman", 3)}
+"C'est bon Shawn. Monsieur Davis a déjà compris toute l'histoire. N'est-ce pas ?
+{RemoveActor("barman")}
+{PlaceActor("daughter_true", 3)}
+(Emily. Pas le moins du monde effrayée, et je le comprends maintenant, pas le moins du monde enlevée)
+E.Ferguson: "Le testament était un faux. Mon grand père n'aurait jamais rien légué à mon père. Ce gros idiot est endetté jusqu'à la moelle auprès de la pègre local."
+J.Davis: "Vous étiez l'héritière."
+E.Ferguson: "Exact. Et comme j'aurai 20 ans dans 1 mois, mon père n'aurait pas pu toucher une centime même s'il l'avait voulu. Alors il a tout falsifié, avec l'aide de l'assureur, et sans que vous le sachiez la vôtre"
+J.Davis: "Laissez-moi deviner, il comptait vous envoyer en pension quelque part loin de votre héritage. Alors vous avez fuit avant."
+E.Ferguson: "Je suis la seule autre personne à connaître la combinaison de son coffre, alors j'ai pris ce qui me revenait. Je quittes Topeka avec Shawn. Cette ville n'a plus rien pour moi. J'avais juste besoin de faire profil bas quelques jours. Mais vous m'avez rattrapée d'abord."
+J.Davis: "Et oui, moi. On eut cru qu'un détective aurait résolu l'affaire, mais c'était le notaire dans le pub avec le couteau !"
+(Elle commence à rire)
+E.Ferguson: "Désolé de casser vos rêves mais Lawson savait depuis le début. A votre avis, pourquoi elle vous a envoyé à ma poursuite avec Alfred ?"
+(Et là je réalise. Il n'y pas de bon détective, seuelement de sales fouines fourbes)
+J.Davis: "Le coffre."
+E.Ferguson: "Le coffre. Lawson a toujours enquêté sur le meurtre de mon grand père - car oui c'en est un à coup sûr. Voyez de quoi est capable mon père pour l'argent, alors à sa propre fille..."
+(Un instant elle semble vulnérable. Seulement un instant.)
+E.Ferguson: "Quoi qu'il en soit, annoncez votre prix."
+J.Davis: "Pardon !?"
+E.Ferguson: "Allons, si vous étiez vraiment notaire vous auriez eu connaissance de la supercherie du testament dès le début et n'auriez pas à faire toute cette laborieuse enquête. Vous êtes une sorte de charlatan professionel non ?"
+(Hmph, maline cette petite.)
+J.Davis: "Je préfère le terme 'arnaqueur'. C'est plus professionel."
+(Elle rit)
+E.Ferguson: "1000$ pour votre silence et votre départ de Topeka dans la journée, c'est assez professionel à votre goût ?"
+{Flush()}
+{SetDecor("black")}
+{PlaceActor("davis", 2)}
+Mon travail est fini. Encore une affaire comme les autres, arnaquer un riche client pour lui soutirer un peu d'argent. 
+Mais cette fois la récompense a été à la hauteur du jeu. 
+J'ai quitté Topeka le jour même, une partie de l'héritage en poche. Faut croire que notaire ça rapporte.
+Cette affaire était quand même différente des autres: dans cette nouvelle vie d'arnaque j'ai dû changer pertpétuellement pour pouvoir avancer.
+La prochaine ? J'ai entendu parler d'une exposition dans une ville proche, Gotham je crois ?
+{Flush()} 
+FIN
+
+->DONE
+
+
+==end_2==
+{SetDecor("black")}
+{PlaceActor("davis", 2)}
+(Je me réveille après ce qui me paraît une éternité plus tard, menotté à un lit d'hôpital. La détective Lawson m'apprend que j'ai dormi 3 jours. Pendant ce temps la fille Ferguson est rentrée chez elle, et Scarface a été arrêté pour son enlèvement, ainsi qu'agression. Quant aux menottes: j'ai été inculpé également pour agression, ainsi que pour falsification de testament. Il semblerait que le vieux Victor n'était pas vraiment mort paisiblement, et que la question de l'héritage restait en suspens tant que le vrai testament n'aurait pas été retrouvé.)
+(Ma paye envolée, inculpé pour un crime que je ne savais même pas avoir commis, moi qui pensais que la vie de notaire était assez pourrie comme ça, j'avais tort. Si seulement j'avais pu changer les choses...)
+{Flush()} 
+END
+
+
 ->END
