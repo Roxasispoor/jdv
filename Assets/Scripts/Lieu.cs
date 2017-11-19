@@ -95,8 +95,8 @@ public class Lieu : MonoBehaviour {
 
                     ink.Story.ChoosePathString(button.gameObject.name);
                     ink.RefreshView();
-                    
 
+                    gameManager.ActiveButton = false;
                     RemoveChildren();
 
 
