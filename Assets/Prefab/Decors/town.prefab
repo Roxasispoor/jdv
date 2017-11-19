@@ -53,7 +53,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lieuxAccessibles: []
+  positionPersoStandard:
+  - {x: -6, y: -4.5, z: 0}
+  - {x: -2, y: -4.5, z: 0}
+  - {x: 2, y: -4.5, z: 0}
+  - {x: 6, y: -4.5, z: 0}
   buttonPrefab: {fileID: 11455116, guid: 37c108a6c38964f79a6621eccb33ddc1, type: 2}
+  canvas: {fileID: 0}
   gameManager: {fileID: 0}
 --- !u!212 &212994509063030234
 SpriteRenderer:

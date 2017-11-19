@@ -1,4 +1,4 @@
-EXTERNAL PlaceActor(ActorName, position)
+﻿EXTERNAL PlaceActor(ActorName, position)
 EXTERNAL RemoveActor(ActorName)
 EXTERNAL Flush()
 EXTERNAL SetDecor(DecorName)
@@ -6,6 +6,9 @@ EXTERNAL SetStatus(ActorName, int)
 VAR alfred_status = 0
 VAR philippe_status = 0
 VAR barman_status = 0
+VAR fin_1 = false
+VAR couteau = false
+VAR trigger_outside_manor = true
 
 
 ->intro
@@ -17,11 +20,7 @@ J’appose ma signature sur le testament et le tend à mon client.
 Mon travail est fini. Encore un, comme les autres, une banale affaire d’héritage. Un vieux mort dans son lit. Un fils, maire nanti de Topeka, une petite ville sans histoire. Une petite fille éplorée par la mort de son grand-père. Un manoir qui cri l’opulence, de ses colonnes en marbre à son majordome. Au centre la veillée funèbre du défunt, amis, famille, prêtre et tout le cortège des doléances. 
 Une affaire comme les autres, qui me rapportera pas grand chose. 
 //Intro sur fond noir, en fondu progressif sur le décor (on ne voit pas les persos).
-->manor_inside_1
-->DONE
-
-=manor_inside_1
-{SetDecor("manor_inside_night")}
+{SetDecor("manor_inside")}
 {Flush()}
 “...et que son âme repose en paix auprès de notre Seigneur. Amen”
 Tous: “Amen”
@@ -59,16 +58,14 @@ A.Ferguson: ”Seigneur !”
 L.Lawson: “Mes questions peuvent attendre. Monsieur Davis, allez fouiller dehors avec monsieur Alfred, je m’occupe de l’intérieur avec monsieur Ferguson.”
 (Au revoir mon argent et bonjour le sale boulot d’enquête. Sans attendre le majordome je sors par la première porte. Plus vite je retrouve la gosse, plus vite toute cette histoire se termine).
 {Flush()}
-->manor_outside_1
-->DONE
 
-=manor_outside_1
+
 {SetDecor("manor_outside_night")}
 {Flush()}
-{PlaceActor("daughter", 4)}
+{PlaceActor("daughter", 2)}
 !
 {Flush()}
-{PlaceActor("davis", 1)}
+{PlaceActor("davis", 2)}
 J.Davis: “Hey !”
 {Flush()}
 'BAAM'
@@ -78,7 +75,7 @@ J.Davis: “Hey !”
 //Réapparition sprite rapproché milieu écran et décor.
 {SetDecor("manor_outside_night")}
 {Flush()}
-{PlaceActor("davis", 3)}
+{PlaceActor("davis", 2)}
 “SALE...!”
 {PlaceActor("alfred", 1)}
 Alfred: “Monsieur Davis, vous allez bi…”
@@ -86,17 +83,15 @@ Alfred: “Monsieur Davis, vous allez bi…”
 (Je m’effondre avant d’entendre ses derniers mots).
 {SetDecor("black")}
 {Flush()}
-->manor_inside_2
-->DONE
 
-=manor_inside_2
+
 ...ène..a..
 (...)
 ...mène..a…
 (Qu..?)
 ...Ramène la !...
 (Quoi!?)
-{SetDecor("manor_inside_day")}
+{SetDecor("manor_inside")}
 {Flush()}
 “Ah bon retour parmi nous monsieur !”
 //Apparition maire.
@@ -134,6 +129,9 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 ==town==
 
 =town_intro
+{Flush()}
+{PlaceActor("bigberta", 3)}
+{PlaceActor("abi", 2)}
 (J'arrive au centre ville pour commencer mon enquête. La place centrale est à l'image du reste de la ville: banale, sans aucun charme ni originalité. Ma migraine s'est légèrement calmée grâce au cachet.)
 ->DONE
 
@@ -143,8 +141,9 @@ L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir 
 
 //BERTA 
 
-=berta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
+=bigberta_0  //Premier dialogue avec elle, va déterminer son comportement pour le reste du jeu.
 {SetDecor("town")}
+{Flush()}
 {PlaceActor("bigberta", 3)}
 "Bon pain tout chaud à peine sortie du four ! Il est bon il est chaud !
 Et toi là mon mignon, tu veux du pain ? C'est le meilleur pain de tout Topeka, foi de Berta !
@@ -181,7 +180,8 @@ J.Davis: "C'est ça ouais."
 
 
 
-=berta_1 //2e interaction avec Berta neutre
+=bigberta_1 //2e interaction avec Berta neutre
+{Flush()}
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, on veut manger autre chose ?"
@@ -190,7 +190,8 @@ J.Davis: "Non merci"
 ->DONE
 
 
-=berta_2 //2e interaction avec Berta ouverte
+=bigberta_2 //2e interaction avec Berta ouverte
+{Flush()}
 {PlaceActor("bigberta", 3)}
 {PlaceActor("davis", 2)}
 Berta: "Alors, t'es sûr que tu veux pas du pain ce coup-ci ?"
@@ -199,7 +200,7 @@ J.Davis: "Non merci"
 ->DONE
 
 
-=berta_3 //2e interaction avec Berta ouverte
+=bigberta_3 //2e interaction avec Berta ouverte
 (Elle m'ignore d'un air dédaigneux)
 ->DONE
 
@@ -211,9 +212,10 @@ J.Davis: "Non merci"
 
 =abi_0
 {SetDecor("town")}
+{Flush()}
 {PlaceActor("abi", 3)}
 {PlaceActor("davis", 2)}
-(Une gamine à lair sombre traîne dans la rue. Elle me regarde bizarrement, peut-être qu'elle sait quelque chose ?)
+(Une gamine à l'air sombre traîne dans la rue. Elle me regarde bizarrement, peut-être qu'elle sait quelque chose ?)
 "..." //Couleur abi mais pas encore son nom
 J.Davis: "Euh..Bonjour ?"
 "...'Jour." //Couleur abi
@@ -227,8 +229,8 @@ Abigail: "Sur la fille ou sur Victor ?"
 Abigail: "...Pour la fille je sais rien de toute façon, mais pour Victor vous devriez faire gaffe, il était connu pour être violent plus jeune..."
 J.Davis: "Attends, Victor...Ferguson ? Quel rapport avec tout ça ?!"
 Abigail: "Avec votre enquête je sais pas, avec vous par contre... Méfiez vous de vos penchants, les extrêmes sont dangereux"
-{RemoveActor("abi")}
 (Mais c'est quoi cette gamine ? Ils ont quoi dans cette ville !?)
+{SetStatus("abi", 1)}
 {Flush()}
 
 *[Victor ?!] //Jack Davis
@@ -236,16 +238,16 @@ Abigail: "..Ferguson, le grand père. C'était un homme très porté sur l'occul
 J.Davis: "Hmm, projection astrale, je vois..." (Mais c'est quoi ces conneries encore !?)
 Abigail: "Quoi qu'il en soit, si vous voulez retrouver le fille vous aurez besoin de lui. Méfiez vous quand même de vos penchants."
 J.Davis: "Merci du conseil"
-{RemoveActor("abi")}
 (Ville de tarés...)
+{SetStatus("abi", 1)}
 {Flush()}
 
 *[Si tu sais quelque chose gamine tu ferais mieux de parler]//Victor
 Abigail: "Oula ! On voit déjà qui a l'ascendant !"
 J.Davis: "Mais qu'est-ce que tu marmonnes !?"
 Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces de la pièce pour trouver la fille et trouver la vérité, mais attention à pas vous égarer !"
-{RemoveActor("abi")}
 (Ville de barjes...)
+{SetStatus("abi", 1)}
 {Flush()}
 
 ->DONE
@@ -254,9 +256,11 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 //{town_abi_ini}
 =abi_1
 (Elle lit un vieux bouquin et ne me prête aucune attention.)
-->DONE
+{Flush()}
 
 ->DONE
+
+
 
 
 
@@ -266,6 +270,8 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 
 ==backalley==
 {SetDecor("backalley")}
+{Flush()}
+{PlaceActor("scarface", 3)}
 (Une ruelle sombre et puante entre les bâtiments. Il faut croire que même dans les villes paumées il existe ce genre d'endroits qui crient "coupe gorge". Tout y est: poubelles débordantes, rats, ordeur nauséabonde, même le type louche au fond de la ruelle qui surveille le coin.)
 
 -> DONE
@@ -273,6 +279,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 //Scarface
 
 =scarface_0
+{Flush()}
 {PlaceActor("davis", 1)}
 (Lorsque je m'approche le type esquisse un pas menaçant dans ma direction. Il n'est clairement pas là pour faire la causette.)
 {PlaceActor("scarface", 3)}
@@ -299,10 +306,11 @@ Scarface: "Maintenant dégage"
 *[Tu ferais mieux te bouger ta graisse face de trou]//Victor
 ('Qui dit grand dit lent non.' Celui qui a dit ça n'avais jamais rencontré Scarface. Avant même de réagir, il écrase son poing sur mon visage et mon nez craque horriblement. Je lui rend avec un uppercut dans la mâchoire mais il bronche à peine. S'en suit un combat qui malgré ma rage est à sens unique. Je finis rapidement par m'évanouir.)
 {Flush()}
+{SetStatus("scarface", 1)}
 {SetDecor("black")}
 ->end_2
 
-*[(Sort mon couteau) Ouais et tu vas faire sinon mon grand ?] //Nécessite couteau et Victorité
+{ couteau == true } *[(Sort mon couteau) Ouais et tu vas faire sinon mon grand ?] 
 (Scarface ici présent semble beaucoup moins serein d'un coup.)
 Scarface: "Ecoute mon gars, je sais pas ce que tu veux mais moi je suis juste les ordres hein !"
 J.Davos: "Quels ordres ? Enlever la fille du maire ?"
@@ -363,7 +371,8 @@ J.Davis: "T'as intérêt à m'avoir dit la vérité !"
 
 ==manor_inside==
 
-{SetDecor("manor_inside_day")}
+{SetDecor("manor_inside")}
+{Flush()}
 {PlaceActor("detective", 2)}
 {PlaceActor("mayor", 3)}
 A.Ferguson: "Ecoutez détective, ma fille a disparu, faites votre travail et retrouvez-là au lieu de vous intéresser à des histoires sans intérêt !"
@@ -379,9 +388,10 @@ L.Lawson: "Tch. Très bien, si vous le décidez ainsi..."
 {SetStatus(3, "detective")}
 {SetStatus(2, "mayor")}
 A.Ferguson: "Merci pour votre aide monsieur Davis."
+~ fin_1= true
 {Flush()}
 
-*[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Qui plus est, l'enlèvement de votre fille peut y être lié."] //Jack Davis
+*[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Et l'enlèvement peut être lié."] //Jack Davis
 {PlaceActor("davis", 1)}
 (J'en reviens pas d'être d'accord avec cette fouine)
 A.Ferguson: "Hmph."
@@ -400,6 +410,7 @@ L.Lawson: "Je suis persuadée qu'il y a un lien entre les deux. Occupez-vous de 
 
 
 =mayor_2
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("mayor", 3)}
 A.Ferguson: "Vous avancez sur votre enquête ?"
@@ -418,6 +429,7 @@ A.Ferguson: "Hmph. Continuez donc votre enquête."
 ->DONE
 
 =detective_2
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("detective", 3)}
 (Comment j'ai pu prendre le parti de cette fouine !?)
@@ -433,12 +445,14 @@ L.Lawson: "Eliminé ? Ce n'est pas exclu. Le rapport d'autopsie n'est toujours p
 'Vous recevez un couteau'
 L.Lawson: "Nous devrions reprendre nos enquêtes..."
 {RemoveActor("detective")}
+~ couteau = true
 (Et maintenant voilà qu'elle m'aide. Peut-être qu'il existe UNE bonne détective dans le monde après tout...).
 ~ philippe_status = 6
 {Flush()}
 ->DONE
 
 =detective_3
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("detective", 3)}
 L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérité."
@@ -452,20 +466,25 @@ L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérit�
 
 
 
-==manor_outside==
+==manor_outside_day==
 
 {SetDecor("manor_outside_day")}
+{Flush()}
+{PlaceActor("alfred", 3)}
+{PlaceActor("philippe", 4)}
+
+{trigger_outside_manor == true}
 (Le majordome est en pleine discussion avec un homme sinistre que je reconnais sans peine. Philippe Van Hert, assureur de métier mais il pourrait tout aussi bien être croque-mort. Nous étions ensemble pour la signature du testament.)
 {PlaceActor("davis", 1)}
 (Alors que je m'approche d'eux j'entends des bribes de conversation.)
-{PlaceActor("alfred", 3)}
-{PlaceActor("philippe", 4)}
 Alfred: "...faire restera entre nous."
-P. Van Herl: "Bien entendu" 
+P.Van Herl: "Bien entendu" 
 (Ils s'arrêtent en me voyant arriver. Ma présence ne les ravit visiblement pas.)
 Alfred: "Ah, monsieur Davis ! Votre tête va-t-elle mieux ?"
 J.Davis: "Merci, oui."
 (Van Herl reste silencieux mais son regard est acéré comme des lames.)
+{SetStatus("alfred", 1)}
+{SetStatus("philippe", 1)}
 
 
 * {alfred_status == 6} [Puis-je vous parler un instant Alfred ?]
@@ -499,10 +518,13 @@ P.Van Herl: "Allons monsieur Davis. N'êtes-vous pas notaire ? Un homme de votre
 P.Van Herl: "Au revoir monsieur Davis."
 {Flush()}
 
+~ trigger_outside_manor = false
+
 ->DONE
 
 
-=alfred_0
+=alfred_1
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("alfred", 3)}
 Alfred: "J'espère que vous et mademoiselle Lawson retrouverez Mademoiselle. Elle était si chère aux yeux de Monsieur Victor..."
@@ -510,7 +532,8 @@ Alfred: "J'espère que vous et mademoiselle Lawson retrouverez Mademoiselle. Ell
 ->DONE
 
 
-=philippe_0
+=philippe_1
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("philippe", 3)}
 (Son reagrd est glacial comme toujours)
@@ -528,26 +551,13 @@ P.Van Herl: "Ne vous mêlez pas des affaires qui ne vous concernent pas"
 
 ==pub==
 {SetDecor("pub")}
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
 
 ('L'Etalon Pavoisé' à tout du pub irlandais traditionnel: atmosphère enfumée, billard avec ses quelques habitués au fond, drapeux irlandais et Saint Patrick décorant les murs. Les clients sont néanmoins peu nombreux. Le barman travaille derrière le bar. Un panneau derrière lui indique 'L'Etalon Pavoisé, établissement de tradition depuis 1924. Propriétaire: Shawn O'Brien'. Je vais m'asseoir en face)
-{PlaceActor("davis", 2)}
-{PlaceActor("barman", 3)}
 S.O'Brien: "Je peux vous servir quelque chose ?"
 J.Davis: "Whisky"
-
-{barman_status == 5} *['Planter le couteau dans le bar']
-(O'Brien sursaute. Bien, j'ai son attention)
-J.Davis: "Ecoute moi bien: j'enquête sur la disparition d'Emily Ferguson et mon nouvel ami Scarface à deux rues d'ici m'a dit que si quelqu'un a fait le coup c'est toi. T'as pas aimé que le maire utilise ses petits copains de la pègre pour te menacer, ça je comprends bien, donc en retour tu t'es dit que t'aller en prendre à sa fille, j'ai raison ?"
-(Il est nerveux, visiblement j'ai touché un point sensible)
-S.O'Brien: "T'y es pas du tout ! C'est vrai que Cocimo, Scarface comme tu l'appelles, a voulu me menacer un peu mais il s'est pris une raclée et est rentré chez lui ! Bien sûr que je savais que c'était le maire et que je voulais me venger mais jamais j'aurais fait de mal à Emily !"
-J.Davis: "Pourquoi pas, c'était une cible facile: la jeune fille éplorée par la mort de son grand père, elle s'éloigne un peu du groupe et BAAM ! Dommage que quelqu'un se soit entreposé. J'en ai encore une vilaine migraine, mais je sais que je t'en ai mis une belle aussi."
-S.O'Brien: "Ok ok ça va j'étais bien là mais tu te trompes..."
-{Flush()}
-->end_0
-
-{Flush()}
 
 ->DONE
 
@@ -566,7 +576,7 @@ J.Davis: "J'enquête sur sa disparition et je compte bien la retrouver."
 S.O'Brien: "C'est parce que vous avez entendu les rumeurs que vous venez m'interroger je suppose ?"
 J.Davis: "Exact" (Pas du tout, mais il à l'air de vouloir parler, alors qu'il parle !)
 S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
-J.Davis: "Oh, vous semblez proche de 'Emily'"
+J.Davis: "Oh, vous semblez proche d'Emily"
 S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle. J'espère que votre enquête aboutira."
 {SetStatus("barman", 1)}
 {Flush()}
@@ -579,7 +589,7 @@ J.O'Brien: "Si vous n'aimez pas libre à vous de partir. C'est pas le seul bar d
 
 {barman_status == 4} *[J'ai entendu dire que vous étiez en conflit avec le maire. Vous ne vous en seriez pas pris à sa fille pour vous venger par hasard ?]
 S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
-J.Davis: "Oh, vous semblez proche de 'Emily'"
+J.Davis: "Oh, vous semblez proche d'Emily"
 S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mais ça ne m'empêche pas de m'inquiéter pour elle."
 (Il semble en effet boulversé. Pas comme un homme qui s'inquiète seuleùent pour une vieille connaissance)
 J.Davis: "A vous entendre, elle ne doit pas être si ancienne que ça."
@@ -587,10 +597,22 @@ S.O'Brien: "Ca c'est pas vos oignons. J'espère qu'au moins votre enquête about
 {SetStatus("barman", 1)}
 {Flush()}
 
+{barman_status == 5} *['Planter le couteau dans le bar']
+(O'Brien sursaute. Bien, j'ai son attention)
+J.Davis: "Ecoute moi bien: j'enquête sur la disparition d'Emily Ferguson et mon nouvel ami Scarface à deux rues d'ici m'a dit que si quelqu'un a fait le coup c'est toi. T'as pas aimé que le maire utilise ses petits copains de la pègre pour te menacer, ça je comprends bien, donc en retour tu t'es dit que t'aller en prendre à sa fille, j'ai raison ?"
+(Il est nerveux, visiblement j'ai touché un point sensible)
+S.O'Brien: "T'y es pas du tout ! C'est vrai que Cocimo, Scarface comme tu l'appelles, a voulu me menacer un peu mais il s'est pris une raclée et est rentré chez lui ! Bien sûr que je savais que c'était le maire et que je voulais me venger mais jamais j'aurais fait de mal à Emily !"
+J.Davis: "Pourquoi pas, c'était une cible facile: la jeune fille éplorée par la mort de son grand père, elle s'éloigne un peu du groupe et BAAM ! Dommage que quelqu'un se soit entreposé. J'en ai encore une vilaine migraine, mais je sais que je t'en ai mis une belle aussi."
+S.O'Brien: "Ok ok ça va j'étais bien là mais tu te trompes..."
+{SetStatus("barman", 1)}
+{Flush()}
+->end_0
+
+
  ->DONE
  
  =barman_1
- {PlaceActor("davis", 2)}
+{PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
 (Il nettoie toujours consciencieusement un verre)
 S.O'Brien: "Je peux vous servir autre chose ?
@@ -607,6 +629,7 @@ J.Davis: "Non merci"
 
 ==end_0== //La bonne fin
 {SetDecor("pub")}
+{Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
 "C'est bon Shawn. Monsieur Davis a déjà compris toute l'histoire. N'est-ce pas ?
@@ -654,6 +677,7 @@ FIN
 Emily ne fut jamais retrouvée. L'enquête avait révélée qu'Archibald avait des dettes auprès de la pègre locale, mais jamais leur implication dans l'enlèvement.
 {PlaceActor("davis", 2)}
 Quant à moi, je n'ai évidemment pas été payé. Ville pourri, enquête pourrie, boulot pourri. Je change de vie, j'arrêtes d'être notaire, ça rapporte pas assez. Ou c'est moi qui aurait peut-être dû changer.
+{SetDecor("manor_outside_day")}
 {Flush()} 
 END
 
@@ -664,6 +688,7 @@ END
 
 ==end_2==
 {SetDecor("black")}
+{Flush()}
 {PlaceActor("davis", 2)}
 (Je me réveille après ce qui me paraît une éternité plus tard, menotté à un lit d'hôpital. La détective Lawson m'apprend que j'ai dormi 3 jours. Pendant ce temps la fille Ferguson est rentrée chez elle, et Scarface a été arrêté pour son enlèvement, ainsi qu'agression. Quant aux menottes: j'ai été inculpé également pour agression, ainsi que pour falsification de testament. Il semblerait que le vieux Victor n'était pas vraiment mort paisiblement, et que la question de l'héritage restait en suspens tant que le vrai testament n'aurait pas été retrouvé.)
 (Ma paye envolée, inculpé pour un crime que je ne savais même pas avoir commis, moi qui pensais que la vie de notaire était assez pourrie comme ça, j'avais tort. Si seulement j'avais pu changer les choses...)
