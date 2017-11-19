@@ -235,14 +235,7 @@ public class GameManager : MonoBehaviour {
 		
 	}
 
-    /// <summary>
-    /// Lis le contexte ink, décide vers quel noeud relancer?
-    /// </summary>
-    /// <param name="nomLieu"></param>
-    public void NodeDecider(string nomLieu)
-    {
-
-    }
+    
 
     /// <summary>
     /// permet de changer quel sprite afficher

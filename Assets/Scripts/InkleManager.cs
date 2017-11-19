@@ -106,6 +106,7 @@ public class InkleManager : MonoBehaviour {
     void Start()
     {
         InitializeColor();
+        InitializeSound();
         gameManager = GetComponent<GameManager>();
         StartStory();
     }
@@ -208,13 +209,16 @@ public class InkleManager : MonoBehaviour {
         storyText.text = text;
         string speaker = WhoSpeak(text);
         Debug.Log(speaker);
+
         try
         {
             storyText.color = textColor[speaker];
-
-            gameObject.GetComponent<AudioSource>().clip = textAudio[speaker][Random.Range(0, textAudio.Count)];
+            if(textAudio[speaker].Length !=0)
+            { 
+            AudioClip clipie= textAudio[speaker][Random.Range(0, textAudio[speaker].Length)]; ;
+            gameObject.GetComponent<AudioSource>().clip = clipie;
             gameObject.GetComponent<AudioSource>().Play();
-
+            }
         }
         catch (KeyNotFoundException)
         {

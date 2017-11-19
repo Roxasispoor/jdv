@@ -90,7 +90,7 @@ public class Lieu : MonoBehaviour {
                 {
                     print(i);
 
-                gameManager.SetDecor(button.gameObject.name);
+                    //gameManager.SetDecor(button.gameObject.name);
                     InkleManager  ink= gameManager.gameObject.GetComponent<InkleManager>();
 
                     ink.Story.ChoosePathString(button.gameObject.name);

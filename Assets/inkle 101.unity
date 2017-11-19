@@ -769,15 +769,69 @@ MonoBehaviour:
   textPhilippe: {r: 0.63235295, g: 0.63235295, b: 0.63235295, a: 1}
   textScarface: {r: 0.41186017, g: 0.64705884, b: 0.38062283, a: 1}
   AudioDavis: []
-  AudioAbi: []
-  AudioAlfred: []
-  AudioBarman: []
-  AudioBigBerta: []
-  AudioDaughter: []
-  AudioDetective: []
-  AudioMayor: []
-  AudioPhilippe: []
-  AudioScarface: []
+  AudioAbi:
+  - {fileID: 8300000, guid: c67504ca5e6149c4aaf8acb4ec5ef11f, type: 3}
+  - {fileID: 8300000, guid: e43e67196c3d4b04caf2040f10a53989, type: 3}
+  - {fileID: 8300000, guid: b1559302f65e5d54eb359f8566381d32, type: 3}
+  - {fileID: 8300000, guid: ef7e10a4f8cdf0d44b8e96b0e0c0c1c8, type: 3}
+  - {fileID: 8300000, guid: 026152437453b3444925bad78a7bcd94, type: 3}
+  - {fileID: 8300000, guid: 60efe8b9616ac8044b023dc5ede75cab, type: 3}
+  - {fileID: 8300000, guid: 01b30adbf26dcc249a6dedcf624a5912, type: 3}
+  - {fileID: 8300000, guid: 598473f54795c54428375d0708554c91, type: 3}
+  AudioAlfred:
+  - {fileID: 8300000, guid: ea1afedc9bdf5df4b9d1fb37158c4128, type: 3}
+  - {fileID: 8300000, guid: d925f30aa6e9f2d419758e2ca04aae23, type: 3}
+  - {fileID: 8300000, guid: 483c11c120faf254bb2df8adc1344913, type: 3}
+  - {fileID: 8300000, guid: 49d0354b5d1783c4e98593c302d06023, type: 3}
+  - {fileID: 8300000, guid: f804b15051122a543b9c853da6b68677, type: 3}
+  - {fileID: 8300000, guid: 1fbe98a355380954b8333daed81aa281, type: 3}
+  AudioBarman:
+  - {fileID: 8300000, guid: f46f5cf4dc361ff4e8d9c799519f4bdc, type: 3}
+  - {fileID: 8300000, guid: 025203830e79c744c94a56957f6b2e6a, type: 3}
+  - {fileID: 8300000, guid: 3b106fa0482e781488819c23182d684e, type: 3}
+  - {fileID: 8300000, guid: 98319c4eac912e146958a0cc08704012, type: 3}
+  - {fileID: 8300000, guid: c249551cb1feb704d9f7893a9e75105c, type: 3}
+  - {fileID: 8300000, guid: 089d4b65974c20a4981c10b477d9cd73, type: 3}
+  - {fileID: 8300000, guid: aacc2b7ccc8530342b2278f5bcb4f560, type: 3}
+  AudioBigBerta:
+  - {fileID: 8300000, guid: b30691910389e9a4b847971b24ecf25a, type: 3}
+  - {fileID: 8300000, guid: 675682cf77c699d4c95df264c5932a62, type: 3}
+  - {fileID: 8300000, guid: 0f5ef592bfd4c4a4f918a50c7ce4c29b, type: 3}
+  - {fileID: 8300000, guid: fa58df1315aaffe4fbae348f012f366e, type: 3}
+  - {fileID: 8300000, guid: 9202935e3bd1fb8428d35b4f8ed0ed75, type: 3}
+  AudioDaughter:
+  - {fileID: 8300000, guid: d5f7cbd4e038c4a488374070c1c2a324, type: 3}
+  - {fileID: 8300000, guid: 97a6dad9dfd891e49a6536b975f15fbe, type: 3}
+  - {fileID: 8300000, guid: 6d9df38a41ce0004fb90ee6945feb90b, type: 3}
+  - {fileID: 8300000, guid: 9963a48397eabb440b345f761e740871, type: 3}
+  AudioDetective:
+  - {fileID: 8300000, guid: 1041be18e36f9a14b8a0cb86f335ee89, type: 3}
+  - {fileID: 8300000, guid: e04656b12d6b34043a3902fdfdaa6b08, type: 3}
+  - {fileID: 8300000, guid: 4e05386e6a466e645a6763fdc1aa9e45, type: 3}
+  - {fileID: 8300000, guid: e74e5d81024af7647b56446e2977e35e, type: 3}
+  - {fileID: 8300000, guid: 73a66411321e99d4fa71657bd4eb4f0c, type: 3}
+  AudioMayor:
+  - {fileID: 8300000, guid: bc885b84c4aa02140aa24da478137b6a, type: 3}
+  - {fileID: 8300000, guid: 1c9b8f53db8b1694695d9f56a52c0982, type: 3}
+  - {fileID: 8300000, guid: ed99f54812d71ae4682f25bb9963456a, type: 3}
+  - {fileID: 8300000, guid: 00a590a5dc25baf4ea601540923f0ccd, type: 3}
+  - {fileID: 8300000, guid: c885dd2d5d7f98e48970c1970a720572, type: 3}
+  - {fileID: 8300000, guid: 85b62bfa80c0ad74bac4fa1fa4bc9430, type: 3}
+  - {fileID: 8300000, guid: eb17c4373e9bb574e81edda3b4931264, type: 3}
+  AudioPhilippe:
+  - {fileID: 8300000, guid: 07b1a9a09e8c99347b3f50dec5401227, type: 3}
+  - {fileID: 8300000, guid: 30fe0cc5ed4fc984698fc9ff43ab7b8c, type: 3}
+  - {fileID: 8300000, guid: 10da9e6bc480fc340874ded8d1c536f0, type: 3}
+  - {fileID: 8300000, guid: 94c291b3b9eaa2344ab5b19f8f2c45ef, type: 3}
+  - {fileID: 8300000, guid: 29df06242165ae447ad45dd751e8e90e, type: 3}
+  - {fileID: 8300000, guid: 6ec592717ea0607409277f435245f7c8, type: 3}
+  AudioScarface:
+  - {fileID: 8300000, guid: 599baab0ecc68cd4e97b6ffc013c05ca, type: 3}
+  - {fileID: 8300000, guid: a6644006524e0874fa716e2884f1ad94, type: 3}
+  - {fileID: 8300000, guid: ad12fe61550848643800fb357cae5fc2, type: 3}
+  - {fileID: 8300000, guid: a2d79b33defbd56488bdcabe80097280, type: 3}
+  - {fileID: 8300000, guid: d710a18b9f4841c48a88aaac7ce30a6c, type: 3}
+  - {fileID: 8300000, guid: cf79f9eab138c4548a2938c66ae15f2e, type: 3}
 --- !u!4 &1178280575
 Transform:
   m_ObjectHideFlags: 0
