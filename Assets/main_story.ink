@@ -8,9 +8,8 @@ EXTERNAL SubstractVictorness(float)
 VAR alfred_status = 0
 VAR philippe_status = 0
 VAR barman_status = 0
-VAR fin_1 = false
 VAR couteau = false
-VAR trigger_outside_manor = true
+
 
 
 ->intro
@@ -164,6 +163,7 @@ J.Davis: "Je vois."
 {Flush()}
 {PlaceActor("bigberta", 3)}
 {PlaceActor("abi", 2)}
+->DONE
 
 *[Non merci, il à l'air délicieux mais je préfèrerais plutôt quelques informations]//choix Jack Davis
 {SubstractVictorness(1)}
@@ -178,6 +178,7 @@ Berta: "Le barman du pub 'L'étalon Pavoisé'. Le maire a voulu le faire fermer 
 {Flush()}
 {PlaceActor("bigberta", 3)}
 {PlaceActor("abi", 2)}
+->DONE
 
 *[Moins fort grognasse, j'ai mal au crâne]
 {AddVictorness(1)}
@@ -251,6 +252,7 @@ Abigail: "Avec votre enquête je sais pas, avec vous par contre... Méfiez vous 
 {Flush()}
 {PlaceActor("bigberta", 3)}
 {PlaceActor("abi", 2)}
+->DONE
 
 *[Victor ?!] //Jack Davis
 {SubstractVictorness(1)}
@@ -263,6 +265,7 @@ J.Davis: "Merci du conseil"
 {Flush()}
 {PlaceActor("bigberta", 3)}
 {PlaceActor("abi", 2)}
+->DONE
 
 *[Si tu sais quelque chose gamine tu ferais mieux de parler]//Victor
 {AddVictorness(1)}
@@ -322,6 +325,7 @@ Scarface: "Ah ah, très drôle." (De toute évidence ça ne l'est pas) "Maintena
 {SetStatus("scarface", 3)}
 {Flush()}
 {PlaceActor("scarface", 3)}
+->DONE
 
 *[Pourquoi, c'est interdit par la loi ?]//neutre
 (Scarface ici présent n'a pas l'air de m'apprécier)
@@ -332,6 +336,7 @@ Scarface: "Maintenant dégage"
 {SetStatus("scarface", 3)}
 {Flush()}
 {PlaceActor("scarface", 3)}
+->DONE
 
 *[Tu ferais mieux te bouger ta graisse face de trou]//Victor
 {AddVictorness(1)}
@@ -340,8 +345,9 @@ Scarface: "Maintenant dégage"
 {SetStatus("scarface", 1)}
 {SetDecor("black")}
 ->end_2
+->DONE
 
-{ couteau == true } *[(Sort mon couteau) Ouais et tu vas faire sinon mon grand ?] 
+* { couteau == true } [(Sort mon couteau) Ouais et tu vas faire sinon mon grand ?] 
 (Scarface ici présent semble beaucoup moins serein d'un coup.)
 Scarface: "Ecoute mon gars, je sais pas ce que tu veux mais moi je suis juste les ordres hein !"
 J.Davos: "Quels ordres ? Enlever la fille du maire ?"
@@ -349,12 +355,12 @@ Scarface: "Quoi ?! Non ! Pourquoi j'enlèverai la fille de mon employeur !? Il m
 J.Davis: "Attends, t'as rien à voir avec l'enlèvement !?"
 Scarface: "Je savais même pas qu'elle avait été enlevée ! Si quelqu'un a fait le coup c'est le barman !"
 J.Davis: "T'as intérêt à m'avoir dit la vérité !"
-{SetStatus(2, "scarface")}
+{SetStatus("scarface", 2)}
 ~ barman_status = 5
 {Flush()}
 {PlaceActor("scarface", 3)}
-
 ->DONE
+
 
 =scarface_2 //Ouvert
 {SetDecor("backalley")}
@@ -421,13 +427,16 @@ L.Lawson: "Mon job est de découvrir la vérité. Et pour cela j'ai besoin de co
 L.Lawson: "Tch. Très bien, si vous le décidez ainsi..."
 (Elle me lance un regard noir et s'éloigne. Rabattre le caquet de cette fouine est déjà une victoire en soit)
 {RemoveActor("detective")}
-{SetStatus(3, "detective")}
-{SetStatus(2, "mayor")}
 A.Ferguson: "Merci pour votre aide monsieur Davis."
-~ fin_1 = true
+{SetStatus("detective", 3)}
+{SetStatus("mayor", 2)}
+~ alfred_status = 6
 {Flush()}
 {PlaceActor("detective", 2)}
 {PlaceActor("mayor", 3)}
+
+->DONE
+
 
 *[(S'allier avec la détective) "Elle a raison monsieur Ferguson. Et l'enlèvement peut être lié."] //Jack Davis
 {SubstractVictorness(2)}
@@ -436,14 +445,15 @@ A.Ferguson: "Merci pour votre aide monsieur Davis."
 A.Ferguson: "Hmph."
 {RemoveActor("mayor")}
 (Il s'éloigne sans un regard)
-{SetStatus(2, "detective")}
-{SetStatus(3, "mayor")}
 L.Lawson: "Je suis persuadée qu'il y a un lien entre les deux. Occupez-vous de la fille, je cherche dans la famille"
+{SetStatus("detective", 2)}
+{SetStatus("mayor", 3)}
+~ philippe_status = 6
 {Flush()}
 {PlaceActor("detective", 2)}
 {PlaceActor("mayor", 3)}
 
--> DONE
+->DONE
 
 
 
@@ -524,7 +534,7 @@ L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérit�
 {PlaceActor("alfred", 3)}
 {PlaceActor("philippe", 4)}
 
-{trigger_outside_manor == true}
+
 (Le majordome est en pleine discussion avec un homme sinistre que je reconnais sans peine. Philippe Van Hert, assureur de métier mais il pourrait tout aussi bien être croque-mort. Nous étions ensemble pour la signature du testament.)
 {PlaceActor("davis", 1)}
 (Alors que je m'approche d'eux j'entends des bribes de conversation.)
@@ -556,6 +566,7 @@ Alfred: "Je ne crains que cette affaire ne vienne de prendre une autre ampleur".
 {Flush()}
 {PlaceActor("alfred", 3)}
 {PlaceActor("philippe", 4)}
+->DONE
 
 
 * {philippe_status == 6} [Puis-je vous parler monsieur Van Herl ?]
@@ -574,9 +585,6 @@ P.Van Herl: "Au revoir monsieur Davis."
 {Flush()}
 {PlaceActor("alfred", 3)}
 {PlaceActor("philippe", 4)}
-
-~ trigger_outside_manor = false
-
 ->DONE
 
 
@@ -644,6 +652,7 @@ S.O'Brien: "...On est sorti ensemble un temps. C'est de l'histoire ancienne. Mai
 {Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
+->DONE
 
 *[Votre piquette vaut rien, mais peut-être que vous avez des infos: la fille du maire a été enlevée]//Victor
 {AddVictorness(1)}
@@ -653,8 +662,9 @@ J.O'Brien: "Si vous n'aimez pas libre à vous de partir. C'est pas le seul bar d
 {Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
+->DONE
 
-{barman_status == 4} *[J'ai entendu dire que vous étiez en conflit avec le maire. Vous ne vous en seriez pas pris à sa fille pour vous venger par hasard ?]
+* {barman_status == 4} [J'ai entendu dire que vous étiez en conflit avec le maire. Vous ne vous en seriez pas pris à sa fille pour vous venger par hasard ?]
 {SubstractVictorness(1)}
 S.O'Brien: "Ecoutez, le maire a voulu faire fermer mon pub et ça m'a énervé c'est vrai, mais jamais je n'aurais fait de mal à Emily pour me venger !"
 J.Davis: "Oh, vous semblez proche d'Emily"
@@ -666,8 +676,9 @@ S.O'Brien: "Ca c'est pas vos oignons. J'espère qu'au moins votre enquête about
 {Flush()}
 {PlaceActor("davis", 2)}
 {PlaceActor("barman", 3)}
+->DONE
 
-{barman_status == 5} *[Planter le couteau dans le bar]
+* {barman_status == 5} [Planter le couteau dans le bar]
 (O'Brien sursaute. Bien, j'ai son attention)
 J.Davis: "Ecoute moi bien: j'enquête sur la disparition d'Emily Ferguson et mon nouvel ami Scarface à deux rues d'ici m'a dit que si quelqu'un a fait le coup c'est toi. T'as pas aimé que le maire utilise ses petits copains de la pègre pour te menacer, ça je comprends bien, donc en retour tu t'es dit que t'aller en prendre à sa fille, j'ai raison ?"
 (Il est nerveux, visiblement j'ai touché un point sensible)
@@ -677,9 +688,7 @@ S.O'Brien: "Ok ok ça va j'étais bien là mais tu te trompes..."
 {SetStatus("barman", 1)}
 {Flush()}
 ->end_0
-
-
- ->DONE
+->DONE
  
  =barman_1
 {PlaceActor("davis", 2)}
@@ -706,7 +715,7 @@ J.Davis: "Non merci"
 {PlaceActor("barman", 3)}
 "C'est bon Shawn. Monsieur Davis a déjà compris toute l'histoire. N'est-ce pas ?
 {RemoveActor("barman")}
-{PlaceActor("daughter_true", 3)}
+{PlaceActor("daughter", 3)}
 (Emily. Pas le moins du monde effrayée, et je le comprends maintenant, pas le moins du monde enlevée)
 E.Ferguson: "Le testament était un faux. Mon grand père n'aurait jamais rien légué à mon père. Ce gros idiot est endetté jusqu'à la moelle auprès de la pègre local."
 J.Davis: "Vous étiez l'héritière."
