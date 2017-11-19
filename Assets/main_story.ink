@@ -1,4 +1,4 @@
-EXTERNAL PlaceActor(ActorName, position)
+﻿EXTERNAL PlaceActor(ActorName, position)
 EXTERNAL RemoveActor(ActorName)
 EXTERNAL Flush()
 EXTERNAL SetDecor(DecorName)
@@ -462,7 +462,7 @@ L.Lawson: "Cherchez donc la fille à l'aveugle. Je préfère chercher la vérit�
 {PlaceActor("alfred", 3)}
 {PlaceActor("philippe", 4)}
 Alfred: "...faire restera entre nous."
-P. Van Herl: "Bien entendu" 
+P.Van Herl: "Bien entendu" 
 (Ils s'arrêtent en me voyant arriver. Ma présence ne les ravit visiblement pas.)
 Alfred: "Ah, monsieur Davis ! Votre tête va-t-elle mieux ?"
 J.Davis: "Merci, oui."

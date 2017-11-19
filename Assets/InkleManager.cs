@@ -19,8 +19,34 @@ public class InkleManager : MonoBehaviour {
     [SerializeField]
     private Button buttonPrefab;
 
-    public Dictionary<string,Color> textColor = new Dictionary<string, Color> { { "test", Color.black } };
-    public Color Davis;
+    public Dictionary<string,Color> textColor = new Dictionary<string, Color> { };
+    public Color textDavis;
+    public Color textAbi;
+    public Color textAlfred;
+    public Color textBarman;
+    public Color textBigBerta;
+    public Color textDaughter;
+    public Color textDetective;
+    public Color textMayor;
+    public Color textPhilippe;
+    public Color textScarface;
+
+
+    void InitializeColor()
+    {
+        textColor["J.Davis"] = textDavis;
+        //textColor.Add("J.Davis", textDavis);
+        textColor.Add("Abigail", textAbi);
+        textColor.Add("Alfred", textAlfred);
+        textColor.Add("S.O'Brien", textBarman);
+        textColor.Add("Berta", textBigBerta);
+        textColor.Add("E.Ferguson", textDaughter);
+        textColor.Add("L.Lawson", textDetective);
+        textColor.Add("A.Ferguson", textMayor);
+        textColor.Add("P.Van Herl", textPhilippe);
+        textColor.Add("Scarface", textScarface);
+
+    }
 
     public Story Story
     {
@@ -37,6 +63,7 @@ public class InkleManager : MonoBehaviour {
 
     void Start()
     {
+        InitializeColor();
         gameManager = GetComponent<GameManager>();
         StartStory();
     }
@@ -128,11 +155,23 @@ public class InkleManager : MonoBehaviour {
     {
         Text storyText = Instantiate(textPrefab) as Text;
         storyText.text = text;
-        Debug.Log(WhoSpeak(text));
-        if (WhoSpeak(text) == "J.Davis")
+        Debug.Log(WhoSpeak(text)[0]);
+        string speaker = WhoSpeak(text);
+        try
         {
-            storyText.color = Davis;
+            storyText.color = textColor[speaker];
         }
+        catch (KeyNotFoundException)
+        {
+            if (speaker[0].Equals("(")){
+                storyText.fontStyle = FontStyle.Italic;
+            }
+            else
+            {
+                storyText.fontStyle = FontStyle.Normal;
+            }
+        }
+
         RemoveChildren();
         storyText.transform.SetParent(canvas.transform, false);
 
