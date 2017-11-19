@@ -11,10 +11,12 @@ VAR barman_status = 0
 VAR couteau = false
 
 
+==titre==
+{SetDecor("ecrantitre")}
 ->intro
+->DONE
 
 ==intro==
-//{SetDecor("begin")}
 {SetDecor("black")}
 “Avis de décès : 25 mai 1943”
 J’appose ma signature sur le testament et le tend à mon client.
@@ -744,10 +746,10 @@ Mon travail est fini. Encore une affaire comme les autres, arnaquer un riche cli
 Mais cette fois la récompense a été à la hauteur du jeu. 
 J'ai quitté Topeka le jour même, une partie de l'héritage en poche. Faut croire que notaire ça rapporte.
 Cette affaire était quand même différente des autres: dans cette nouvelle vie d'arnaque j'ai dû changer pertpétuellement pour pouvoir avancer.
-La prochaine ? J'ai entendu parler d'une exposition archéologique dans une ville proche. Gotham je crois ?
+La prochaine ? J'ai entendu parler d'une exposition archéologique dans une ville proche. Arkham je crois ?
 {Flush()} 
-//{SetDecor("credit")}
 
+->credit
 ->DONE
 
 
@@ -760,8 +762,8 @@ Emily ne fut jamais retrouvée. L'enquête avait révélée qu'Archibald avait d
 {PlaceActor("davis", 2)}
 Quant à moi, je n'ai évidemment pas été payé. Ville pourri, enquête pourrie, boulot pourri. Je change de vie, j'arrêtes d'être notaire, ça rapporte pas assez. Ou c'est moi qui aurait peut-être dû changer.
 {Flush()} 
-//{SetDecor("credit")}
 
+->credit
 ->DONE
 
 
@@ -774,11 +776,15 @@ Quant à moi, je n'ai évidemment pas été payé. Ville pourri, enquête pourri
 (Je me réveille après ce qui me paraît une éternité plus tard, menotté à un lit d'hôpital. La détective Lawson m'apprend que j'ai dormi 3 jours. Pendant ce temps la fille Ferguson est rentrée chez elle, et Scarface a été arrêté pour son enlèvement, ainsi qu'agression. Quant aux menottes: j'ai été inculpé également pour agression, ainsi que pour falsification de testament. Il semblerait que le vieux Victor n'était pas vraiment mort paisiblement, et que la question de l'héritage restait en suspens tant que le vrai testament n'aurait pas été retrouvé.)
 (Ma paye envolée, inculpé pour un crime que je ne savais même pas avoir commis, moi qui pensais que la vie de notaire était assez pourrie comme ça, j'avais tort. Si seulement j'avais pu changer les choses...)
 {Flush()} 
-//{SetDecor("credit")}
 
+->credit
 ->DONE
 
 
+
+==credit==
+{SetDecor("credit")}
+->DONE
 
 
 
