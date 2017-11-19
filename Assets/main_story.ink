@@ -119,7 +119,7 @@ L.Lawson: “...Eh..Bien...Parfait alors !”
 L.Lawson: “Je vais parler aux invités, vous devriez aller en ville pour voir s’il n’y a pas de témoin.”
 (Mais dans quoi je me suis embarqué !?!)
 {Flush()}
-{SetDecor("black")}
+{SetDecor("town")}
 
 ->DONE
 
@@ -639,11 +639,27 @@ Mon travail est fini. Encore une affaire comme les autres, arnaquer un riche cli
 Mais cette fois la récompense a été à la hauteur du jeu. 
 J'ai quitté Topeka le jour même, une partie de l'héritage en poche. Faut croire que notaire ça rapporte.
 Cette affaire était quand même différente des autres: dans cette nouvelle vie d'arnaque j'ai dû changer pertpétuellement pour pouvoir avancer.
-La prochaine ? J'ai entendu parler d'une exposition dans une ville proche, Gotham je crois ?
+La prochaine ? J'ai entendu parler d'une exposition archéologique dans une ville proche. Gotham je crois ?
 {Flush()} 
 FIN
 
 ->DONE
+
+
+
+==end_1==
+{SetDecor("manor_outside_day")}
+{Flush()}
+3 jours plus tard, la détective Lynn Lawson arrêta Archibald Ferguson pour patricide. Le rapport d'autopsie révélant des traces de poison dans l'organisme de Victor Ferguson, la thèse de la mort paisible était définitivement écartée.
+Emily ne fut jamais retrouvée. L'enquête avait révélée qu'Archibald avait des dettes auprès de la pègre locale, mais jamais leur implication dans l'enlèvement.
+{PlaceActor("davis", 2)}
+Quant à moi, je n'ai évidemment pas été payé. Ville pourri, enquête pourrie, boulot pourri. Je change de vie, j'arrêtes d'être notaire, ça rapporte pas assez. Ou c'est moi qui aurait peut-être dû changer.
+{Flush()} 
+END
+
+->DONE
+
+
 
 
 ==end_2==
@@ -653,6 +669,11 @@ FIN
 (Ma paye envolée, inculpé pour un crime que je ne savais même pas avoir commis, moi qui pensais que la vie de notaire était assez pourrie comme ça, j'avais tort. Si seulement j'avais pu changer les choses...)
 {Flush()} 
 END
+
+->DONE
+
+
+
 
 
 ->END
