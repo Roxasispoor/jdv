@@ -268,6 +268,7 @@ Abigail: "Vous devriez faire gaffe à vos choix: vous aurez besoin des 2 faces d
 ==backalley==
 {SetDecor("backalley")}
 {Flush()}
+{PlaceActor("scarface", 3)}
 (Une ruelle sombre et puante entre les bâtiments. Il faut croire que même dans les villes paumées il existe ce genre d'endroits qui crient "coupe gorge". Tout y est: poubelles débordantes, rats, ordeur nauséabonde, même le type louche au fond de la ruelle qui surveille le coin.)
 
 -> DONE
