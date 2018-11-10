@@ -1,7 +1,6 @@
-# jdv
+# Jack Davis & Mister Victor
 Unijam 2017
 
-Jack Davis & Mister Victor
 
 Jack Davis & Mister Victor est un jeu type point'n'click/visual novel d'enquête.  Mettez-vous dans la peau de Jack Davis, notaire ayant été au mauvais endroit au mauvais moment, et qui devra résoudre une affaire de disparition. Il devra trouver la vérité en interagissant avec les  habitants de Topeka. C'est au joueur de choisir quelle approche il doit prendre pour obtenir la vérité en changeant pour cela de caractère. Jack Davis aurait-il un dédoublement de personnalité ?
 
