@@ -7,6 +7,9 @@ Jack Davis & Mister Victor est un jeu type point'n'click/visual novel d'enquête
 
 Ce jeu a été développé dans le cadre de l'UniJam 2017, par une équipe de 2e années à Télécom SudParis, présents initialement en tant que particicipants hors compétition.
 
+![Image from jdv](https://github.com/Roxasispoor/jdv/blob/master/jdv3.png)
+![Image from jdv](https://github.com/Roxasispoor/jdv/blob/master/jdv1.png)
+![Image from jdv](https://github.com/Roxasispoor/jdv/blob/master/jdv2.png)
 
 [Retrouvez le jeu sur itch.io](https://team2a-rtc.itch.io/jack-davis-mister-victor)
 
